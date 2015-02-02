@@ -11,10 +11,24 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RemoveField(
+            model_name='category',
+            name='answers',
+        ),
+        migrations.RemoveField(
+            model_name='category',
+            name='likes',
+        ),
         migrations.AddField(
             model_name='category',
             name='adult_themed',
             field=models.BooleanField(default=False),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='statement',
+            name='yes_answers',
+            field=models.IntegerField(default=0),
             preserve_default=True,
         ),
     ]

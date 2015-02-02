@@ -10,34 +10,39 @@ from neverhaveiever.models import Category, Statement
 
 
 def populate():
-    law_category = add_category('Law')
+    law_category = add_category('Law', views=200)
 
     add_statement(category=law_category,
-                  title="Ran a red light"
+                  title="Ran a red light",
+                  views=130
     )
 
     add_statement(category=law_category,
                   title="Stole something",
+                  views=70
     )
 
     add_statement(category=law_category,
-                  title="Killed a man",
+                  title="Killed a man"
     )
 
-    alcohol_category = add_category("Alcohol")
+    alcohol_category = add_category("Alcohol", views=600)
 
     add_statement(category=alcohol_category,
                   title="Threw up after drinking too much",
+                  views=600
     )
 
-    sex_category = add_category(name="Sex", adult_themed=True)
+    sex_category = add_category(name="Sex", views=1000, adult_themed=True)
 
     add_statement(category=sex_category,
                   title="Had a threesome",
+                  views=500
     )
 
     add_statement(category=sex_category,
                   title="Had sex in public",
+                  views=500
     )
 
     # Print out what we have added to the user.
@@ -51,8 +56,8 @@ def add_statement(category, title, views=0, answers=0):
     return p
 
 
-def add_category(name, views=0, answers=0, adult_themed=False):
-    c = Category.objects.get_or_create(name=name, views=views, answers=answers, adult_themed=adult_themed)[0]
+def add_category(name, views=0, adult_themed=False):
+    c = Category.objects.get_or_create(name=name, views=views, adult_themed=adult_themed)[0]
     return c
 
 # Start execution here!
