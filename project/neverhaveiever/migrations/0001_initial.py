@@ -15,10 +15,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(unique=True, max_length=128)),
-                ('views', models.IntegerField(default=0)),
-                ('likes', models.IntegerField(default=0)),
+                ('adult_themed', models.BooleanField(default=False)),
                 ('slug', models.SlugField(unique=True)),
-                ('answers', models.IntegerField(default=0)),
             ],
             options={
             },
@@ -30,7 +28,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=128)),
                 ('views', models.IntegerField(default=0)),
-                ('answers', models.IntegerField(default=0)),
+                ('no_answers', models.IntegerField(default=0)),
+                ('yes_answers', models.IntegerField(default=0)),
+                ('slug', models.SlugField(unique=True)),
                 ('category', models.ForeignKey(to='neverhaveiever.Category')),
             ],
             options={
