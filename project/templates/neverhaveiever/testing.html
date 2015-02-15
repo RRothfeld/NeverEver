@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'neverhaveiever/baseTemplate.html' %}
+
+{% load staticfiles %}
+
+{% block title %} - About{% endblock %}
+
+{% block body_block %}
     {% if categories %}
-        <h3>Categories sorted by popularity (views)</h3>
+        <h3>Categories in alphabetical order</h3>
         <ul>
             {% for category in categories %}
                 <li><b><a href="/testing/category/{{ category.slug }}">{{ category.name }}</a></b>
@@ -24,6 +24,4 @@
     {% else %}
         <strong>There are no statements present</strong>
     {% endif %}
-
-</body>
-</html>
+{% endblock %}

@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>NeverEver - Game Summary</title>
-</head>
-<body>
-    <br><a href="/">Return to main page</a>
+{% extends 'neverhaveiever/baseTemplate.html' %}
 
-</body>
-</html>
+{% load staticfiles %}
+
+{% block title %} - Game Summary{% endblock %}
+
+{% block body_block %}
+    <br><a href="{% url 'index' %}">Return to main page</a>
+{% endblock %}

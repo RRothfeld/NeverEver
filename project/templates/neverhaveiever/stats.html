@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>NeverEver - Statistics</title>
-</head>
-<body>
+{% extends 'neverhaveiever/baseTemplate.html' %}
+
+{% load staticfiles %}
+
+{% block title %} - Statistics{% endblock %}
+
+{% block body_block %}
     <h1>Statistics</h1>
     <h3>Under development</h3>
-    <br><a href="/stats/options">Options</a>
-    <br><a href="/">Return to main page</a>
-</body>
-</html>
+    <br><a href=" {% url 'stats_options' %}">Options</a>
+    <br><a href="{%  url 'index' %}">Return to main page</a>
+{% endblock %}
