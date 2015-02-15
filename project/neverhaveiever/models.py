@@ -16,8 +16,8 @@ class Category(models.Model):
 
 
 class Statement(models.Model):
-    #category = models.ForeignKey(Category)
-    category = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category)
+    #category = models.ManyToManyField(Category)
     title = models.CharField(max_length=128)
     views = models.IntegerField(default=0)
     no_answers = models.IntegerField(default=0)
