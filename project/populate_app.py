@@ -13,14 +13,14 @@ def populate():
     law_category = add_category('Law')
 
     add_statement(categories=[law_category],
-                  title="Ran a red light",
+                  title="Run a red light",
                   views=130,
                   yes_answers=40,
                   no_answers=50,
                   )
 
     add_statement(categories=[law_category],
-                  title="Stole something",
+                  title="Stolen something",
                   views=70,
                   yes_answers=15
     )
@@ -33,7 +33,7 @@ def populate():
     alcohol_category = add_category("Alcohol")
 
     add_statement(categories=[alcohol_category],
-                  title="Threw up after drinking too much",
+                  title="Thrown up after drinking too much",
                   views=600
     )
 

@@ -5,6 +5,24 @@
 {% block title %} - Add A Statement{% endblock %}
 
 {% block body_block %}
-    <br><a href="{% url 'index' %}">Add Statement</a>
+    <h1>Add a Statement</h1>
+    <form id="statement_form" method="post" action="{% url 'new_statement' %}">
+
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {% if field.name == "categories" %}
+                    <h3>Categories</h3>
+                {% endif %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" name="submit" value="Submit" />
+    </form>
     <br><a href="{% url 'index' %}">Return to Main Page</a>
 {% endblock %}

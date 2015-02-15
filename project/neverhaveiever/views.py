@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from neverhaveiever.models import Category, Statement
+from neverhaveiever.forms import StatementForm
 
 
 def index(request):
@@ -35,9 +36,34 @@ def play_options(request):
     context_dict = {}
     return render(request, 'neverhaveiever/playOptions.html', context_dict)
 
+
+# TODO: Remove
+from django.http import HttpResponseRedirect, HttpResponse
+
+
 def new_statement(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/newStatement.html', context_dict)
+
+    if request.method=='POST':
+        form = StatementForm(request.POST)
+        if form.is_valid():
+            statement = form.save(commit=False)
+            # if 'categories' in request.POST.keys():
+            #    for
+            # statement.save()
+            # return HttpResponseRedirect(request)
+            s = ""
+            statement.save()
+            for k in form.cleaned_data['categories']:
+                statement.categories.add(Category.objects.filter(id=k)[0])
+            statement.save()
+            return HttpResponseRedirect('/')
+        else:
+            print form.errors
+    else:
+        form = StatementForm()
+    return render(request, 'neverhaveiever/newStatement.html', {'form': form})
+
 
 
 #TODO:Remove
@@ -51,7 +77,7 @@ def testing_category(request, category_name_slug):
     context_dict = {}
     try:
         selected_category = Category.objects.get(slug=category_name_slug)
-        statements = Statement.objects.filter(category=selected_category)
+        statements = Statement.objects.filter(categories=selected_category)
 
         context_dict['category_name'] = selected_category.name
         context_dict['statements'] = statements
