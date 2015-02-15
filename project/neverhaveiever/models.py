@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 
 
 class Category(models.Model):
+    # statements = models.ManyToManyField(Statement)
     name = models.CharField(max_length=128, unique=True)
     adult_themed = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
@@ -16,8 +17,7 @@ class Category(models.Model):
 
 
 class Statement(models.Model):
-    category = models.ForeignKey(Category)
-    #category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=128)
     views = models.IntegerField(default=0)
     no_answers = models.IntegerField(default=0)
