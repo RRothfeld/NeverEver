@@ -3,9 +3,12 @@
 {% load staticfiles %}
 
 {% block body_block %}
+<div id="main">
     <h1>NeverEver</h1>
-    <a href="/play">New Game</a> <br>
-    <a href="/new-statement">Add New Statement</a> <br>
-    <a href="/stats">Statistics</a> <br>
-    <a href="/about">About</a> <br>
+    <a id="btn" href="/play" class="btn">New Game</a><br><br><br>
+    <a id="btn" href="/new-statement" class="btn">Add New Statement</a>
+</div>
+<div id="footer">
+    <p></p><a href="/stats">Statistics</a> <a href="/about">About</a></p>
+</div>
 {% endblock %}

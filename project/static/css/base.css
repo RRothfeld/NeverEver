@@ -1,12 +1,27 @@
 @charset "utf-8";
 
+
+/* 2B3A42 dark
+ * 3F5765 less dark
+ * BDD4DE light
+ * EFEFEF more light
+ * FF530D highlight
+
 /* main body style */
 body {
-	font: 100% Helvetica, Tahoma, sans-serif;
-	background: #EAEAEA;
-	color: #313131;
-	padding: 0px;
+	font: 100% Helvetica, sans-serif;
+	background: #EFEFEF;
+	color: #2B3A42;
+	padding: 10px;
 	margin: 0px;
+}
+
+#main {
+	text-align: center;
+}
+
+#footer {
+	text-align: right;
 }
 
 /* pure text styles */
@@ -31,16 +46,42 @@ h2 {
 
 /* hyperlink styles */
 a:link, a:active, a:focus {
-	color: #FF2839;
+	color: #2B3A42;
 	text-decoration: none;
 }
 
 a:visited {
-	color: #BB4F51;
+	color: #3F5765;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #313131;
 	text-decoration: underline;
+}
+
+/* button styles */
+.btn {
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 0px #2B3A42;
+  -moz-box-shadow: 0px 4px 0px #2B3A42;
+  box-shadow: 0px 4px 0px #2B3A42;
+  font-family: Arial;
+  font-size: 20px;
+  background: #3F5765;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #526874;
+  -webkit-box-shadow: 0px 3px 0px #2B3A42;
+  -moz-box-shadow: 0px 3px 0px #2B3A42;
+  box-shadow: 0px 3px 0px #2B3A42;
+  text-decoration: none;
+}
+
+#btn { /* overwrite link color */
+  color: #EFEFEF;
 }
