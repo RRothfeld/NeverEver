@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
+{% load static %}
+
 <html>
     <head lang="en">
         <meta charset="UTF-8">
         <title>NeverEver{% block title %}{% endblock %}</title>
-        <!-- linking to style sheet -->
-		<link href="neverever.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
     </head>
 
     <body>

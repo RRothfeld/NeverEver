@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/* main body style */
+body {
+	font: 100% Helvetica, Tahoma, sans-serif;
+	background: #EAEAEA;
+	color: #313131;
+	padding: 0px;
+	margin: 0px;
+}
+
+/* pure text styles */
+p, ul {
+	font-size: 0.9em;
+	line-height: 1.5em;
+	text-align: justify;
+}
+
+h1 {
+	font-size: 2.5em;
+	padding-top: 10px;
+	line-height: 1em;
+}
+
+h2 {
+	font-size: 1.5em;
+	padding-top: 30px;
+	line-height: 1em;
+}
+
+
+/* hyperlink styles */
+a:link, a:active, a:focus {
+	color: #FF2839;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #BB4F51;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #313131;
+	text-decoration: underline;
+}
