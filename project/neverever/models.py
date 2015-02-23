@@ -30,7 +30,7 @@ class Statement(models.Model):
 # Class to store play sessions
 class Session(models.Model):
     statements = models.ManyToManyField(Statement)
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
 
     # def save(self, *args, **kwargs):

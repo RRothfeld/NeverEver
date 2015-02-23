@@ -49,11 +49,10 @@ def populate():
 
     add_statement(categories=[cat_nsfw, cat_sexual],
                   title="had a threesome"
-
     )
 
     state_publicsex = add_statement(categories=[cat_nsfw, cat_sexual],
-                      title="Had sex in public"
+                      title="had sex in public"
                       )
 
     # add sessions
@@ -85,6 +84,7 @@ def populate():
 
 def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
+    print "Adding category " + str(name)
     return c
 
 def add_statement(categories, title, views=0):
@@ -92,6 +92,7 @@ def add_statement(categories, title, views=0):
     for category in categories:
         s.categories.add(category)
     s.save()
+    print "Adding statement " + str(title)
     return s
 
 def add_session(statements):
@@ -99,12 +100,14 @@ def add_session(statements):
     for statement in statements:
         s.statements.add(statement)
     s.save()
+    print "Adding session " + str(s.id)
     return s
 
 def add_player(session):
     p = Player.objects.get_or_create()[0]
     p.session.add(session)
     p.save()
+    print "Adding player " + str(p.id)
     return p
 
 def add_answer(session, statement, player, answer):
@@ -113,6 +116,7 @@ def add_answer(session, statement, player, answer):
     a.statement.add(statement)
     a.player.add(player)
     a.save()
+    print "Adding answer " + str(a.id)
     return a
 
 # Start execution here!
