@@ -16,7 +16,7 @@ class Category(models.Model):
 # Class to store statements
 class Statement(models.Model):
     categories = models.ManyToManyField(Category)
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 
@@ -62,7 +62,7 @@ class Answer(models.Model):
     statement = models.ManyToManyField(Statement)
     player = models.ManyToManyField(Player)
     id = models.IntegerField(primary_key=True)
-    answer = models.BooleanField()
+    answer = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):

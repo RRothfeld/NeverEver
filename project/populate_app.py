@@ -19,7 +19,7 @@ def populate():
     cat_activity = add_category("Activities")
 
     # add statements
-    state_bungejump = add_statement(categories=[cat_activity],
+    state_bungeejump = add_statement(categories=[cat_activity],
                       title="been bungee jumping",
                       views=10,
                       )
@@ -57,9 +57,9 @@ def populate():
                       )
 
     # add sessions
-    session_1 = add_session(statements=[state_bungejump, state_murder])
+    session_1 = add_session(statements=[state_bungeejump, state_murder])
     session_2 = add_session(statements=[state_publicsex])
-    session_3 = add_session(statements=[state_bungejump, state_publicsex, state_murder, state_stealing, state_redlight])
+    session_3 = add_session(statements=[state_bungeejump, state_publicsex, state_murder, state_stealing, state_redlight])
 
     # add players
     player_1 = add_player(session_1)
@@ -70,11 +70,11 @@ def populate():
     add_player(session_3)
 
     # add answers
-    add_answer(session_1, state_bungejump, player_1, True)
+    add_answer(session_1, state_bungeejump, player_1, True)
     add_answer(session_1, state_murder, player_1, False)
-    add_answer(session_1, state_bungejump, player_2, False)
+    add_answer(session_1, state_bungeejump, player_2, False)
     add_answer(session_2, state_publicsex, player_3, True)
-    add_answer(session_3, state_bungejump, player_4, False)
+    add_answer(session_3, state_bungeejump, player_4, False)
     add_answer(session_3, state_publicsex, player_4, False)
     add_answer(session_3, state_murder, player_4, True)
     add_answer(session_3, state_stealing, player_4, False)
@@ -91,7 +91,7 @@ def populate():
         print ")"
 
 
-def add_category(name, adult_themed=False):
+def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
     return c
 
