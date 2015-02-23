@@ -13,9 +13,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Answer',
             fields=[
-                ('id', models.IntegerField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('answer', models.BooleanField(default=False)),
-                ('slug', models.SlugField(unique=True)),
             ],
             options={
             },
@@ -35,11 +34,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Player',
             fields=[
-                ('id', models.IntegerField(serialize=False, primary_key=True)),
-                ('gender', models.CharField(max_length=1)),
-                ('age', models.IntegerField()),
-                ('nationality', models.CharField(max_length=128)),
-                ('slug', models.SlugField(unique=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('gender', models.CharField(max_length=1, null=True)),
+                ('age', models.IntegerField(null=True)),
+                ('nationality', models.CharField(max_length=128, null=True)),
             ],
             options={
             },
@@ -48,8 +46,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Session',
             fields=[
-                ('id', models.IntegerField(serialize=False, primary_key=True)),
-                ('slug', models.SlugField(unique=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
             ],
             options={
             },

@@ -62,26 +62,25 @@ def populate():
     session_3 = add_session(statements=[state_bungeejump, state_publicsex, state_murder, state_stealing, state_redlight])
 
     # add players
-    player_1 = add_player(session=[session_1])
-    player_2 = add_player(session=[session_1])
-    player_3 = add_player(session=[session_2])
-    player_4 = add_player(session=[session_3])
-    player_5 = add_player(session=[session_3])
-    add_player(session=[session_3])
+    player_1 = add_player(session=session_1)
+    player_2 = add_player(session=session_1)
+    player_3 = add_player(session=session_2)
+    player_4 = add_player(session=session_3)
+    player_5 = add_player(session=session_3)
 
     # add answers
-    add_answer(session=[session_1], statement=[state_bungeejump], player=[player_1], answer=True)
-    add_answer(session=[session_1], statement=[state_murder], player=[player_1], answer=False)
-    add_answer(session=[session_1], statement=[state_bungeejump], player=[player_2], answer=False)
-    add_answer(session=[session_2], statement=[state_publicsex], player=[player_3], answer=True)
-    add_answer(session=[session_3], statement=[state_bungeejump], player=[player_4], answer=False)
-    add_answer(session=[session_3], statement=[state_publicsex], player=[player_4], answer=False)
-    add_answer(session=[session_3], statement=[state_murder], player=[player_4], answer=True)
-    add_answer(session=[session_3], statement=[state_stealing], player=[player_4], answer=False)
-    add_answer(session=[session_3], statement=[state_publicsex], player=[player_5], answer=False)
-    add_answer(session=[session_3], statement=[state_murder], player=[player_5], answer=True)
-    add_answer(session=[session_3], statement=[state_stealing], player=[player_5], answer=False)
-    add_answer(session=[session_3], statement=[state_redlight], player=[player_5], answer=True)
+    add_answer(session=session_1, statement=state_bungeejump, player=player_1, answer=True)
+    add_answer(session=session_1, statement=state_murder, player=player_1, answer=False)
+    add_answer(session=session_1, statement=state_bungeejump, player=player_2, answer=False)
+    add_answer(session=session_2, statement=state_publicsex, player=player_3, answer=True)
+    add_answer(session=session_3, statement=state_bungeejump, player=player_4, answer=False)
+    add_answer(session=session_3, statement=state_publicsex, player=player_4, answer=False)
+    add_answer(session=session_3, statement=state_murder, player=player_4, answer=True)
+    add_answer(session=session_3, statement=state_stealing, player=player_4, answer=False)
+    add_answer(session=session_3, statement=state_publicsex, player=player_5, answer=False)
+    add_answer(session=session_3, statement=state_murder, player=player_5, answer=True)
+    add_answer(session=session_3, statement=state_stealing, player=player_5, answer=False)
+    add_answer(session=session_3, statement=state_redlight, player=player_5, answer=True)
 
     # Print out what we have added to the user.
     for s in Statement.objects.all():
@@ -110,11 +109,17 @@ def add_session(statements):
     return s
 
 def add_player(session):
-    p = Player.objects.get_or_create(session=session)[0]
+    p = Player.objects.get_or_create()[0]
+    p.session.add(session)
+    p.save()
     return p
 
 def add_answer(session, statement, player, answer):
-    a = Answer.objects.get_or_create(session=session, statement=statement, player=player, answer=answer)[0]
+    a = Answer.objects.get_or_create()[0]
+    a.session.add(session)
+    a.statement.add(statement)
+    a.player.add(player)
+    a.save()
     return a
 
 # Start execution here!
