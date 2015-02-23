@@ -29,6 +29,7 @@ class Statement(models.Model):
 
 # Class to store play sessions
 class Session(models.Model):
+    stamp = models.IntegerField(primary_key=True)
     statements = models.ManyToManyField(Statement)
     # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
@@ -37,11 +38,16 @@ class Session(models.Model):
     #     self.slug = slugify(self.id)
     #    super(Session, self).save(*args, **kwargs)
 
+    # Tried myself on ITERABLES, did not work
+    # def __iter__(self):
+    #    return iter("session" + str(self.id))
+
     def __unicode__(self):
-        return "Session " + str(self.id)
+        return "Session " + str(self.stamp)
 
 # Class to store players
 class Player(models.Model):
+    stamp = models.IntegerField(primary_key=True)
     session = models.ManyToManyField(Session)
     # id = models.IntegerField(primary_key=True)
     gender = models.CharField(max_length=1, null=True)
@@ -54,11 +60,12 @@ class Player(models.Model):
     #     super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Player " + str(self.id)
+        return "Player " + str(self.stamp)
 
 
 # Class to store answers
 class Answer(models.Model):
+    stamp = models.IntegerField(primary_key=True)
     session = models.ManyToManyField(Session)
     statement = models.ManyToManyField(Statement)
     player = models.ManyToManyField(Player)
@@ -71,4 +78,4 @@ class Answer(models.Model):
     #    super(Answer, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Answer " + str(self.id)
+        return "Answer " + str(self.stamp)

@@ -56,30 +56,30 @@ def populate():
                       )
 
     # add sessions
-    session_1 = add_session(statements=[state_bungeejump, state_murder])
-    session_2 = add_session(statements=[state_publicsex])
-    session_3 = add_session(statements=[state_bungeejump, state_publicsex, state_murder, state_stealing, state_redlight])
+    session_1 = add_session(stamp=1, statements=[state_bungeejump, state_murder])
+    session_2 = add_session(stamp=2, statements=[state_publicsex])
+    session_3 = add_session(stamp=3, statements=[state_bungeejump, state_publicsex, state_murder, state_stealing, state_redlight])
 
     # add players
-    player_1 = add_player(session=session_1)
-    player_2 = add_player(session=session_1)
-    player_3 = add_player(session=session_2)
-    player_4 = add_player(session=session_3)
-    player_5 = add_player(session=session_3)
+    player_1 = add_player(stamp=1, session=session_1)
+    player_2 = add_player(stamp=2, session=session_1)
+    player_3 = add_player(stamp=3, session=session_2)
+    player_4 = add_player(stamp=4, session=session_3)
+    player_5 = add_player(stamp=5, session=session_3)
 
     # add answers
-    add_answer(session=session_1, statement=state_bungeejump, player=player_1, answer=True)
-    add_answer(session=session_1, statement=state_murder, player=player_1, answer=False)
-    add_answer(session=session_1, statement=state_bungeejump, player=player_2, answer=False)
-    add_answer(session=session_2, statement=state_publicsex, player=player_3, answer=True)
-    add_answer(session=session_3, statement=state_bungeejump, player=player_4, answer=False)
-    add_answer(session=session_3, statement=state_publicsex, player=player_4, answer=False)
-    add_answer(session=session_3, statement=state_murder, player=player_4, answer=True)
-    add_answer(session=session_3, statement=state_stealing, player=player_4, answer=False)
-    add_answer(session=session_3, statement=state_publicsex, player=player_5, answer=False)
-    add_answer(session=session_3, statement=state_murder, player=player_5, answer=True)
-    add_answer(session=session_3, statement=state_stealing, player=player_5, answer=False)
-    add_answer(session=session_3, statement=state_redlight, player=player_5, answer=True)
+    add_answer(stamp=1, session=session_1, statement=state_bungeejump, player=player_1, answer=True)
+    add_answer(stamp=2, session=session_1, statement=state_murder, player=player_1, answer=False)
+    add_answer(stamp=3, session=session_1, statement=state_bungeejump, player=player_2, answer=False)
+    add_answer(stamp=4, session=session_2, statement=state_publicsex, player=player_3, answer=True)
+    add_answer(stamp=5, session=session_3, statement=state_bungeejump, player=player_4, answer=False)
+    add_answer(stamp=6, session=session_3, statement=state_publicsex, player=player_4, answer=False)
+    add_answer(stamp=7, session=session_3, statement=state_murder, player=player_4, answer=True)
+    add_answer(stamp=8, session=session_3, statement=state_stealing, player=player_4, answer=False)
+    add_answer(stamp=9, session=session_3, statement=state_publicsex, player=player_5, answer=False)
+    add_answer(stamp=10, session=session_3, statement=state_murder, player=player_5, answer=True)
+    add_answer(stamp=11, session=session_3, statement=state_stealing, player=player_5, answer=False)
+    add_answer(stamp=12, session=session_3, statement=state_redlight, player=player_5, answer=True)
 
 
 def add_category(name):
@@ -95,28 +95,29 @@ def add_statement(categories, title, views=0):
     print "Adding statement " + str(title)
     return s
 
-def add_session(statements):
-    s = Session.objects.get_or_create()[0]
+def add_session(stamp, statements):
+    s = Session.objects.get_or_create(stamp=stamp)[0]
     for statement in statements:
         s.statements.add(statement)
     s.save()
-    print "Adding session " + str(s.id)
+    print "Adding session " + str(s.stamp)
     return s
 
-def add_player(session):
-    p = Player.objects.get_or_create()[0]
+def add_player(stamp, session):
+    p = Player.objects.get_or_create(stamp=stamp)[0]
     p.session.add(session)
     p.save()
-    print "Adding player " + str(p.id)
+    print "Adding player " + str(p.stamp)
     return p
 
-def add_answer(session, statement, player, answer):
-    a = Answer.objects.get_or_create()[0]
+def add_answer(stamp, session, statement, player, answer):
+    a = Answer.objects.get_or_create(stamp=stamp)[0]
     a.session.add(session)
     a.statement.add(statement)
     a.player.add(player)
+    a.answer = answer
     a.save()
-    print "Adding answer " + str(a.id)
+    print "Adding answer " + str(a.stamp)
     return a
 
 # Start execution here!
