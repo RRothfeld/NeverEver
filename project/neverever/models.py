@@ -34,7 +34,7 @@ class Session(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.id)
         super(Session, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -50,7 +50,7 @@ class Player(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.id)
         super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -66,7 +66,7 @@ class Answer(models.Model):
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = slugify(self.id)
         super(Answer, self).save(*args, **kwargs)
 
     def __unicode__(self):
