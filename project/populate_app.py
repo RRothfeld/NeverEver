@@ -6,7 +6,7 @@ import django
 
 django.setup()
 
-from neverever.models import Category, Statement
+from neverever.models import Category, Statement, Session, Player, Anwser
 
 
 def populate():
@@ -19,24 +19,24 @@ def populate():
     cat_activity = add_category("Activities")
 
     # add statements
-    add_statement(categories=[cat_activity],
-                  title="been bungee jumping",
-                  views=10,
-                  )
+    state_bungejump = add_statement(categories=[cat_activity],
+                      title="been bungee jumping",
+                      views=10,
+                      )
 
-    add_statement(categories=[cat_illegal],
-                  title="run a red light",
-                  views=130,
-                  )
+    state_redlight = add_statement(categories=[cat_illegal],
+                     title="run a red light",
+                     views=130,
+                     )
 
-    add_statement(categories=[cat_nsfw, cat_illegal],
-                  title="stolen something",
-                  views=70
-    )
+    state_stealing = add_statement(categories=[cat_nsfw, cat_illegal],
+                     title="stolen something",
+                     views=70
+                     )
 
-    add_statement(categories=[cat_nsfw, cat_violence],
-                  title="killed a person"
-    )
+    state_murder = add_statement(categories=[cat_nsfw, cat_violence],
+                   title="killed a person"
+                   )
 
     add_statement(categories=[cat_nsfw, cat_alcohol],
                   title="thrown up after drinking too much",
@@ -52,15 +52,36 @@ def populate():
 
     )
 
-    add_statement(categories=[cat_nsfw, cat_sexual],
-                  title="Had sex in public"
-    )
+    state_publicsex = add_statement(categories=[cat_nsfw, cat_sexual],
+                      title="Had sex in public"
+                      )
 
     # add sessions
-    add
+    session_1 = add_session(statements=[state_bungejump, state_murder])
+    session_2 = add_session(statements=[state_publicsex])
+    session_3 = add_session(statements=[state_bungejump, state_publicsex, state_murder, state_stealing, state_redlight])
 
     # add players
+    player_1 = add_player(session_1)
+    player_2 = add_player(session_1)
+    player_3 = add_player(session_2)
+    player_4 = add_player(session_3)
+    player_5 = add_player(session_3)
+    add_player(session_3)
+
     # add answers
+    add_answer(session_1, state_bungejump, player_1, True)
+    add_answer(session_1, state_murder, player_1, False)
+    add_answer(session_1, state_bungejump, player_2, False)
+    add_answer(session_2, state_publicsex, player_3, True)
+    add_answer(session_3, state_bungejump, player_4, False)
+    add_answer(session_3, state_publicsex, player_4, False)
+    add_answer(session_3, state_murder, player_4, True)
+    add_answer(session_3, state_stealing, player_4, False)
+    add_answer(session_3, state_publicsex, player_5, False)
+    add_answer(session_3, state_murder, player_5, True)
+    add_answer(session_3, state_stealing, player_5, False)
+    add_answer(session_3, state_redlight, player_5, True)
 
     # Print out what we have added to the user.
     for s in Statement.objects.all():
@@ -81,7 +102,20 @@ def add_statement(categories, title, views=0):
     s.save()
     return s
 
-# add further categories! TODO raoul
+def add_session(statements):
+    s = Session.objects.get_or_create()[0]
+    for statement in statements:
+        s.statements.add(statement)
+    s.save()
+    return s
+
+def add_player(session):
+    p = Player.objects.get_or_create(session=session)[0]
+    return p
+
+def add_answer(session, statement, player, answer):
+    a = Anwser.objects.get_or_create(session=session, statement=statement, player=player, answer=answer)[0]
+    return a
 
 # Start execution here!
 if __name__ == '__main__':

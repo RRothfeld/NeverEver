@@ -8,7 +8,7 @@ import django
 
 django.setup()
 
-from neverever.models import Statement, Category
+from neverever.models import Category, Statement, Session, Player, Anwser
 
 # Delete Statements
 print "Statements: {} instances were detected".format(Statement.objects.all().count())

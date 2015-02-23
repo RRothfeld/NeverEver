@@ -61,6 +61,7 @@ class Player(models.Model):
 class Anwser(models.Model):
     session = models.ManyToOneField(Session)
     statement = models.ManyToOneField(Statement)
+    player = models.ManyToOneField(Player)
     id = models.IntegerField(default=0)
     answer = models.BooleanField()
     slug = models.SlugField(unique=True)

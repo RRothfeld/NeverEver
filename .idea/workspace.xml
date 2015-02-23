@@ -2,32 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d71a513-678c-4507-be6b-1d102170465d" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/__init__.py" afterPath="$PROJECT_DIR$/project/neverever/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/admin.py" afterPath="$PROJECT_DIR$/project/neverever/admin.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/forms.py" afterPath="$PROJECT_DIR$/project/neverever/forms.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/project/neverever/migrations/0001_initial.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/migrations/0002_auto_20150215_2015.py" afterPath="$PROJECT_DIR$/project/neverever/migrations/0002_auto_20150215_2015.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/migrations/__init__.py" afterPath="$PROJECT_DIR$/project/neverever/migrations/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/models.py" afterPath="$PROJECT_DIR$/project/neverever/models.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/tests.py" afterPath="$PROJECT_DIR$/project/neverever/tests.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/urls.py" afterPath="$PROJECT_DIR$/project/neverever/urls.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/neverhaveiever/views.py" afterPath="$PROJECT_DIR$/project/neverever/views.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/about.html" afterPath="$PROJECT_DIR$/project/templates/neverever/about.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/baseTemplate.html" afterPath="$PROJECT_DIR$/project/templates/neverever/baseTemplate.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/index.html" afterPath="$PROJECT_DIR$/project/templates/neverever/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/newStatement.html" afterPath="$PROJECT_DIR$/project/templates/neverever/newStatement.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/play.html" afterPath="$PROJECT_DIR$/project/templates/neverever/play.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/playOptions.html" afterPath="$PROJECT_DIR$/project/templates/neverever/playOptions.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/playSummary.html" afterPath="$PROJECT_DIR$/project/templates/neverever/playSummary.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/stats.html" afterPath="$PROJECT_DIR$/project/templates/neverever/stats.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/statsOptions.html" afterPath="$PROJECT_DIR$/project/templates/neverever/statsOptions.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/testing.html" afterPath="$PROJECT_DIR$/project/templates/neverever/testing.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/project/templates/neverhaveiever/testingCategories.html" afterPath="$PROJECT_DIR$/project/templates/neverever/testingCategories.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/deleteModelInstances.py" afterPath="$PROJECT_DIR$/project/deleteModelInstances.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/neverever/models.py" afterPath="$PROJECT_DIR$/project/neverever/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/populate_app.py" afterPath="$PROJECT_DIR$/project/populate_app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project/settings.py" afterPath="$PROJECT_DIR$/project/project/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project/urls.py" afterPath="$PROJECT_DIR$/project/project/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ITECH-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,27 +32,27 @@
         <entry file="file://$PROJECT_DIR$/project/deleteModelInstances.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+              <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="populate_app.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="populate_app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/populate_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="701" max-vertical-offset="1410">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="1.7758621" vertical-offset="9" max-vertical-offset="1920">
+              <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/neverever/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44428772" vertical-offset="0" max-vertical-offset="1170">
-              <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="461" max-vertical-offset="1185">
+              <caret line="62" column="48" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -94,14 +71,16 @@
         <option value="$PROJECT_DIR$/project/neverhaveiever/views.py" />
         <option value="$PROJECT_DIR$/project/project/settings.py" />
         <option value="$PROJECT_DIR$/project/neverhaveiever/models.py" />
+        <option value="$PROJECT_DIR$/project/deleteModelInstances.py" />
+        <option value="$PROJECT_DIR$/project/neverever/models.py" />
         <option value="$PROJECT_DIR$/project/populate_app.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="536" />
-    <option name="y" value="92" />
-    <option name="width" value="1046" />
+    <option name="x" value="474" />
+    <option name="y" value="135" />
+    <option name="width" value="1073" />
     <option name="height" value="827" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -373,7 +352,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="536" y="92" width="1046" height="827" extended-state="0" />
+    <frame x="474" y="135" width="1073" height="827" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -382,7 +361,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32880434" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23084292" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22502334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -507,26 +486,26 @@
     <entry file="file://$PROJECT_DIR$/project/deleteModelInstances.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/populate_app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="701" max-vertical-offset="1410">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="20" column="42" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/neverever/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44428772" vertical-offset="0" max-vertical-offset="1170">
-          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="461" max-vertical-offset="1185">
+          <caret line="62" column="48" selection-start-line="62" selection-start-column="48" selection-end-line="62" selection-end-column="48" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/populate_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7758621" vertical-offset="9" max-vertical-offset="1920">
+          <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
