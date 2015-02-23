@@ -47,6 +47,7 @@ class Migration(migrations.Migration):
             name='Session',
             fields=[
                 ('stamp', models.IntegerField(serialize=False, primary_key=True)),
+                ('sid', models.CharField(max_length=128, null=True)),
             ],
             options={
             },

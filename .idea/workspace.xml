@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d71a513-678c-4507-be6b-1d102170465d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project/neverever/migrations/0001_initial.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/project/neverever/migrations/0002_auto_20150215_2015.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/project/neverever/migrations/0002_auto_20150223_2100.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/project/neverever/migrations/0003_auto_20150223_2004.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/db.sqlite3" afterPath="$PROJECT_DIR$/project/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/neverever/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/project/neverever/migrations/0001_initial.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/neverever/models.py" afterPath="$PROJECT_DIR$/project/neverever/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/populate_app.py" afterPath="$PROJECT_DIR$/project/populate_app.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ITECH-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/neverever/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="1305">
-              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.32180852" vertical-offset="238" max-vertical-offset="1320">
+              <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -45,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="populate_app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="populate_app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/populate_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6752368" vertical-offset="1226" max-vertical-offset="1980">
-              <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="1980">
+              <caret line="102" column="42" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -78,8 +75,8 @@
         <option value="$PROJECT_DIR$/project/templates/neverever/testingCategories.html" />
         <option value="$PROJECT_DIR$/project/neverever/admin.py" />
         <option value="$PROJECT_DIR$/project/project/settings.py" />
-        <option value="$PROJECT_DIR$/project/neverever/models.py" />
         <option value="$PROJECT_DIR$/project/populate_app.py" />
+        <option value="$PROJECT_DIR$/project/neverever/models.py" />
       </list>
     </option>
   </component>
@@ -574,21 +571,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/neverever/models.py">
+    <entry file="file://$PROJECT_DIR$/project/populate_app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="103" max-vertical-offset="1305">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1241" max-vertical-offset="1980">
+          <caret line="102" column="42" selection-start-line="102" selection-start-column="42" selection-end-line="102" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/populate_app.py">
+    <entry file="file://$PROJECT_DIR$/project/neverever/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6752368" vertical-offset="1226" max-vertical-offset="1980">
-          <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
-          <folding />
+        <state vertical-scroll-proportion="0.32180852" vertical-offset="238" max-vertical-offset="1320">
+          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

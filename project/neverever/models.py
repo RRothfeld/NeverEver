@@ -30,6 +30,7 @@ class Statement(models.Model):
 # Class to store play sessions
 class Session(models.Model):
     stamp = models.IntegerField(primary_key=True)
+    sid = models.CharField(max_length=128, null=True)
     statements = models.ManyToManyField(Statement)
     # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
