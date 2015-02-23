@@ -38,7 +38,7 @@ class Session(models.Model):
     #    super(Session, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Some Session"
+        return "Session" + self.id
 
 # Class to store players
 class Player(models.Model):
@@ -54,7 +54,8 @@ class Player(models.Model):
     #     super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Some Player"
+        return "Player " + self.id
+
 
 # Class to store answers
 class Answer(models.Model):
@@ -70,4 +71,4 @@ class Answer(models.Model):
     #    super(Answer, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Some Answer"
+        return "Answer" + self.id
