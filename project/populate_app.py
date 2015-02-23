@@ -82,13 +82,6 @@ def populate():
     add_answer(session=session_3, statement=state_stealing, player=player_5, answer=False)
     add_answer(session=session_3, statement=state_redlight, player=player_5, answer=True)
 
-    # Print out what we have added to the user.
-    for s in Statement.objects.all():
-        print "Added '{}' (Categories: ".format(str(s)),
-        for cat in s.categories.all():
-            print "'" + str(cat) + "' ",
-        print ")"
-
 
 def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
@@ -126,3 +119,4 @@ def add_answer(session, statement, player, answer):
 if __name__ == '__main__':
     print "Starting NeverHaveIEver population script..."
     populate()
+    print "Population successful."
