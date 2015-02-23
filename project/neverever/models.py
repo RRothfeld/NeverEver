@@ -16,7 +16,6 @@ class Category(models.Model):
 # Class to store statements
 class Statement(models.Model):
     categories = models.ManyToManyField(Category)
-    sessions = models.ManyToManyField(Session)
     title = models.CharField(max_length=128)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
@@ -31,7 +30,7 @@ class Statement(models.Model):
 # Class to store play sessions
 class Session(models.Model):
     statements = models.ManyToManyField(Statement)
-    id = models.CharField(max_length=128)
+    id = models.IntegerField(primary_key=True)
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
@@ -43,8 +42,8 @@ class Session(models.Model):
 
 # Class to store players
 class Player(models.Model):
-    session = models.ManyToOneField(Session)
-    id = models.IntegerField(default=0)
+    session = models.ManyToManyField(Session)
+    id = models.IntegerField(primary_key=True)
     gender = models.CharField(max_length=1)
     age = models.IntegerField()
     nationality = models.CharField(max_length=128)
@@ -52,23 +51,23 @@ class Player(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Session, self).save(*args, **kwargs)
+        super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.id
 
 # Class to store answers
-class Anwser(models.Model):
-    session = models.ManyToOneField(Session)
-    statement = models.ManyToOneField(Statement)
-    player = models.ManyToOneField(Player)
-    id = models.IntegerField(default=0)
+class Answer(models.Model):
+    session = models.ManyToManyField(Session)
+    statement = models.ManyToManyField(Statement)
+    player = models.ManyToManyField(Player)
+    id = models.IntegerField(primary_key=True)
     answer = models.BooleanField()
     slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(Anwser, self).save(*args, **kwargs)
+        super(Answer, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.id

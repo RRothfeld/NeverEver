@@ -6,7 +6,7 @@ import django
 
 django.setup()
 
-from neverever.models import Category, Statement, Session, Player, Anwser
+from neverever.models import Category, Statement, Session, Player, Answer
 
 
 def populate():
@@ -114,7 +114,7 @@ def add_player(session):
     return p
 
 def add_answer(session, statement, player, answer):
-    a = Anwser.objects.get_or_create(session=session, statement=statement, player=player, answer=answer)[0]
+    a = Answer.objects.get_or_create(session=session, statement=statement, player=player, answer=answer)[0]
     return a
 
 # Start execution here!
