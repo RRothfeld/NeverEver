@@ -45,7 +45,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'neverever',
+    'neverever'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
@@ -95,9 +95,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 TEMPLATE_DIRS = [
-    TEMPLATE_PATH,
+    TEMPLATE_PATH
 ]
 
 STATICFILES_DIRS = [
-    STATIC_PATH,
+    STATIC_PATH
 ]

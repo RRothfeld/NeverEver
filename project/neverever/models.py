@@ -30,7 +30,7 @@ class Statement(models.Model):
 # Class to store play sessions
 class Session(models.Model):
     statements = models.ManyToManyField(Statement)
-    # id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
 
     # def save(self, *args, **kwargs):
@@ -38,7 +38,7 @@ class Session(models.Model):
     #    super(Session, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Session ", self.id
+        return "Session " + str(self.id)
 
 # Class to store players
 class Player(models.Model):
@@ -54,7 +54,7 @@ class Player(models.Model):
     #     super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Player ", self.id
+        return "Player " + str(self.id)
 
 
 # Class to store answers
@@ -71,4 +71,4 @@ class Answer(models.Model):
     #    super(Answer, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return "Answer ", self.id
+        return "Answer " + str(self.id)
