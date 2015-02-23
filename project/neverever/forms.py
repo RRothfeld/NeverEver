@@ -1,5 +1,5 @@
 from django import forms
-from neverhaveiever.models import Statement, Category
+from neverever.models import Statement, Category
 
 
 class StatementForm(forms.ModelForm):

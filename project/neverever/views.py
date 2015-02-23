@@ -1,40 +1,40 @@
 from django.shortcuts import render
 
-from neverhaveiever.models import Category, Statement
-from neverhaveiever.forms import StatementForm
+from neverever.models import Category, Statement
+from neverever.forms import StatementForm
 
 
 def index(request):
 
     context_dict = {}
-    return render(request, 'neverhaveiever/index.html', context_dict)
+    return render(request, 'neverever/index.html', context_dict)
 
 
 def about(request):
-    return render(request, 'neverhaveiever/about.html')
+    return render(request, 'neverever/about.html')
 
 
 def stats(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/stats.html', context_dict)
+    return render(request, 'neverever/stats.html', context_dict)
 
 
 def stats_options(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/statsOptions.html', context_dict)
+    return render(request, 'neverever/statsOptions.html', context_dict)
 
 
 def play(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/play.html', context_dict)
+    return render(request, 'neverever/play.html', context_dict)
 
 def play_summary(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/playSummary.html', context_dict)
+    return render(request, 'neverever/playSummary.html', context_dict)
 
 def play_options(request):
     context_dict = {}
-    return render(request, 'neverhaveiever/playOptions.html', context_dict)
+    return render(request, 'neverever/playOptions.html', context_dict)
 
 
 # TODO: Remove
@@ -62,7 +62,7 @@ def new_statement(request):
             print form.errors
     else:
         form = StatementForm()
-    return render(request, 'neverhaveiever/newStatement.html', {'form': form})
+    return render(request, 'neverever/newStatement.html', {'form': form})
 
 
 
@@ -70,7 +70,7 @@ def new_statement(request):
 def testing(request):
     category_list = Category.objects.order_by('name')
     context_dict = {'categories': category_list}
-    return render(request, 'neverhaveiever/testing.html', context_dict)
+    return render(request, 'neverever/testing.html', context_dict)
 
 def testing_category(request, category_name_slug):
 
@@ -91,4 +91,4 @@ def testing_category(request, category_name_slug):
         pass
 
     # Go render the response and return it to the client.
-    return render(request, 'neverhaveiever/testingCategories.html', context_dict)
+    return render(request, 'neverever/testingCategories.html', context_dict)

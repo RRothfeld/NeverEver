@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from neverhaveiever import views
+from neverever import views
 
 urlpatterns = patterns('',
                        url(r'^$', views.index, name='index'),

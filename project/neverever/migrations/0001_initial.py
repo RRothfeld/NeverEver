@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('no_answers', models.IntegerField(default=0)),
                 ('yes_answers', models.IntegerField(default=0)),
                 ('slug', models.SlugField(unique=True)),
-                ('category', models.ForeignKey(to='neverhaveiever.Category')),
+                ('category', models.ForeignKey(to='neverever.Category')),
             ],
             options={
             },

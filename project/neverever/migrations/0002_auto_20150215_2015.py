@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('neverhaveiever', '0001_initial'),
+        ('neverever', '0001_initial'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='statement',
             name='categories',
-            field=models.ManyToManyField(to='neverhaveiever.Category'),
+            field=models.ManyToManyField(to='neverever.Category'),
             preserve_default=True,
         ),
     ]

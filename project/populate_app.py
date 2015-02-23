@@ -6,14 +6,14 @@ import django
 
 django.setup()
 
-from neverhaveiever.models import Category, Statement
+from neverever.models import Category, Statement
 
 
 def populate():
     # add categories
     cat_nsfw = add_category("NSFW")
-    cat_violence = add_category('Violence')
-    cat_illegal = add_category('Illegal')
+    cat_violence = add_category("Violence")
+    cat_illegal = add_category("Illegal")
     cat_alcohol = add_category("Alcohol")
     cat_sexual = add_category("Sexual")
     cat_activity = add_category("Activities")

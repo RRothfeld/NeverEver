@@ -16,6 +16,7 @@ class Category(models.Model):
 # Class to store statements
 class Statement(models.Model):
     categories = models.ManyToManyField(Category)
+    sessions = models.ManyToManyField(Session)
     title = models.CharField(max_length=128)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
