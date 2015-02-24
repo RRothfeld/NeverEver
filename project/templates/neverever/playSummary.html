@@ -5,5 +5,8 @@
 {% block title %} - Game Summary{% endblock %}
 
 {% block body_block %}
+    {% if session %}
+        <b>Session status: </b> {{ session }} <br />
+    {% endif %}
     <br><a href="{% url 'index' %}">Return to main page</a>
 {% endblock %}

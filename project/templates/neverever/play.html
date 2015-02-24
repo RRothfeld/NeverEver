@@ -5,15 +5,15 @@
 {% block body_block %}
 
     {% if sid %}
-        <!--<br /> <b>Session ID:</b> {{ sid }}
-        <br /> <b>Exists:</b> {{ exists }}
+        <br /> <b>Session ID:</b> {{ sid }}
+        <br /> <b>Session state:</b> {{ session }}
         {% if categories %}
             <br /><b>Categories:</b>
             {% for cat in categories %}
                 {{ cat.name }},
             {% endfor %}
             <br />
-        {% endif %} -->
+        {% endif %}
         {% if statement %}
             <br /><b>Statement:</b> I have never... {{ statement.title }}
         {% endif %}

@@ -41,17 +41,17 @@ def play(request):
     context_dict = {}
     sid = request.session.session_key
     if sid:
-        exists = Session.objects.filter(sid=sid)
-        if exists:
-            context_dict['exists'] = "Already existed"
+        session = Session.objects.filter(sid=sid)
+        if session:
+            context_dict['session'] = "Already existed"
         else:
-            context_dict['exists'] = "Just created"
-            s = Session.objects.get_or_create(stamp=1, sid=sid)[0]
+            context_dict['session'] = "Just created"
+            s = Session.objects.get_or_create(sid=sid)[0]
             for cat in Category.objects.all():
                 s.categories.add(cat)
             s.save()
-            exists = [s]
-        categories = exists[0].categories.all()
+            session = [s]
+        categories = session[0].categories.all()
         context_dict['categories'] = categories
         rand_cat = random.choice(categories)
         rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
@@ -61,12 +61,26 @@ def play(request):
         request.session.modified = True
         sid = request.session.session_key
     context_dict['sid'] = sid
-    return render(request, 'neverever/play.html', context_dict)
+    response = render(request, 'neverever/play.html', context_dict)
+    return response
 
 
 def play_summary(request):
     context_dict = {}
-    return render(request, 'neverever/playSummary.html', context_dict)
+    sid = request.session.session_key
+    if sid:
+        session = Session.objects.filter(sid=sid)
+        if session:
+            context_dict['session'] = session[0]
+    else:
+        request.session.save()
+        request.session.modified = True
+        sid = request.session.session_key
+    context_dict['sid'] = sid
+
+    response = render(request, 'neverever/playSummary.html', context_dict)
+    session[0].delete()
+    return response
 
 
 # TODO: make sure that at least one Category is selected

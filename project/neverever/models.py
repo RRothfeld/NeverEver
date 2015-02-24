@@ -29,8 +29,8 @@ class Statement(models.Model):
 
 # Class to store play sessions
 class Session(models.Model):
-    stamp = models.IntegerField(null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
-    sid = models.CharField(max_length=128, null=True)
+    # stamp = models.IntegerField(null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
+    sid = models.CharField(max_length=128, null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
     categories = models.ManyToManyField(Category)
     # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
@@ -44,7 +44,7 @@ class Session(models.Model):
     #    return iter("session" + str(self.id))
 
     def __unicode__(self):
-        return "Session " + str(self.stamp)
+        return "Session " + str(self.sid)
 
 
 # Class to store players

@@ -56,9 +56,9 @@ def populate():
                       )
 
     # add sessions
-    session_1 = add_session(stamp=1, categories=[cat_nsfw, cat_violence])
-    session_2 = add_session(stamp=2, categories=[cat_illegal])
-    session_3 = add_session(stamp=3, categories=[cat_alcohol, cat_sexual, cat_activity, cat_nsfw])
+    session_1 = add_session(sid=1, categories=[cat_nsfw, cat_violence])
+    session_2 = add_session(sid=2, categories=[cat_illegal])
+    session_3 = add_session(sid=3, categories=[cat_alcohol, cat_sexual, cat_activity, cat_nsfw])
 
     # add players
     player_1 = add_player(stamp=1, session=session_1)
@@ -95,12 +95,12 @@ def add_statement(categories, title, views=0):
     print "Adding statement " + str(title)
     return s
 
-def add_session(stamp, categories):
-    s = Session.objects.get_or_create(stamp=stamp)[0]
+def add_session(sid, categories):
+    s = Session.objects.get_or_create(sid=sid)[0]
     for category in categories:
         s.categories.add(category)
     s.save()
-    print "Adding session " + str(s.stamp)
+    print "Adding session " + str(s.sid)
     return s
 
 def add_player(stamp, session):
