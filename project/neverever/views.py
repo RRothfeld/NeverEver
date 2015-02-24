@@ -1,12 +1,24 @@
 from django.shortcuts import render
 
-from neverever.models import Category, Statement
+from neverever.models import Category, Statement, Session, Player, Answer
 from neverever.forms import StatementForm
+
+
+import random # Fetch random statements
+
+
+# TODO: fix duplicate code in play and index (detect sid)
 
 
 def index(request):
 
     context_dict = {}
+    sid = request.session.session_key
+    if not sid:
+        request.session.save()
+        request.session.modified = True
+        sid = request.session.session_key
+    context_dict['sid'] = sid
     return render(request, 'neverever/index.html', context_dict)
 
 
@@ -25,13 +37,39 @@ def stats_options(request):
 
 
 def play(request):
+
     context_dict = {}
+    sid = request.session.session_key
+    if sid:
+        exists = Session.objects.filter(sid=sid)
+        if exists:
+            context_dict['exists'] = "Already existed"
+        else:
+            context_dict['exists'] = "Just created"
+            s = Session.objects.get_or_create(stamp=1, sid=sid)[0]
+            for cat in Category.objects.all():
+                s.categories.add(cat)
+            s.save()
+            exists = [s]
+        categories = exists[0].categories.all()
+        context_dict['categories'] = categories
+        rand_cat = random.choice(categories)
+        rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
+        context_dict['statement'] = rand_statement
+    else:
+        request.session.save()
+        request.session.modified = True
+        sid = request.session.session_key
+    context_dict['sid'] = sid
     return render(request, 'neverever/play.html', context_dict)
+
 
 def play_summary(request):
     context_dict = {}
     return render(request, 'neverever/playSummary.html', context_dict)
 
+
+# TODO: make sure that at least one Category is selected
 def play_options(request):
     context_dict = {}
     return render(request, 'neverever/playOptions.html', context_dict)

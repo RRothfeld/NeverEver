@@ -3,7 +3,23 @@
 {% load staticfiles %}
 
 {% block body_block %}
-    <br><a href="{% url 'play' %}">Next Question</a>
-    <br><a href="{% url 'play_summary' %}">End Game</a>
-    <br><a href="{% url 'play_options' %}">Options</a>
+
+    {% if sid %}
+        <!--<br /> <b>Session ID:</b> {{ sid }}
+        <br /> <b>Exists:</b> {{ exists }}
+        {% if categories %}
+            <br /><b>Categories:</b>
+            {% for cat in categories %}
+                {{ cat.name }},
+            {% endfor %}
+            <br />
+        {% endif %} -->
+        {% if statement %}
+            <br /><b>Statement:</b> I have never... {{ statement.title }}
+        {% endif %}
+    {% endif %}
+    <br />
+    <br /><a href="{% url 'play' %}">Next Question</a>
+    <br /><a href="{% url 'play_summary' %}">End Game</a>
+    <br /><a href="{% url 'play_options' %}">Options</a>
 {% endblock %}
