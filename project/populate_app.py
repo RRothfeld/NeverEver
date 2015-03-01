@@ -112,9 +112,9 @@ def add_player(stamp, session):
 
 def add_answer(stamp, session, statement, player, answer):
     a = Answer.objects.get_or_create(stamp=stamp)[0]
-    a.session.add(session)
-    a.statement.add(statement)
-    a.player.add(player)
+    a.session = session
+    a.statement = statement
+    a.player = player
     a.answer = answer
     a.save()
     print "Adding answer " + str(a.stamp)

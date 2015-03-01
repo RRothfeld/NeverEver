@@ -1,5 +1,5 @@
 from django import forms
-from neverever.models import Statement, Category
+from neverever.models import Statement, Category, Answer
 
 
 class StatementForm(forms.ModelForm):
@@ -19,3 +19,8 @@ class StatementForm(forms.ModelForm):
     class Meta:
         model = Statement
         fields = ('title', 'categories')
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ('answer',)

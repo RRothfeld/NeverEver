@@ -68,9 +68,9 @@ class Player(models.Model):
 # Class to store answers
 class Answer(models.Model):
     stamp = models.IntegerField(primary_key=True)
-    session = models.ManyToManyField(Session)
-    statement = models.ManyToManyField(Statement)
-    player = models.ManyToManyField(Player)
+    session = models.ForeignKey(Session, null=True)
+    statement = models.ForeignKey(Statement, null=True)
+    player = models.ForeignKey(Player, null=True)
     answer = models.BooleanField(default=False)
     # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)

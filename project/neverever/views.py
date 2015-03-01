@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from neverever.models import Category, Statement, Session, Player, Answer
-from neverever.forms import StatementForm
+from neverever.forms import StatementForm, AnswerForm
 
 
 import random # Fetch random statements
@@ -53,7 +53,8 @@ def play(request):
             session = [s]
         categories = session[0].categories.all()
         context_dict['categories'] = categories
-        rand_cat = random.choice(categories)
+        #rand_cat = random.choice(categories)
+        rand_cat = Category.objects.get(id=1)
         rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
         context_dict['statement'] = rand_statement
     else:
@@ -61,6 +62,22 @@ def play(request):
         request.session.modified = True
         sid = request.session.session_key
     context_dict['sid'] = sid
+    
+    if request.method=='POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit = False)
+            answer.statement = rand_statement
+            answer.session = Session.objects.get(sid=sid)
+            answer.player = Player.objects.get(stamp=1)
+            answer.save()
+        else:
+            print form.errors
+    else:
+        form = AnswerForm
+
+    context_dict['form'] = form
+    
     response = render(request, 'neverever/play.html', context_dict)
     return response
 

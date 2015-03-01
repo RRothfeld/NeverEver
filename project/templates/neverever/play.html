@@ -19,6 +19,19 @@
         {% endif %}
     {% endif %}
     <br />
+    <form id="answer_form" method="post" action="/play/">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+    <input type="submit">
+    </form>
     <br /><a href="{% url 'play' %}">Next Question</a>
     <br /><a href="{% url 'play_summary' %}">End Game</a>
     <br /><a href="{% url 'play_options' %}">Options</a>
