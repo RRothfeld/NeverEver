@@ -14,12 +14,16 @@
             {% endfor %}
 
             {% for field in form.visible_fields %}
+                {% if field.name == "sfw" %}
+                    Safe For Work:
+                {% endif %}
                 {% if field.name == "categories" %}
                     <h3>Categories</h3>
                 {% endif %}
                 {{ field.errors }}
                 {{ field.help_text }}
                 {{ field }}
+                <br />
             {% endfor %}
 
             <input type="submit" name="submit" value="Submit" />

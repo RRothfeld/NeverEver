@@ -6,12 +6,15 @@ import django
 
 django.setup()
 
-from neverever.models import Category, Statement, Session, Player, Answer
+from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter
 
 
 def populate():
+
+    # add global counter
+    global_counter = add_global_counters(t_sessions=0, t_players=0)
+
     # add categories
-    cat_nsfw = add_category("NSFW")
     cat_violence = add_category("Violence")
     cat_illegal = add_category("Illegal")
     cat_alcohol = add_category("Alcohol")
@@ -29,43 +32,46 @@ def populate():
                      views=130,
                      )
 
-    state_stealing = add_statement(categories=[cat_nsfw, cat_illegal],
+    state_stealing = add_statement(categories=[cat_illegal],
                      title="stolen something",
                      views=70
                      )
 
-    state_murder = add_statement(categories=[cat_nsfw, cat_violence],
+    state_murder = add_statement(categories=[cat_violence],
                    title="killed a person"
                    )
 
-    add_statement(categories=[cat_nsfw, cat_alcohol],
+    add_statement(categories=[cat_alcohol],
                   title="thrown up after drinking too much",
                   views=60
     )
 
-    add_statement(categories=[cat_nsfw, cat_alcohol, cat_illegal],
+    add_statement(categories=[cat_alcohol, cat_illegal],
                   title="got drunk when I was underage"
     )
 
-    add_statement(categories=[cat_nsfw, cat_sexual],
-                  title="had a threesome"
+    add_statement(categories=[cat_sexual],
+                  title="had a threesome",
+                  sfw=False
     )
 
-    state_publicsex = add_statement(categories=[cat_nsfw, cat_sexual],
-                      title="had sex in public"
-                      )
+    state_publicsex = add_statement(categories=[cat_sexual],
+                                    title="had sex in public",
+                                    sfw=False
+    )
 
+"""
     # add sessions
-    session_1 = add_session(sid=1, categories=[cat_nsfw, cat_violence])
+    session_1 = add_session(sid=1, categories=[cat_violence])
     session_2 = add_session(sid=2, categories=[cat_illegal])
-    session_3 = add_session(sid=3, categories=[cat_alcohol, cat_sexual, cat_activity, cat_nsfw])
+    session_3 = add_session(sid=3, categories=[cat_alcohol, cat_sexual, cat_activity])
 
     # add players
-    player_1 = add_player(stamp=1, session=session_1)
-    player_2 = add_player(stamp=2, session=session_1)
-    player_3 = add_player(stamp=3, session=session_2)
-    player_4 = add_player(stamp=4, session=session_3)
-    player_5 = add_player(stamp=5, session=session_3)
+    player_1 = add_player(stamp=1)
+    player_2 = add_player(stamp=2)
+    player_3 = add_player(stamp=3)
+    player_4 = add_player(stamp=4)
+    player_5 = add_player(stamp=5)
 
     # add answers
     add_answer(stamp=1, session=session_1, statement=state_bungeejump, player=player_1, answer=True)
@@ -80,15 +86,15 @@ def populate():
     add_answer(stamp=10, session=session_3, statement=state_murder, player=player_5, answer=True)
     add_answer(stamp=11, session=session_3, statement=state_stealing, player=player_5, answer=False)
     add_answer(stamp=12, session=session_3, statement=state_redlight, player=player_5, answer=True)
-
+"""
 
 def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
     print "Adding category " + str(name)
     return c
 
-def add_statement(categories, title, views=0):
-    s = Statement.objects.get_or_create(title=title, views=views)[0]
+def add_statement(categories, title, views=0, sfw=True):
+    s = Statement.objects.get_or_create(title=title, views=views, sfw=sfw)[0]
     for category in categories:
         s.categories.add(category)
     s.save()
@@ -103,9 +109,8 @@ def add_session(sid, categories):
     print "Adding session " + str(s.sid)
     return s
 
-def add_player(stamp, session):
+def add_player(stamp):
     p = Player.objects.get_or_create(stamp=stamp)[0]
-    p.session.add(session)
     p.save()
     print "Adding player " + str(p.stamp)
     return p
@@ -119,6 +124,11 @@ def add_answer(stamp, session, statement, player, answer):
     a.save()
     print "Adding answer " + str(a.stamp)
     return a
+
+def add_global_counters(t_sessions, t_players):
+    gc = GlobalCounter.objects.create(total_sessions=t_sessions, total_players=t_players)
+    print "Adding global counter " + str(gc)
+    return gc
 
 # Start execution here!
 if __name__ == '__main__':

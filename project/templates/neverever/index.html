@@ -11,4 +11,19 @@
 <div id="footer">
     <p></p><a href="/stats">Statistics</a> <a href="/about">About</a></p>
 </div>
+<div>
+    {% if nSessions %}
+        {{ nSessions }} active session{% if nSessions >= 1 %}s{% endif %}
+    {% elif nSessions == 0 %}
+        No active sessions
+    {% endif %}
+    <br />
+    {% if nPlayers %}
+        {{ nPlayers }} active player{% if nPlayers >= 1 %}s{% endif %}
+    {% elif nPlayers == 0 %}
+        No current players
+    {% else %}
+        UNKNOWN NUM OF PLAYERS &lt;TODO&gt;
+    {% endif %}
+</div>
 {% endblock %}

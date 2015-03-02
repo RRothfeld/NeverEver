@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from neverever.models import Category, Statement, Session, Player, Answer
+from neverever.models import Category, Statement, Session, Player, Answer,GlobalCounter
 from neverever.forms import StatementForm, AnswerForm
 
 
@@ -19,6 +19,10 @@ def index(request):
         request.session.modified = True
         sid = request.session.session_key
     context_dict['sid'] = sid
+    num_sessions = Session.objects.count()
+    context_dict['nSessions'] = num_sessions
+    num_players = Player.objects.count()
+    context_dict['nPlayers'] = num_players
     return render(request, 'neverever/index.html', context_dict)
 
 
@@ -27,7 +31,8 @@ def about(request):
 
 
 def stats(request):
-    context_dict = {}
+    gc = GlobalCounter.objects.all()[0]
+    context_dict = {'globalCounter' : gc}
     return render(request, 'neverever/stats.html', context_dict)
 
 
@@ -40,23 +45,41 @@ def play(request):
 
     context_dict = {}
     sid = request.session.session_key
+    SESSION_SFW = True
     if sid:
         session = Session.objects.filter(sid=sid)
         if session:
             context_dict['session'] = "Already existed"
         else:
             context_dict['session'] = "Just created"
-            s = Session.objects.get_or_create(sid=sid)[0]
+            s = Session.objects.get_or_create(sid=sid, sfw=SESSION_SFW)[0]
             for cat in Category.objects.all():
                 s.categories.add(cat)
+            # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
             s.save()
+            p = Player.objects.create(stamp=123, session=s)
+
             session = [s]
+
+            # Update global counters
+            gc = GlobalCounter.objects.all()[0]
+            gc.total_sessions += 1
+            gc.total_players += 1
+            gc.save()
+
         categories = session[0].categories.all()
         context_dict['categories'] = categories
-        #rand_cat = random.choice(categories)
-        rand_cat = Category.objects.get(id=1)
-        rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
+        rand_cat = random.choice(categories)
+        #rand_cat = Category.objects.get(id=1)
+        if SESSION_SFW:
+            rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, sfw=True))
+        else:
+            rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
         context_dict['statement'] = rand_statement
+
+        # Testing players
+        players = Player.objects.filter(session=session[0])
+        context_dict['Players'] = players
     else:
         request.session.save()
         request.session.modified = True
@@ -96,7 +119,12 @@ def play_summary(request):
     context_dict['sid'] = sid
 
     response = render(request, 'neverever/playSummary.html', context_dict)
-    session[0].delete()
+
+    # TODO: refine it
+    try:
+        session[0].delete()
+    except:
+        response = HttpResponse("Session has ended")
     return response
 
 

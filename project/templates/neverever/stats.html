@@ -7,6 +7,10 @@
 {% block body_block %}
     <h1>Statistics</h1>
     <h3>Under development</h3>
+    {% if globalCounter %}
+        <br />Total games: {{ globalCounter.total_sessions }}
+        <br />Total number of players: {{ globalCounter.total_players }}
+    {% endif %}
     <br><a href=" {% url 'stats_options' %}">Options</a>
     <br><a href="{%  url 'index' %}">Return to main page</a>
 {% endblock %}

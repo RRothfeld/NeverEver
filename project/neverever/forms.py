@@ -7,6 +7,7 @@ class StatementForm(forms.ModelForm):
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     no_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     yes_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    sfw = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     category_list = []
@@ -18,7 +19,8 @@ class StatementForm(forms.ModelForm):
 
     class Meta:
         model = Statement
-        fields = ('title', 'categories')
+        fields = ('title', 'sfw', 'categories')
+
 
 class AnswerForm(forms.ModelForm):
     class Meta:

@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
 # Class to store categories
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -13,12 +14,14 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+
 # Class to store statements
 class Statement(models.Model):
     categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
+    sfw = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -27,17 +30,13 @@ class Statement(models.Model):
     def __unicode__(self):
         return self.title
 
+
 # Class to store play sessions
 class Session(models.Model):
     # stamp = models.IntegerField(null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
-    sid = models.CharField(max_length=128, null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
+    sid = models.CharField(max_length=128, null=True)  # TODO: change to stamp = models.IntegerField(primary_key=True)
     categories = models.ManyToManyField(Category)
-    # id = models.IntegerField(primary_key=True)
-    # slug = models.SlugField(unique=True)
-
-    # def save(self, *args, **kwargs):
-    #     self.slug = slugify(self.id)
-    #    super(Session, self).save(*args, **kwargs)
+    sfw = models.BooleanField(default=True)
 
     # Tried myself on ITERABLES, did not work
     # def __iter__(self):
@@ -49,8 +48,8 @@ class Session(models.Model):
 
 # Class to store players
 class Player(models.Model):
-    stamp = models.IntegerField(primary_key=True)
-    session = models.ManyToManyField(Session)
+    stamp = models.IntegerField(primary_key=False)  # TODO: CHANGE TO True
+    session = models.ForeignKey(Session)
     # id = models.IntegerField(primary_key=True)
     gender = models.CharField(max_length=1, null=True)
     age = models.IntegerField(null=True)
@@ -81,3 +80,11 @@ class Answer(models.Model):
 
     def __unicode__(self):
         return "Answer " + str(self.stamp)
+
+
+class GlobalCounter(models.Model):
+    total_sessions = models.IntegerField()
+    total_players = models.IntegerField()
+
+    def __unicode__(self):
+        return "GlobalCounter " + str(self.id)

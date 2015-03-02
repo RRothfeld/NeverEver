@@ -7,6 +7,11 @@
     {% if sid %}
         <br /> <b>Session ID:</b> {{ sid }}
         <br /> <b>Session state:</b> {{ session }}
+        {% if nPlayers %}
+            <br /><b>{{ nPlayers }}</b> player(s) in this session
+        {% else %}
+            <br />No nPlayers provided
+        {% endif %}
         {% if categories %}
             <br /><b>Categories:</b>
             {% for cat in categories %}
