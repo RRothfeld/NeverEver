@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from neverever.models import Category, Statement, Session, Player, Answer,GlobalCounter
-from neverever.forms import StatementForm, AnswerForm
+from neverever.forms import StatementForm, AnswerForm, SessionForm
 
 
 import random # Fetch random statements
@@ -45,14 +45,14 @@ def play(request):
 
     context_dict = {}
     sid = request.session.session_key
-    SESSION_SFW = True
+    SESSION_NSFW = False
     if sid:
         session = Session.objects.filter(sid=sid)
         if session:
             context_dict['session'] = "Already existed"
         else:
             context_dict['session'] = "Just created"
-            s = Session.objects.get_or_create(sid=sid, sfw=SESSION_SFW)[0]
+            s = Session.objects.get_or_create(sid=sid, nsfw=SESSION_NSFW)[0]
             for cat in Category.objects.all():
                 s.categories.add(cat)
             # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
@@ -69,12 +69,17 @@ def play(request):
 
         categories = session[0].categories.all()
         context_dict['categories'] = categories
-        rand_cat = random.choice(categories)
-        #rand_cat = Category.objects.get(id=1)
-        if SESSION_SFW:
-            rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, sfw=True))
-        else:
-            rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
+
+        while True:
+            try:
+                rand_cat = random.choice(categories)
+                if session[0].nsfw:
+                    rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
+                else:
+                    rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, nsfw=False))
+                break
+            except IndexError:
+                pass
         context_dict['statement'] = rand_statement
 
         # Testing players
@@ -86,7 +91,7 @@ def play(request):
         sid = request.session.session_key
     context_dict['sid'] = sid
     
-    if request.method=='POST':
+    if request.method == 'POST':
         form = AnswerForm(request.POST)
         if form.is_valid():
             answer = form.save(commit = False)
@@ -131,6 +136,25 @@ def play_summary(request):
 # TODO: make sure that at least one Category is selected
 def play_options(request):
     context_dict = {}
+
+    try:
+        sid = request.session.session_key
+        session = Session.objects.get(sid=sid)
+    except Session.DoesNotExist:
+        return index(request)
+
+    if request.method == 'POST':
+        form = SessionForm(request.POST, instance=session)
+        if form.is_valid():
+            form.save(commit=True)
+            #return play(request) # <- ERROR (Sends POST request to play()
+            return HttpResponseRedirect('/play')
+        else:
+            print form.errors
+    else:
+        form = SessionForm(instance=session)
+
+    context_dict['form'] = form
     return render(request, 'neverever/playOptions.html', context_dict)
 
 
@@ -158,6 +182,11 @@ def new_statement(request):
         else:
             print form.errors
     else:
+
+        # TODO: MODIFY (Testing prepopulated forms)
+        #u = Statement.objects.get(title="had sex in public")
+        #form = StatementForm(instance=u)
+
         form = StatementForm()
     return render(request, 'neverever/newStatement.html', {'form': form})
 

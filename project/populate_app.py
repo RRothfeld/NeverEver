@@ -52,12 +52,12 @@ def populate():
 
     add_statement(categories=[cat_sexual],
                   title="had a threesome",
-                  sfw=False
+                  nsfw=True
     )
 
     state_publicsex = add_statement(categories=[cat_sexual],
                                     title="had sex in public",
-                                    sfw=False
+                                    nsfw=True
     )
 
 """
@@ -93,8 +93,8 @@ def add_category(name):
     print "Adding category " + str(name)
     return c
 
-def add_statement(categories, title, views=0, sfw=True):
-    s = Statement.objects.get_or_create(title=title, views=views, sfw=sfw)[0]
+def add_statement(categories, title, views=0, nsfw=False):
+    s = Statement.objects.get_or_create(title=title, views=views, nsfw=nsfw)[0]
     for category in categories:
         s.categories.add(category)
     s.save()

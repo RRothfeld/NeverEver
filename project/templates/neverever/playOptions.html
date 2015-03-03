@@ -5,6 +5,31 @@
 {% block title %} - Game Options{% endblock %}
 
 {% block body_block %}
-    <br><a href="{% url 'play' %}">Save Changes</a>
-    <br><a href="{% url 'play' %}">Back</a>
+    <h1>Game Options</h1>
+
+    <form id="category_form" method="post" action="{% url 'play_options' %}">
+        {% csrf_token %}
+
+        {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            {% if field.name == "nsfw" %}
+                Not Safe For Work:
+            {% endif %}
+            {% if field.name == "categories" %}
+                <h3>Categories</h3>
+            {% endif %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+
+        <input type="submit" name="submit" value="Save changes" />
+    </form>
+
+    <form action="{% url 'play' %}">
+        <input type="submit" value="Back">
+    </form>
 {% endblock %}

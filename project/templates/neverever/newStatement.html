@@ -14,7 +14,7 @@
             {% endfor %}
 
             {% for field in form.visible_fields %}
-                {% if field.name == "sfw" %}
+                {% if field.name == "nsfw" %}
                     Safe For Work:
                 {% endif %}
                 {% if field.name == "categories" %}
