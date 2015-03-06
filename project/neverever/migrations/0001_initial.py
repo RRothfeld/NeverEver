@@ -32,9 +32,21 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='GlobalCounter',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('total_sessions', models.IntegerField()),
+                ('total_players', models.IntegerField()),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Player',
             fields=[
-                ('stamp', models.IntegerField(serialize=False, primary_key=True)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('stamp', models.IntegerField()),
                 ('gender', models.CharField(max_length=1, null=True)),
                 ('age', models.IntegerField(null=True)),
                 ('nationality', models.CharField(max_length=128, null=True)),
@@ -47,8 +59,8 @@ class Migration(migrations.Migration):
             name='Session',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('stamp', models.IntegerField(null=True)),
                 ('sid', models.CharField(max_length=128, null=True)),
+                ('nsfw', models.BooleanField(default=True)),
                 ('categories', models.ManyToManyField(to='neverever.Category')),
             ],
             options={
@@ -62,6 +74,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(unique=True, max_length=128)),
                 ('views', models.IntegerField(default=0)),
                 ('slug', models.SlugField(unique=True)),
+                ('nsfw', models.BooleanField(default=True)),
                 ('categories', models.ManyToManyField(to='neverever.Category')),
             ],
             options={
@@ -71,25 +84,25 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='player',
             name='session',
-            field=models.ManyToManyField(to='neverever.Session'),
+            field=models.ForeignKey(to='neverever.Session'),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='answer',
             name='player',
-            field=models.ManyToManyField(to='neverever.Player'),
+            field=models.ForeignKey(to='neverever.Player', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='answer',
             name='session',
-            field=models.ManyToManyField(to='neverever.Session'),
+            field=models.ForeignKey(to='neverever.Session', null=True),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='answer',
             name='statement',
-            field=models.ManyToManyField(to='neverever.Statement'),
+            field=models.ForeignKey(to='neverever.Statement', null=True),
             preserve_default=True,
         ),
     ]

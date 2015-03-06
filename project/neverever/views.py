@@ -97,7 +97,7 @@ def play(request):
             answer = form.save(commit = False)
             answer.statement = rand_statement
             answer.session = Session.objects.get(sid=sid)
-            answer.player = Player.objects.get(stamp=1)
+            answer.player = Player.objects.get(stamp=123)
             answer.save()
         else:
             print form.errors
