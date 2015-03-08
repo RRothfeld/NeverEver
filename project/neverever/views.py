@@ -57,11 +57,8 @@ def play(request):
                 s.categories.add(cat)
             # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
             s.save()
-            #manually creating players for now
+            #manually creating player 1
             p1 = Player.objects.create(stamp=1, session=s)
-            p2 = Player.objects.create(stamp=2, session=s)
-            p3 = Player.objects.create(stamp=3, session=s)
-            p4 = Player.objects.create(stamp=4, session=s)
 
             session = [s]
 
@@ -162,7 +159,11 @@ def play_options(request):
     if request.method == 'POST':
         form = SessionForm(request.POST, instance=session)
         if form.is_valid():
-            form.save(commit=True)
+            s = form.save(commit=True)
+            num_players = s.num_players
+            for i in range(1, num_players+1):
+                Player.objects.get_or_create(stamp=i, session = session)
+
             #return play(request) # <- ERROR (Sends POST request to play()
             return HttpResponseRedirect('/play')
         else:
