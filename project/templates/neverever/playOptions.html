@@ -21,11 +21,14 @@
             {% if field.name == "categories" %}
                 <h3>Categories</h3>
             {% endif %}
+            {% if field.name == "num_players" %}
+                Number of players:
+            {% endif %}
             {{ field.errors }}
             {{ field.help_text }}
             {{ field }}
         {% endfor %}
-
+        </br>
         <input type="submit" name="submit" value="Save changes" />
     </form>
 

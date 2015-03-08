@@ -96,12 +96,13 @@ def play(request):
     context_dict['sid'] = sid
     
     if request.method == 'POST':
-        form1 = AnswerForm(request.POST, prefix="form1")
-        form2 = AnswerForm(request.POST, prefix="form2")
-        form3 = AnswerForm(request.POST, prefix="form3")
-        form4 = AnswerForm(request.POST, prefix="form4")
-        forms = (form1, form2, form3, form4)
-        for i in range(0,4):
+        session = Session.objects.get(sid=sid)
+        num_players = session.num_players
+        forms = []
+        for i in range(0, num_players):
+            forms.append(AnswerForm(request.POST, prefix="form" + str(i)))
+
+        for i in range(0, num_players):
             if forms[i].is_valid():
                 answer = forms[i].save(commit = False)
                 answer.statement = rand_statement
@@ -111,13 +112,13 @@ def play(request):
             else:
                 print form.errors
  
-    # ideally this will loop [number of players] times to display one form per player...
+   # displays a form for each player
     else:
-        form1 = AnswerForm(prefix = "form1")
-        form2 = AnswerForm(prefix = "form2")
-        form3 = AnswerForm(prefix = "form3")
-        form4 = AnswerForm(prefix = "form4")
-        forms = (form1, form2, form3, form4)
+        session = Session.objects.get(sid=sid)
+        num_players = session.num_players
+        forms = []
+        for i in range(0, num_players):
+            forms.append(AnswerForm(prefix = "form" + str(i)))
 
     context_dict['forms'] = forms
     

@@ -37,6 +37,7 @@ class Session(models.Model):
     sid = models.CharField(max_length=128, null=True)  # TODO: change to stamp = models.IntegerField(primary_key=True)
     categories = models.ManyToManyField(Category)
     nsfw = models.BooleanField(default=True)
+    num_players = models.IntegerField(default=1)
 
     # Tried myself on ITERABLES, did not work
     # def __iter__(self):
