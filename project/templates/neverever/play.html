@@ -24,24 +24,22 @@
         {% endif %}
     {% endif %}
 
-    {% if Players %}
-        {% for player in Players %}
             <br />
             <form id="answer_form" method="post" action="/play/">
-                {% csrf_token %}
-                {% for hidden in form.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
+                {% for form in forms %}
+                    {% csrf_token %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
 
-                {% for field in form.visible_fields %}
-                    {{ field.errors }}
-                    {{ field.help_text }}
-                    {{ field }}
+                    {% for field in form.visible_fields %}
+                        {{ field.errors }}
+                        {{ field.help_text }}
+                        {{ field }}
+                    {% endfor %}
                 {% endfor %}
             <input type="submit">
             </form>
-        {% endfor %}
-    {% endif %}
 
     <br /><a href="{% url 'play' %}">Next Question</a>
     <br /><a href="{% url 'play_summary' %}">End Game</a>

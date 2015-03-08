@@ -57,7 +57,11 @@ def play(request):
                 s.categories.add(cat)
             # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
             s.save()
-            p = Player.objects.create(stamp=123, session=s)
+            #manually creating players for now
+            p1 = Player.objects.create(stamp=1, session=s)
+            p2 = Player.objects.create(stamp=2, session=s)
+            p3 = Player.objects.create(stamp=3, session=s)
+            p4 = Player.objects.create(stamp=4, session=s)
 
             session = [s]
 
@@ -92,19 +96,30 @@ def play(request):
     context_dict['sid'] = sid
     
     if request.method == 'POST':
-        form = AnswerForm(request.POST)
-        if form.is_valid():
-            answer = form.save(commit = False)
-            answer.statement = rand_statement
-            answer.session = Session.objects.get(sid=sid)
-            answer.player = Player.objects.get(stamp=123)
-            answer.save()
-        else:
-            print form.errors
+        form1 = AnswerForm(request.POST, prefix="form1")
+        form2 = AnswerForm(request.POST, prefix="form2")
+        form3 = AnswerForm(request.POST, prefix="form3")
+        form4 = AnswerForm(request.POST, prefix="form4")
+        forms = (form1, form2, form3, form4)
+        for i in range(0,4):
+            if forms[i].is_valid():
+                answer = forms[i].save(commit = False)
+                answer.statement = rand_statement
+                answer.session = Session.objects.get(sid=sid)
+                answer.player = players[i]  #Player.objects.get(stamp=123)
+                answer.save()
+            else:
+                print form.errors
+ 
+    # ideally this will loop [number of players] times to display one form per player...
     else:
-        form = AnswerForm
+        form1 = AnswerForm(prefix = "form1")
+        form2 = AnswerForm(prefix = "form2")
+        form3 = AnswerForm(prefix = "form3")
+        form4 = AnswerForm(prefix = "form4")
+        forms = (form1, form2, form3, form4)
 
-    context_dict['form'] = form
+    context_dict['forms'] = forms
     
     response = render(request, 'neverever/play.html', context_dict)
     return response
