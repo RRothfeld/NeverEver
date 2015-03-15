@@ -10,7 +10,6 @@ urlpatterns = patterns('',
                        url(r'stats/options/', views.stats_options, name='stats_options'),
                        url(r'stats/?$', views.stats, name='stats'),
                        url(r'^about/', views.about, name='about'),
-
                        #TODO:Remove
                        url(r'^testing/category/(?P<category_name_slug>[\w\-]+)/$', views.testing_category,
                            name='testing_category'),

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from neverever.models import Category, Statement, Session, Player, Answer,GlobalCounter
-from neverever.forms import StatementForm, AnswerForm, SessionForm
+from neverever.forms import StatementForm, AnswerForm, SessionForm, PlayerForm
 
 
 import random # Fetch random statements
@@ -136,14 +136,48 @@ def play_summary(request):
         sid = request.session.session_key
     context_dict['sid'] = sid
 
+    if request.method == 'POST':
+        # this is where we put things if the form has been submitted
+
+        session = Session.objects.get(sid=sid)
+        num_players = session.num_players
+        forms = []
+        for i in range(0, num_players):
+            count = 1
+            p = Player.objects.get(stamp=count)  # TODO change so different player
+            forms.append(PlayerForm(request.POST, prefix="form" + str(i), instance=p))
+            count = count+1
+
+        for i in range(0, num_players):
+            if forms[i].is_valid():
+                player = forms[i].save(commit = False)
+                # note need to make sure is saving their details here
+                # player.stamp =
+                player.session = Session.objects.get(sid=sid)
+                player.save()
+            else:
+                print form.errors
+    else:
+        # display the forms for each user
+        session = Session.objects.get(sid=sid)
+        num_players = session.num_players
+        forms = []
+        for i in range(0, num_players):
+            forms.append(PlayerForm(prefix = "form" + str(i)))
+
+    context_dict['forms'] = forms
+
     response = render(request, 'neverever/playSummary.html', context_dict)
+    return response
+
+
 
     # TODO: refine it
-    try:
-        session[0].delete()
-    except:
-        response = HttpResponse("Session has ended")
-    return response
+    # try:
+    #     session[0].delete()
+    # except:
+    #     response = HttpResponse("Session has ended")
+    # return response
 
 
 # TODO: make sure that at least one Category is selected

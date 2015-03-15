@@ -1,5 +1,5 @@
 from django import forms
-from neverever.models import Statement, Category, Answer, Session
+from neverever.models import Statement, Category, Answer, Session, Player
 
 
 class StatementForm(forms.ModelForm):
@@ -43,3 +43,13 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ('answer',)
+
+
+class PlayerForm(forms.ModelForm):
+    gender = forms.CharField(max_length=1, help_text="Gender")
+    age = forms.IntegerField(help_text="Age")
+    nationality = forms.CharField(max_length=128, help_text="Nationality")
+
+    class Meta:
+        model = Player
+        fields = ('gender', 'age', 'nationality')

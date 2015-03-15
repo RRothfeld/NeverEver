@@ -5,8 +5,29 @@
 {% block title %} - Game Summary{% endblock %}
 
 {% block body_block %}
+
     {% if session %}
         <b>Session status: </b> {{ session }} <br />
     {% endif %}
+
+    <form id = "player_form" method = "post" action = "">
+        {% for form in forms %}
+        <b>Player {{Player.id}}</b>
+        {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+        <br />
+        {% endfor %}
+    <input type="submit">
+
+    </form>
+
     <br><a href="{% url 'index' %}">Return to main page</a>
 {% endblock %}
