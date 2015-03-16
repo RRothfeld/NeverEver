@@ -6,11 +6,13 @@
     <head lang="en">
         <meta charset="UTF-8">
         <title>NeverEver{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{% static "css/base.css" %}" /> <!-- CSS -->
+        <link rel="icon" href="{% static "icon/favicon.ico" %}">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
     </head>
 
     <body>
-        <!-- Add logo here -->
         {% block body_block %}{% endblock %}
     </body>
 </html>
