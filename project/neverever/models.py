@@ -39,6 +39,10 @@ class Session(models.Model):
     nsfw = models.BooleanField(default=True)
     num_players = models.IntegerField(default=1)
 
+    # Testing
+    last_statement = models.ForeignKey(Statement, null=True, related_name="last_statement")
+    used_statements = models.ManyToManyField(Statement, null=True, related_name="used_statements")
+
     # Tried myself on ITERABLES, did not work
     # def __iter__(self):
     #    return iter("session" + str(self.id))

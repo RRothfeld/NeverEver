@@ -24,6 +24,9 @@
         {% endif %}
     {% endif %}
 
+        {% if no_more_statements %}
+            <b>No more statements to display. Please add more categories. If all categories were used please start a new game</b>
+        {% else %}
             <br />
             <form id="answer_form" method="post" action="/play/">
                 {% for form in forms %}
@@ -41,7 +44,8 @@
             <input type="submit">
             </form>
 
-    <br /><a href="{% url 'play' %}">Next Question</a>
+            <!--<br /><a href="{% url 'play' %}">Next Question</a>-->
+        {% endif %}
     <br /><a href="{% url 'play_summary' %}">End Game</a>
     <br /><a href="{% url 'play_options' %}">Options</a>
 {% endblock %}

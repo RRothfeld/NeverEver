@@ -3,8 +3,10 @@ from django.shortcuts import render
 from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 from neverever.forms import StatementForm, AnswerForm, SessionForm, PlayerForm
 
+from django.db.models import Q
 
-import random # Fetch random statements
+
+import random  # Fetch random statements
 
 
 # TODO: fix duplicate code in play and index (detect sid)
@@ -47,53 +49,54 @@ def play(request):
     context_dict = {}
     sid = request.session.session_key
     SESSION_NSFW = False
-    if sid:
-        session = Session.objects.filter(sid=sid)
-        if session:
-            context_dict['session'] = "Already existed"
-        else:
-            context_dict['session'] = "Just created"
-            s = Session.objects.get_or_create(sid=sid, nsfw=SESSION_NSFW)[0]
-            for cat in Category.objects.all():
-                s.categories.add(cat)
-            # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
-            s.save()
-            #manually creating player 1
-            p1 = Player.objects.create(stamp=1, session=s)
 
-            session = [s]
-
-            # Update global counters
-            gc = GlobalCounter.objects.all()[0]
-            gc.total_sessions += 1
-            gc.total_players += 1
-            gc.save()
-
-        categories = session[0].categories.all()
-        context_dict['categories'] = categories
-
-        while True:
-            try:
-                rand_cat = random.choice(categories)
-                if session[0].nsfw:
-                    rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
-                else:
-                    rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, nsfw=False))
-                break
-            except IndexError:
-                pass
-        context_dict['statement'] = rand_statement
-
-        # Testing players
-        players = Player.objects.filter(session=session[0])
-        context_dict['Players'] = players
-    else:
+    if not sid:
         request.session.save()
         request.session.modified = True
-        sid = request.session.session_key
+        return HttpResponseRedirect('/play')
+
     context_dict['sid'] = sid
-    
+
+    session_tuple = Session.objects.get_or_create(sid=sid)
+    session = session_tuple[0]
+    print "Session tuple[1]:", session_tuple[1]
+    if not session_tuple[1]:
+        context_dict['session'] = "Already existed"
+
+    else:
+        context_dict['session'] = "Just created"
+        session.nsfw = SESSION_NSFW
+        for cat in Category.objects.all():
+            session.categories.add(cat)
+        # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
+        session.save()
+        # manually creating player 1
+        p1 = Player.objects.create(stamp=1, session=session)
+
+        # Update global counters
+        gc = GlobalCounter.objects.all()[0]
+        gc.total_sessions += 1
+        gc.total_players += 1
+        gc.save()
+
+
+    print "GOT HERE: 1"
+    categories = session.categories.all()
+    context_dict['categories'] = categories
+    print "Categories size:", len(categories)
+
+    # Testing players
+    players = Player.objects.filter(session=session)
+    context_dict['Players'] = players
+
     if request.method == 'POST':
+
+        # Testing
+        session = Session.objects.filter(sid=sid)[0]
+        used_statement = session.last_statement
+        print used_statement
+        session.used_statements.add(used_statement)
+
         session = Session.objects.get(sid=sid)
         num_players = session.num_players
         forms = []
@@ -102,23 +105,63 @@ def play(request):
 
         for i in range(0, num_players):
             if forms[i].is_valid():
-                answer = forms[i].save(commit = False)
-                answer.statement = rand_statement
+                answer = forms[i].save(commit=False)
+                answer.statement = used_statement
                 answer.session = Session.objects.get(sid=sid)
-                answer.player = players[i]  #Player.objects.get(stamp=123)
+                answer.player = players[i]  # Player.objects.get(stamp=123)
                 answer.save()
             else:
-                print form.errors
- 
-   # displays a form for each player
+                print forms[i].errors
+
+    # displays a form for each player
     else:
         session = Session.objects.get(sid=sid)
         num_players = session.num_players
         forms = []
         for i in range(0, num_players):
-            forms.append(AnswerForm(prefix = "form" + str(i)))
+            forms.append(AnswerForm(prefix="form" + str(i)))
 
     context_dict['forms'] = forms
+
+    # Pick a random statement from the selected categories
+    while True:
+        try:
+            rand_cat = random.choice(categories)
+            q_object = Q(categories=categories[0])
+            if len(categories) > 1:
+                for category in categories[1:]:
+                    q_object = q_object | Q(categories=category)
+            if session.nsfw:
+                statement_list = Statement.objects.filter(q_object).order_by('?')
+            else:
+                statement_list = Statement.objects.filter(q_object, nsfw=False).order_by('?')
+            print "Statements Size:", len(statement_list)
+            found = False
+            rand_statement = None
+            for statement in statement_list:
+                if statement not in session.used_statements.all():
+                    rand_statement = statement
+                    found = True
+                    break
+            print "FOUND:", found, "ITEM LIST SIZE:", len(session.used_statements.all())
+            if not found:
+                context_dict["no_more_statements"] = True
+            # if session.nsfw:
+            #     rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
+            # else:
+            #     rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, nsfw=False))
+            # if rand_statement in session.used_statements.all():
+            #     print "STATEMENT HAS BEEN SELECTED IN THE PAST"
+            #     continue
+            break
+        except SyntaxError as e:
+            print e.message
+
+    context_dict['statement'] = rand_statement
+
+    # Testing
+    session.last_statement = rand_statement
+    session.save()
     
     response = render(request, 'neverever/play.html', context_dict)
     return response
@@ -151,13 +194,13 @@ def play_summary(request):
 
         for i in range(0, num_players):
             if forms[i].is_valid():
-                player = forms[i].save(commit = False)
+                player = forms[i].save(commit=False)
                 # note need to make sure is saving their details here
                 # player.stamp =
                 player.session = Session.objects.get(sid=sid)
                 player.save()
             else:
-                print form.errors
+                print forms[i].errors
     else:
         # display the forms for each user
         session = Session.objects.get(sid=sid)
