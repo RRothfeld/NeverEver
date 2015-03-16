@@ -3,42 +3,17 @@
 {% load staticfiles %}
 
 {% block body_block %}
-<div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a href="../" class="navbar-brand">Never Ever</a>
-          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main" aria-expanded="false" style="height: 1px;">
-          <ul class="nav navbar-nav">
-            <li><a href="/play">Play</a></li>
-            <li><a href="/tutorial">How to</a></li>
-            <li><a href="/stats">Statistics</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
-            <li><a href="/about" target="_blank">About</a></li>
-          </ul>
-        </div>
-      </div>
-</div>
-
 <div class="page-header text-center">
-    </br>
     <h1>Never Ever</h1>
     <p class="lead">Play never have I ever. Wherever you are.</p>
 </div>
 
 <div class="text-center">
 <a href="/play" class="btn btn-primary btn-lg">Play</a></br></br>
-<a href="/new-statement" class="btn btn-info">Add New Statement</a></br></br>
+<a href="/new-statement" class="btn btn-default">New Statement</a></br></br>
 </div>
 
-<div class="page-footer">
+<div class="panel-footer">
     <p>Currently, there
     {% if nSessions %}
         {% if nSessions >= 1 %}is{% else %}are{% endif %}
