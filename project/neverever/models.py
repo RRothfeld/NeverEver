@@ -83,6 +83,17 @@ class Answer(models.Model):
         return "Answer " + str(self.stamp)
 
 
+class Result(models.Model):
+    statement = models.ForeignKey(Statement)
+    gender = models.CharField(max_length=128, null=True)
+    age = models.IntegerField(null=True)
+    nationality = models.CharField(max_length=128, null=True)
+    answer = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return "result_" + str(self.id)
+
+
 class GlobalCounter(models.Model):
     total_sessions = models.IntegerField()
     total_players = models.IntegerField()

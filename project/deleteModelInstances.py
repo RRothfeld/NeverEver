@@ -8,7 +8,7 @@ import django
 
 django.setup()
 
-from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter
+from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 
 # Delete Statements
 print "Statements: {} instances were detected".format(Statement.objects.all().count())
@@ -34,6 +34,11 @@ print "Players: {} instances remain".format(Player.objects.all().count())
 print "Answers: {} instances were detected".format(Answer.objects.all().count())
 Answer.objects.all().delete()
 print "Answers: {} instances remain".format(Answer.objects.all().count())
+
+# Delete Results
+print "Results: {} instances were detected".format(Result.objects.all().count())
+Result.objects.all().delete()
+print "Results: {} instances remain".format(Result.objects.all().count())
 
 # Delete GlobalCounter
 print "GlobalCounter: {} instances were detected".format(GlobalCounter.objects.all().count())

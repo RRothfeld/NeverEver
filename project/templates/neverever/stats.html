@@ -10,6 +10,30 @@
     {% if globalCounter %}
         <br />Total games: {{ globalCounter.total_sessions }}
         <br />Total number of players: {{ globalCounter.total_players }}
+        <br />
+    {% endif %}
+    {% if results %}
+        <br /><b>Results</b><br />
+        {% for result in results %}
+            - Statement: {{ result.statement }}<br />
+            - Answer:
+            {%  if result.answer %}
+                Yes
+            {% else %}
+                No
+            {% endif %}
+            <br />
+            {% if result.nationality %}
+                - Nationality: {{ result.nationality }} <br />
+            {% endif %}
+            {% if result.age %}
+                - Age: {{ result.age }} <br />
+            {% endif %}
+            {% if result.gender %}
+                - Gender: {{ result.gender }} <br />
+            {% endif %}
+            <br />
+        {% endfor %}
     {% endif %}
     <br><a href=" {% url 'stats_options' %}">Options</a>
     <br><a href="{%  url 'index' %}">Return to main page</a>

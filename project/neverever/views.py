@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from neverever.models import Category, Statement, Session, Player, Answer,GlobalCounter
+from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 from neverever.forms import StatementForm, AnswerForm, SessionForm, PlayerForm
 
 
@@ -32,7 +32,8 @@ def about(request):
 
 def stats(request):
     gc = GlobalCounter.objects.all()[0]
-    context_dict = {'globalCounter' : gc}
+    results = Result.objects.all()
+    context_dict = {'globalCounter': gc, 'results': results}
     return render(request, 'neverever/stats.html', context_dict)
 
 

@@ -6,7 +6,7 @@ import django
 
 django.setup()
 
-from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter
+from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 
 
 def populate():
@@ -38,27 +38,32 @@ def populate():
                      )
 
     state_murder = add_statement(categories=[cat_violence],
-                   title="killed a person"
-                   )
+                                 title="killed a person"
+    )
 
     add_statement(categories=[cat_alcohol],
                   title="thrown up after drinking too much",
                   views=60
     )
 
-    add_statement(categories=[cat_alcohol, cat_illegal],
-                  title="got drunk when I was underage"
+    state_underage_drunk = add_statement(categories=[cat_alcohol, cat_illegal],
+                                         title="got drunk when I was underage"
     )
 
-    add_statement(categories=[cat_sexual],
-                  title="had a threesome",
-                  nsfw=True
+    state_threesome = add_statement(categories=[cat_sexual],
+                                    title="had a threesome",
+                                    nsfw=True
     )
 
     state_publicsex = add_statement(categories=[cat_sexual],
                                     title="had sex in public",
                                     nsfw=True
     )
+
+    # add results
+    add_result(statement=state_publicsex, answer=True, gender='Male', nationality='British')
+    add_result(statement=state_threesome, answer=False)
+    add_result(statement=state_underage_drunk, answer=True, age=17, )
 
 """
     # add sessions
@@ -129,6 +134,12 @@ def add_global_counters(t_sessions, t_players):
     gc = GlobalCounter.objects.create(total_sessions=t_sessions, total_players=t_players)
     print "Adding global counter " + str(gc)
     return gc
+
+def add_result(statement, answer, gender=None, nationality=None, age=None):
+    result = Result.objects.create(statement=statement, answer=answer, gender=gender, nationality=nationality,
+                                   age=age)
+    print "Adding result " + str(result)
+    return result
 
 # Start execution here!
 if __name__ == '__main__':
