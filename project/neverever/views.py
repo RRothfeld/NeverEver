@@ -207,9 +207,20 @@ def play_summary(request):
         num_players = session.num_players
         forms = []
         for i in range(0, num_players):
-            forms.append(PlayerForm(prefix = "form" + str(i)))
+            forms.append(PlayerForm(prefix="form" + str(i)))
 
     context_dict['forms'] = forms
+
+    players = Player.objects.filter(session=session).order_by('id')
+    print "len(players):", len(players)
+
+    player_answers = []
+    for player in players:
+        print 1
+        player_answers.append(Answer.objects.filter(player=player))
+        print "player_answers[-1]:", len(player_answers[-1])
+
+    context_dict['player_answers'] = player_answers
 
     response = render(request, 'neverever/playSummary.html', context_dict)
     return response

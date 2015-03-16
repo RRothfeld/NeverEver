@@ -29,5 +29,14 @@
 
     </form>
 
+    {% if player_answers %}
+        <br /><b>Answers</b><br />
+        {% for answers in player_answers %}
+            {% for answer in answers %}
+                {{ answer.player }} answered {{ answer.answer }} for "{{ answer.statement }}" <br />
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
     <br><a href="{% url 'index' %}">Return to main page</a>
 {% endblock %}
