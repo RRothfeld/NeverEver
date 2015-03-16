@@ -21,6 +21,10 @@
         {% endif %}
         {% if statement %}
             <br /><b>Statement:</b> I have never... {{ statement.title }}
+            <br /><b>From:</b>
+            {% for cat in statement.categories.all %}
+                {{ cat.name }},
+            {% endfor %}
         {% endif %}
     {% endif %}
 

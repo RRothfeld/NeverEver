@@ -15,47 +15,184 @@ def populate():
     global_counter = add_global_counters(t_sessions=0, t_players=0)
 
     # add categories
-    cat_violence = add_category("Violence")
-    cat_illegal = add_category("Illegal")
-    cat_alcohol = add_category("Alcohol")
-    cat_sexual = add_category("Sexual")
-    cat_activity = add_category("Activities")
+    cat_law = add_category("Law")
+    cat_drinking = add_category("Drinking")
+    cat_dirty = add_category("Dirty")
+    cat_love = add_category("Love")
+    cat_student = add_category("#StudentLife")
+    cat_work = add_category("Work")
+    cat_random = add_category("Random")
 
     # add statements
-    state_bungeejump = add_statement(categories=[cat_activity],
+    add_statement(categories=[cat_random],
                       title="been bungee jumping",
-                      views=10,
-                      )
-
-    state_redlight = add_statement(categories=[cat_illegal],
-                     title="run a red light",
-                     views=130,
-                     )
-
-    state_stealing = add_statement(categories=[cat_illegal],
-                     title="stolen something",
-                     views=70
-                     )
-
-    state_murder = add_statement(categories=[cat_violence],
-                                 title="killed a person"
+                      views=10
     )
 
-    add_statement(categories=[cat_alcohol],
+    add_statement(categories=[cat_law],
+                     title="run a red light",
+                     views=130
+    )
+
+    add_statement(categories=[cat_law],
+                     title="stolen something",
+                     views=70
+    )
+
+    add_statement(categories=[cat_law],
+                  title="killed a person"
+    )
+
+    add_statement(categories=[cat_drinking],
                   title="thrown up after drinking too much",
                   views=60
     )
 
-    state_underage_drunk = add_statement(categories=[cat_alcohol, cat_illegal],
+    add_statement(categories=[cat_dirty],
+                  title="watched porn with someone else",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="walked in on my parents having sex",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="had sex in front of other people",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="fantasised about anyone in this room",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="used a sex toy",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="had sex with someone more than 10 years older than me",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty, cat_law],
+                  title="flashed someone",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="had anal sex",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="attempted anal sex and failed",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_dirty],
+                  title="slept with someone I thought was ugly",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_drinking],
+                  title="passed out from drinking",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_law],
+                  title="smoked weed",
+                  nsfw=True
+    )
+
+    add_statement(categories=[cat_random],
+                  title="shot a gun",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="had surgery",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="been on TV",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_law],
+                  title="gotten into a club with fake ID",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="read the Bible",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="read the Qur'an",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="played strip poker",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_student],
+                  title="aced a test without studying",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_random],
+                  title="been in a car accident",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_work],
+                  title="badmouthed my boss",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_work],
+                  title="undeservingly gotten promoted",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_love],
+                  title="been rejected by my crush",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_love],
+                  title="had a boyfriend/girlfriend",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_student],
+                  title="cheated on an exam",
+                  nsfw=False
+    )
+
+    add_statement(categories=[cat_student],
+                  title="plagiarised without getting caught",
+                  nsfw=False
+    )
+
+    state_underage_drunk = add_statement(categories=[cat_drinking, cat_law],
                                          title="got drunk when I was underage"
     )
 
-    state_threesome = add_statement(categories=[cat_sexual],
+    state_threesome = add_statement(categories=[cat_dirty],
                                     title="had a threesome",
                                     nsfw=True
     )
 
-    state_publicsex = add_statement(categories=[cat_sexual],
+    state_publicsex = add_statement(categories=[cat_dirty],
                                     title="had sex in public",
                                     nsfw=True
     )
@@ -65,10 +202,10 @@ def populate():
     add_result(statement=state_threesome, answer=False)
     add_result(statement=state_underage_drunk, answer=True, age=17, )
 
-"""
+""" TO BE DELETED LATER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     # add sessions
-    session_1 = add_session(sid=1, categories=[cat_violence])
-    session_2 = add_session(sid=2, categories=[cat_illegal])
+    session_1 = add_session(sid=1, categories=[cat_law])
+    session_2 = add_session(sid=2, categories=[cat_law])
     session_3 = add_session(sid=3, categories=[cat_alcohol, cat_sexual, cat_activity])
 
     # add players
