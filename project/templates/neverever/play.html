@@ -5,51 +5,53 @@
 {% block body_block %}
 
     {% if sid %}
-        <br /> <b>Session ID:</b> {{ sid }}
-        <br /> <b>Session state:</b> {{ session }}
-        {% if nPlayers %}
-            <br /><b>{{ nPlayers }}</b> player(s) in this session
-        {% else %}
-            <br />No nPlayers provided
-        {% endif %}
-        {% if categories %}
-            <br /><b>Categories:</b>
-            {% for cat in categories %}
-                {{ cat.name }},
-            {% endfor %}
-            <br />
-        {% endif %}
         {% if statement %}
-            <br /><b>Statement:</b> I have never... {{ statement.title }}
-            <br /><b>From:</b>
-            {% for cat in statement.categories.all %}
-                {{ cat.name }},
-            {% endfor %}
+            <div class="container">
+                <h2>Never have I ever <b>{{ statement.title }}</b>.</h2>
+                <div class="row-fluid label-spacing">
+                    <div class="text-right">
+                        <h4>
+                            {% for cat in statement.categories.all %}
+                              <div class="label  label-default">{{ cat.name }}</div>
+                            {% endfor %}
+                            <!-- TODO make nsfw switch -->
+                            <input type="checkbox" data-toggle="toggle" data-on="SFW" data-off="NSFW" data-onstyle="default" data-offstyle="warning" data-size="mini">
+                        </h4>
+                    </div>
+                </div>
+            </div>
         {% endif %}
     {% endif %}
 
-        {% if no_more_statements %}
-            <b>No more statements to display. Please add more categories. If all categories were used please start a new game</b>
-        {% else %}
-            <br />
-            <form id="answer_form" method="post" action="/play/">
-                {% for form in forms %}
-                    {% csrf_token %}
-                    {% for hidden in form.hidden_fields %}
-                        {{ hidden }}
-                    {% endfor %}
 
-                    {% for field in form.visible_fields %}
-                        {{ field.errors }}
-                        {{ field.help_text }}
-                        {{ field }}
-                    {% endfor %}
+    {% if no_more_statements %}
+        <div class="container-fluid text-center">
+            <p class="bg-warning warning-spacing"><b class="warning-head">Sorry! :(</b><br>
+                <b>There are no more statements to display.You played through all of them.</b><br>
+                Please select more categories, start a new game, or add statements yourself!</p>
+        </div>
+    {% else %}
+        <form id="answer_form" method="post" action="/play/">
+            {% for form in forms %}
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                <div class="row row-spacing">
+                    <span class="player-name">Player X</span>
+                    <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox" data-toggle="toggle" data-on="Done it!" data-off="Nope." data-onstyle="success" data-offstyle="danger">
+                </div>
                 {% endfor %}
-            <input type="submit">
-            </form>
+            {% endfor %}
+        <div class="row row-spacing">
+            <input class="btn btn-primary btn-lg center-block" type="submit">
+        </div>
+        </form>
+    {% endif %}
 
-            <!--<br /><a href="{% url 'play' %}">Next Question</a>-->
-        {% endif %}
-    <br /><a href="{% url 'play_summary' %}">End Game</a>
-    <br /><a href="{% url 'play_options' %}">Options</a>
+<div class="container-fluid">
+        <div class="row row-spacing">
+            <a href="{% url 'play_options' %}" class="btn btn-info">Options</a>
+            <a href="{% url 'play_summary' %}" class="btn btn-warning">End Game</a>
+        </div>
+</div>
+
 {% endblock %}

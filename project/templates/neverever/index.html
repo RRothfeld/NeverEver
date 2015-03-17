@@ -2,32 +2,43 @@
 
 {% load staticfiles %}
 
-{% block body_block %}
+{% block head_block %}
+<link rel="stylesheet" href="{% static "css/index.css" %}" />
+{% endblock %}
 
+{% block body_block %}
 
 <div class="page-header">
     <h1>Never Ever</h1>
     <p class="lead">Play never have I ever. Wherever you are.</p>
 </div>
-<div class="text-center row-fluid container-fluid" id="stretch-content">
-    <a href="/play" class="btn btn-primary btn-lg btn-block-main">Play</a></br>
-    <a href="/new-statement" class="btn btn-default btn-lg btn-block-main">New Statement</a>
+
+<div class="container-fluid">
+        <div class="row row-spacing">
+                <a href="/play" class="btn btn-primary btn-lg center-block btn-ne-main">Play</a>
+        </div>
+        <div class="row row-spacing">
+            <a href="/new-statement" class="btn btn-default btn-lg center-block btn-ne-main">New Statement</a>
+        </div>
 </div>
 
-<div class="panel-footer">
-    <p>Currently, there
-    {% if nSessions %}
-        {% if nSessions >= 1 %}is{% else %}are{% endif %}
-        {{ nSessions }} active session{% if nSessions >= 1 %}s{% endif %}
-    {% else %}
-        No active sessions
-    {% endif %}
-        , with
-    {% if nPlayers %}
-        {{ nPlayers }} player{% if nPlayers >= 1 %}s{% endif %}.
-    {% else %}
-        no players. :(
-    {% endif %}
+<footer class="footer footer-main">
+  <div class="container">
+    <p class="text-muted">Currently, there
+        {% if nSessions %}
+            {% if nSessions >= 1 %}is{% else %}are{% endif %}
+            {{ nSessions }} active session{% if nSessions > 1 %}s{% endif %}
+        {% else %}
+            No active sessions
+        {% endif %}
+            , with
+        {% if nPlayers %}
+            {{ nPlayers }} player{% if nPlayers > 1 %}s{% endif %}.
+        {% else %}
+            no players. :(
+        {% endif %}
     </p>
-</div>
+  </div>
+</footer>
+
 {% endblock %}

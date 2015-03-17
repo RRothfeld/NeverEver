@@ -16,15 +16,7 @@ body {
   margin: 0;
 }
 
-body,
-html {
-  height: 100%;
-}
-
-#stretch-content {
-  overflow-y:auto;
-  height:95%;
-}
+html,body {height:100%;}
 
 article,
 aside,
@@ -2523,8 +2515,7 @@ select[size] {
   height: auto;
 }
 input[type="file"]:focus,
-input[type="radio"]:focus,
-input[type="checkbox"]:focus {
+input[type="radio"]:focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -3355,10 +3346,7 @@ fieldset[disabled] .btn-link:focus {
   display: block;
   width: 100%;
 }
-.btn-block-main{
-  display: block;
-  width: 15%;
-}
+
 .btn-block + .btn-block {
   margin-top: 5px;
 }
