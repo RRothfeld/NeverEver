@@ -15,6 +15,19 @@ html {
 body {
   margin: 0;
 }
+
+body,
+html {
+  height: 100%;
+}
+
+#content, .container-fluid, .span9
+{
+    border: 1px solid #000;
+    overflow-y:auto;
+    height:100%;
+}?
+
 article,
 aside,
 details,
