@@ -21,10 +21,9 @@ html {
   height: 100%;
 }
 
-#content, .container-fluid, .span9
-{
-    overflow-y:auto;
-    height:95%;
+#stretch-content {
+  overflow-y:auto;
+  height:95%;
 }
 
 article,
