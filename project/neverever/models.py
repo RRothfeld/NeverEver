@@ -38,6 +38,7 @@ class Session(models.Model):
     categories = models.ManyToManyField(Category)
     nsfw = models.BooleanField(default=True)
     num_players = models.IntegerField(default=1)
+    last_modified = models.DateTimeField(auto_now=True, auto_now_add=True)
 
     # Testing
     last_statement = models.ForeignKey(Statement, null=True, related_name="last_statement")
