@@ -114,12 +114,12 @@ def play(request):
                 print forms[i].errors
 
     # displays a form for each player
-    else:
-        session = Session.objects.get(sid=sid)
-        num_players = session.num_players
-        forms = []
-        for i in range(0, num_players):
-            forms.append(AnswerForm(prefix="form" + str(i)))
+
+    session = Session.objects.get(sid=sid)
+    num_players = session.num_players
+    forms = []
+    for i in range(0, num_players):
+        forms.append(AnswerForm(prefix="form" + str(i)))
 
     context_dict['forms'] = forms
 
