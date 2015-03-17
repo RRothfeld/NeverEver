@@ -39,11 +39,6 @@ def stats(request):
     return render(request, 'neverever/stats.html', context_dict)
 
 
-def stats_options(request):
-    context_dict = {}
-    return render(request, 'neverever/statsOptions.html', context_dict)
-
-
 def play(request):
 
     context_dict = {}

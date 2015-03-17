@@ -7,7 +7,6 @@ urlpatterns = patterns('',
                        url(r'play/options/', views.play_options, name='play_options'),
                        url(r'play/$', views.play, name='play'),
                        url(r'new-statement', views.new_statement, name='new_statement'),
-                       url(r'stats/options/', views.stats_options, name='stats_options'),
                        url(r'stats/?$', views.stats, name='stats'),
                        url(r'^about/', views.about, name='about'),
                        #TODO:Remove
