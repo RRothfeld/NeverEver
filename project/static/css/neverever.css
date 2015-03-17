@@ -1,7 +1,14 @@
+html,body {height:100%;}
+
 .btn-ne-main {
   width: 15%;
   min-width: 175px;
   font-size: 18px;
+}
+
+h5,
+.h5 {
+  font-size: 17px;
 }
 
 .row-spacing {

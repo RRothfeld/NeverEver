@@ -26,7 +26,7 @@
   <div class="container">
     <p class="text-muted">Currently, there
         {% if nSessions %}
-            {% if nSessions >= 1 %}is{% else %}are{% endif %}
+            {% if nSessions > 1 %}are{% else %}is{% endif %}
             {{ nSessions }} active session{% if nSessions > 1 %}s{% endif %}
         {% else %}
             No active sessions

@@ -10,13 +10,13 @@
                 <h2>Never have I ever <b>{{ statement.title }}</b>.</h2>
                 <div class="row-fluid label-spacing">
                     <div class="text-right">
-                        <h4>
+                        <h5>
                             {% for cat in statement.categories.all %}
                               <div class="label  label-default">{{ cat.name }}</div>
                             {% endfor %}
                             <!-- TODO make nsfw switch -->
-                            <input type="checkbox" data-toggle="toggle" data-on="SFW" data-off="NSFW" data-onstyle="default" data-offstyle="warning" data-size="mini">
-                        </h4>
+                            <input type="checkbox" data-toggle="toggle" checked data-on="SFW" data-off="NSFW" data-onstyle="default" data-offstyle="warning" data-size="mini">
+                        </h5>
                     </div>
                 </div>
             </div>
