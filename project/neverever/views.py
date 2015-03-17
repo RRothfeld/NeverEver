@@ -54,7 +54,6 @@ def play(request):
 
     session_tuple = Session.objects.get_or_create(sid=sid)
     session = session_tuple[0]
-    print "Session tuple[1]:", session_tuple[1]
     if not session_tuple[1]:
         context_dict['session'] = "Already existed"
 
@@ -74,11 +73,9 @@ def play(request):
         gc.total_players += 1
         gc.save()
 
-
-    print "GOT HERE: 1"
+    print "SESSION last_modified:", session.last_modified
     categories = session.categories.all()
     context_dict['categories'] = categories
-    print "Categories size:", len(categories)
 
     # Testing players
     players = Player.objects.filter(session=session)
@@ -89,7 +86,6 @@ def play(request):
         # Testing
         session = Session.objects.filter(sid=sid)[0]
         used_statement = session.last_statement
-        print used_statement
         session.used_statements.add(used_statement)
 
         session = Session.objects.get(sid=sid)
@@ -130,7 +126,6 @@ def play(request):
                 statement_list = Statement.objects.filter(q_object).order_by('?')
             else:
                 statement_list = Statement.objects.filter(q_object, nsfw=False).order_by('?')
-            print "Statements Size:", len(statement_list)
             found = False
             rand_statement = None
             for statement in statement_list:
