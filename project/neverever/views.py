@@ -194,6 +194,22 @@ def play_summary(request):
                 player.save()
             else:
                 print forms[i].errors
+
+    #     end session
+        try:
+            print "getting to delete line"
+            # session[0].delete()
+            s = Session.objects.get(sid=sid)
+            session.delete()
+            response = HttpResponse("Session has ended")
+        except:
+            response = HttpResponse("Something went wrong. Probably ending the session")
+            # response = HttpResponse("Session has ended")
+        return response
+
+        # update the
+
+
     else:
         # display the forms for each user
         session = Session.objects.get(sid=sid)
@@ -220,12 +236,6 @@ def play_summary(request):
 
 
 
-    # TODO: refine it
-    # try:
-    #     session[0].delete()
-    # except:
-    #     response = HttpResponse("Session has ended")
-    # return response
 
 
 # TODO: make sure that at least one Category is selected
