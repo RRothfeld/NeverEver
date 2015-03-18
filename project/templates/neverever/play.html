@@ -3,17 +3,19 @@
 {% load staticfiles %}
 
 {% block body_block %}
-
     {% if sid %}
         {% if statement %}
             <div class="container">
-                <h2>Never have I ever <b>{{ statement.title }}</b>.</h2>
+                <h2>Never have I ever <b>{{ statement.title }}</b></h2>
                 <div class="row label-spacing">
-                    <h5>
+                    <h6>
                         {% for cat in statement.categories.all %}
                           <div class="label  label-default">{{ cat.name }}</div>
                         {% endfor %}
-                    </h5>
+                        {% if statement.nsfw %}
+                            <div class="label  label-warning">NSFW</div>
+                        {% endif %}
+                    </h6>
                 </div>
             </div>
         {% endif %}
@@ -49,5 +51,4 @@
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">End Game</a>
             </div>
     </div>
-
 {% endblock %}

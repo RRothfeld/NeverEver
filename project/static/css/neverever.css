@@ -6,6 +6,11 @@ html,body {height:100%;}
   font-size: 18px;
 }
 
+.btn-ne-add {
+  width: 10%;
+  min-width: 150px;
+}
+
 h5,
 .h5 {
   font-size: 17px;
@@ -43,4 +48,23 @@ h5,
 
 .player-name {
   padding-right: 15px;
+}
+
+.new-statement {
+  width: 35%;
+  min-width: 330px;
+}
+
+.add-container {
+  float: left;
+  width: 50%;
+  min-width: 330px;
+}
+
+.vertical-center {
+  min-height: 50%;
+  min-height: 50vh;
+
+  display: flex;
+  align-items: center;
 }
