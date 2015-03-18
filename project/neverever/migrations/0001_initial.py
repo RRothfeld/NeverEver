@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('sid', models.CharField(max_length=128, null=True)),
-                ('nsfw', models.BooleanField(default=True)),
+                ('nsfw', models.BooleanField(default=False)),
                 ('num_players', models.IntegerField(default=1)),
                 ('last_modified', models.DateTimeField(auto_now_add=True)),
                 ('categories', models.ManyToManyField(to='neverever.Category')),
@@ -88,6 +88,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(unique=True, max_length=128)),
                 ('views', models.IntegerField(default=0)),
+                ('likes', models.IntegerField(default=0)),
                 ('slug', models.SlugField(unique=True)),
                 ('nsfw', models.BooleanField(default=True)),
                 ('categories', models.ManyToManyField(to='neverever.Category')),
