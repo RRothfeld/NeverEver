@@ -8,16 +8,12 @@
         {% if statement %}
             <div class="container">
                 <h2>Never have I ever <b>{{ statement.title }}</b>.</h2>
-                <div class="row-fluid label-spacing">
-                    <div class="text-right">
-                        <h5>
-                            {% for cat in statement.categories.all %}
-                              <div class="label  label-default">{{ cat.name }}</div>
-                            {% endfor %}
-                            <!-- TODO make nsfw switch -->
-                            <input type="checkbox" data-toggle="toggle" checked data-on="SFW" data-off="NSFW" data-onstyle="default" data-offstyle="warning" data-size="mini">
-                        </h5>
-                    </div>
+                <div class="row label-spacing">
+                    <h5>
+                        {% for cat in statement.categories.all %}
+                          <div class="label  label-default">{{ cat.name }}</div>
+                        {% endfor %}
+                    </h5>
                 </div>
             </div>
         {% endif %}
@@ -35,23 +31,23 @@
             {% for form in forms %}
                 {% csrf_token %}
                 {% for field in form.visible_fields %}
-                <div class="row row-spacing">
+                <div class="container row-spacing">
                     <span class="player-name">Player X</span>
                     <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox" data-toggle="toggle" data-on="Done it!" data-off="Nope." data-onstyle="success" data-offstyle="danger">
                 </div>
                 {% endfor %}
             {% endfor %}
-        <div class="row row-spacing">
-            <input class="btn btn-primary btn-lg center-block" type="submit">
-        </div>
+            <div class="container row-spacing">
+                <input class="btn btn-primary btn-lg center-block" type="submit" value="Submit">
+            </div>
         </form>
     {% endif %}
 
-<div class="container-fluid">
-        <div class="row row-spacing">
-            <a href="{% url 'play_options' %}" class="btn btn-info">Options</a>
-            <a href="{% url 'play_summary' %}" class="btn btn-warning">End Game</a>
-        </div>
-</div>
+    <div class="container-fluid">
+            <div class="row row-spacing">
+                <a href="{% url 'play_options' %}" class="btn btn-info">Options</a>
+                <a href="{% url 'play_summary' %}" class="btn btn-warning">End Game</a>
+            </div>
+    </div>
 
 {% endblock %}

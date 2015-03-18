@@ -20,6 +20,7 @@ class Statement(models.Model):
     categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=128, unique=True)
     views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
     nsfw = models.BooleanField(default=True)
 
@@ -36,7 +37,7 @@ class Session(models.Model):
     # stamp = models.IntegerField(null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
     sid = models.CharField(max_length=128, null=True)  # TODO: change to stamp = models.IntegerField(primary_key=True)
     categories = models.ManyToManyField(Category)
-    nsfw = models.BooleanField(default=True)
+    nsfw = models.BooleanField(default=False)
     num_players = models.IntegerField(default=1)
     last_modified = models.DateTimeField(auto_now_add=True, blank=True)
 

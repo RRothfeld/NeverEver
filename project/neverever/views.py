@@ -149,6 +149,9 @@ def play(request):
 
     context_dict['statement'] = rand_statement
 
+    # Increase number of views for statement
+    rand_statement.views += 1
+
     # Testing
     session.last_statement = rand_statement
     session.save()
