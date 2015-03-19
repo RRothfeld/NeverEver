@@ -16,6 +16,14 @@ h5,
   font-size: 17px;
 }
 
+h1 {
+  font-size: 48pt;
+}
+
+.lead,h1 {
+  color: #ffffff;
+}
+
 .row-spacing {
   padding: 10px 0 10px 0;
 }
@@ -34,16 +42,13 @@ h5,
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 10px;
-}
-
-.footer-main {
-  height: 50px;
+  padding-top: 10px;
+  border-top: 1px solid #999999;
+  height: 45px;
   background-color: #f5f5f5;
-  padding: 10px;
 }
 
 .player-name {
