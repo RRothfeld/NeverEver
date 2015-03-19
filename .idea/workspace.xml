@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d71a513-678c-4507-be6b-1d102170465d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project/static/icon/test.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/project/static/icon/test2.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/static/icon/favicon.ico" afterPath="$PROJECT_DIR$/project/static/icon/favicon.ico" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/templates/neverever/baseTemplate.html" afterPath="$PROJECT_DIR$/project/templates/neverever/baseTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/static/css/bootstrap.css" afterPath="$PROJECT_DIR$/project/static/css/bootstrap.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/static/css/index.css" afterPath="$PROJECT_DIR$/project/static/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/templates/neverever/index.html" afterPath="$PROJECT_DIR$/project/templates/neverever/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/static/css/neverever.css" afterPath="$PROJECT_DIR$/project/static/css/neverever.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ITECH-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/static/css/bootstrap.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.661017" vertical-offset="60697" max-vertical-offset="104415">
+            <state vertical-scroll-proportion="76.35436" vertical-offset="3911" max-vertical-offset="104415">
               <caret line="4053" column="0" selection-start-line="4053" selection-start-column="0" selection-end-line="4053" selection-end-column="32" />
               <folding />
             </state>
@@ -83,10 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="neverever.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="neverever.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/static/css/neverever.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3390453" vertical-offset="383" max-vertical-offset="1200">
+            <state vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="1200">
               <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
               <folding />
             </state>
@@ -784,14 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/static/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.661017" vertical-offset="60697" max-vertical-offset="104415">
-          <caret line="4053" column="0" selection-start-line="4053" selection-start-column="0" selection-end-line="4053" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/templates/neverever/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="765">
@@ -810,8 +798,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/static/css/neverever.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3390453" vertical-offset="383" max-vertical-offset="1200">
+        <state vertical-scroll-proportion="0.0" vertical-offset="383" max-vertical-offset="1200">
           <caret line="44" column="17" selection-start-line="44" selection-start-column="17" selection-end-line="44" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="76.35436" vertical-offset="3911" max-vertical-offset="104415">
+          <caret line="4053" column="0" selection-start-line="4053" selection-start-column="0" selection-end-line="4053" selection-end-column="32" />
           <folding />
         </state>
       </provider>
