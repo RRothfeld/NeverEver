@@ -155,6 +155,8 @@ def play(request):
     # Testing
     session.last_statement = rand_statement
     session.save()
+    # TESTING
+    context_dict['this_session'] = session
     
     response = render(request, 'neverever/play.html', context_dict)
     return response
@@ -211,7 +213,7 @@ def play_summary(request):
 
 
     else:
-        # display the forms for each user
+        #display the forms for each user
         session = Session.objects.get(sid=sid)
         num_players = session.num_players
         forms = []
@@ -327,3 +329,42 @@ def testing_category(request, category_name_slug):
 
     # Go render the response and return it to the client.
     return render(request, 'neverever/testingCategories.html', context_dict)
+
+
+def add_player(request):
+    #sid = None
+    #if request.method == 'GET':
+        #sid = request.GET['session_id']
+    sid = request.session.session_key
+    if sid:
+        session = Session.objects.get(sid=(sid))
+        if session:
+            num = session.num_players + 1
+            session.num_players = num
+            session.save()
+            #create more players
+            for i in range(1, num+1):
+                Player.objects.get_or_create(stamp=i, session = session)
+            #context_dict['num'] = num
+
+            #forms = []
+            #for i in range(0, num):
+            #    forms.append(AnswerForm(prefix="form" + str(i)))
+
+            #context_dict['forms'] = forms
+    #category_list = Category.objects.order_by('name')
+    #context_dict = {'categories': category_list}
+    numplayers = session.num_players
+    forms = [];
+    print "i got here"
+    
+    for i in range(0, numplayers):
+        forms.append(AnswerForm(prefix="form" + str(i)))
+    
+    context_dict = {'forms': forms}
+    
+    return render(request, 'neverever/answerButtons.html', context_dict)
+
+
+   # return HttpResponse(num)
+    #return render(request, 'neverever/testingCategories.html', {'testmessage': "testing..."})

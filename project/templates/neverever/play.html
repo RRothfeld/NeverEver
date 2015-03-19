@@ -29,6 +29,7 @@
                 Please select more categories, start a new game, or add statements yourself!</p>
         </div>
     {% else %}
+        <div id="answer_zone">
         <form id="answer_form" method="post" action="/play/">
             {% for form in forms %}
                 {% csrf_token %}
@@ -43,12 +44,16 @@
                 <input class="btn btn-primary btn-lg center-block" type="submit" value="Submit">
             </div>
         </form>
+    </div>
     {% endif %}
 
     <div class="container-fluid">
             <div class="row row-spacing">
                 <a href="{% url 'play_options' %}" class="btn btn-info">Options</a>
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">End Game</a>
+                <button id="add_button" class="btn btn-info" type="button">Add Player</button>
             </div>
     </div>
+
+
 {% endblock %}
