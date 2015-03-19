@@ -149,9 +149,6 @@ def play(request):
 
     context_dict['statement'] = rand_statement
 
-    # Increase number of views for statement
-    rand_statement.views += 1
-
     # Testing
     session.last_statement = rand_statement
     session.save()
@@ -342,7 +339,7 @@ def add_player(request):
             session.num_players += 1
             session.save()
             #create more players
-            for i in range(1, session.num_players):
+            for i in range(1, session.num_players+1):
                 Player.objects.get_or_create(stamp=i, session = session)
             #context_dict['num'] = num
 
