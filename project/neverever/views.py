@@ -339,11 +339,10 @@ def add_player(request):
     if sid:
         session = Session.objects.get(sid=(sid))
         if session:
-            num = session.num_players + 1
-            session.num_players = num
+            session.num_players += 1
             session.save()
             #create more players
-            for i in range(1, num+1):
+            for i in range(1, session.num_players):
                 Player.objects.get_or_create(stamp=i, session = session)
             #context_dict['num'] = num
 
@@ -354,11 +353,10 @@ def add_player(request):
             #context_dict['forms'] = forms
     #category_list = Category.objects.order_by('name')
     #context_dict = {'categories': category_list}
-    numplayers = session.num_players
     forms = [];
     print "i got here"
     
-    for i in range(0, numplayers):
+    for i in range(0, session.num_players):
         forms.append(AnswerForm(prefix="form" + str(i)))
     
     context_dict = {'forms': forms}

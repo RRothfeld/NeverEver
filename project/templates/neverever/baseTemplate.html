@@ -17,16 +17,17 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
 	<link rel="stylesheet" href="{% static "css/neverever.css" %}" />
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/bootstrap-toggle.min.css" %}" >
 
     {% block head_block %}{% endblock %}
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
 	<div class="navbar navbar-default">
@@ -63,8 +64,8 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="{% static "js/bootstrap.min.js" %}"></script>
 	<!-- Toggle -->
-	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
-
-  <script src="{% static "js/neverever-ajax.js" %}"></script>
+	<script src="{% static "js/bootstrap-toggle.min.js" %}"></script>
+    <!-- AJAX -->
+    <script src="{% static "js/neverever-ajax.js" %}"></script>
   </body>
 </html>
