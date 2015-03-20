@@ -23,6 +23,7 @@ class Statement(models.Model):
     likes = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
     nsfw = models.BooleanField(default=True)
+    likes = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
