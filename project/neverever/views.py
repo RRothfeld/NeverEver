@@ -194,19 +194,36 @@ def play_summary(request):
             else:
                 print forms[i].errors
 
+
+        # update the response model
+        responses = Answer.objects.all()
+        for answer in responses:
+            s = Session.objects.get(sid=sid)
+            if answer.session == s:
+                statement = answer.statement
+                ans = answer.answer
+                gender = answer.player.gender
+                print gender
+                nationality = answer.player.nationality
+                print nationality
+                age = answer.player.age
+                result = Result.objects.get_or_create(statement=statement, answer=ans, gender=gender,
+                                                      nationality=nationality, age=age)
+                print "getting to saving response"
+
+
     #     end session
         try:
             print "getting to delete line"
             # session[0].delete()
             s = Session.objects.get(sid=sid)
-            session.delete()
+            s.delete()
             response = HttpResponse("Session has ended")
         except:
             response = HttpResponse("Something went wrong. Probably ending the session")
-            # response = HttpResponse("Session has ended")
         return response
 
-        # update the
+
 
 
     else:
