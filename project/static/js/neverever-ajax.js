@@ -5,6 +5,7 @@ $(document).ready(function() {
 		//sid = $(this).attr("data-sid");
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data);
+			//$.getScript("../../static/js/bootstrap-toggle.min.js");
 		});
 	});
 
@@ -33,6 +34,7 @@ $(document).ready(function() {
 			thisname = $(this).html();
 			$.get('/set_name/', {stamp: playernum, name: thisname}, function(data) {
 				$('#answer_zone').html(data);
+				//$.getScript("../../static/js/bootstrap-toggle.min.js");
 			});
 		}
 	});
