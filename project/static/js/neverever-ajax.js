@@ -8,14 +8,18 @@ $(document).ready(function() {
 		});
 	});
 
-
 	setInterval(function(){
 		$.get('/update_count/', function(data) {
 			$("#session_footer").html(data);
 		})
 	}, 3000);	
 
+	$('#likes').click(function(){
+	    var title;
+	    title = $(this).attr("data-title");
+	    $.get('/neverever/like_statement/', {title: title}, function(data){
+	               $('#like_count').html(data);
+	               $('#likes').hide();
+	    });
+	});
 });
-
-
-

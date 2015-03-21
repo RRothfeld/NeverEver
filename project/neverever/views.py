@@ -167,6 +167,23 @@ def play(request):
     return response
 
 
+def like_statement(request):
+
+    print "getting to the top of the like statement function"
+    title = None
+    if request.method == 'GET':
+        title = request.GET('title')
+    print title
+    likes = 0
+    if title:
+        statement = Statement.objects.get(title=title)
+        if statement:
+            likes = statement.likes+1
+            likes.save()
+
+    return HttpResponse(likes)
+
+
 def play_summary(request):
     context_dict = {}
     sid = request.session.session_key
@@ -211,19 +228,15 @@ def play_summary(request):
                 statement = answer.statement
                 ans = answer.answer
                 gender = answer.player.gender
-                print gender
                 nationality = answer.player.nationality
-                print nationality
                 age = answer.player.age
                 result = Result.objects.get_or_create(statement=statement, answer=ans, gender=gender,
                                                       nationality=nationality, age=age)
                 print "getting to saving response"
 
 
-    #     end session
+    # end session
         try:
-            print "getting to delete line"
-            # session[0].delete()
             s = Session.objects.get(sid=sid)
             s.delete()
             response = HttpResponse("Session has ended")

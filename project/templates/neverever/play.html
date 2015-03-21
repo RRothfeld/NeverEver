@@ -15,6 +15,17 @@
                         {% if statement.nsfw %}
                             <div class="label  label-warning">NSFW</div>
                         {% endif %}
+
+                        <!--below section adds in the like button-->
+                        <p>
+                            <strong id="like_count">{{ statement.likes }}</strong> people like this Statement
+
+                            <button id="likes" data-title="{{statement.title}}" class="btn btn-primary" type="button">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                            Like
+                            </button>
+                        </p>
+
                     </h6>
                 </div>
             </div>
