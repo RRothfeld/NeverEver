@@ -27,6 +27,14 @@ def index(request):
     context_dict['nPlayers'] = num_players
     return render(request, 'neverever/index.html', context_dict)
 
+def update_count(request):
+    context_dict = {}
+    num_sessions = Session.objects.count()
+    context_dict['nSessions'] = num_sessions
+    num_players = Player.objects.count()
+    context_dict['nPlayers'] = num_players
+    return render(request, 'neverever/sessionFooter.html', context_dict)
+
 
 def about(request):
     return render(request, 'neverever/about.html')
