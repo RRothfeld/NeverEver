@@ -62,6 +62,7 @@ class Player(models.Model):
     gender = models.CharField(max_length=1, null=True)
     age = models.IntegerField(null=True)
     nationality = models.CharField(max_length=128, null=True)
+    name = models.CharField(max_length=128, null=True)
     # slug = models.SlugField(unique=True)
 
     # def save(self, *args, **kwargs):

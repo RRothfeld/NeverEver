@@ -16,4 +16,5 @@ urlpatterns = patterns('',
                        url(r'^add_player/$', views.add_player, name='add_player'),
                        url(r'^update_count/$', views.update_count, name='update_count'),
                        url(r'^like_statement/$', views.like_statement, name='like_statement'),
+                       url(r'^set_name/$', views.set_name, name='set_name'),
 )

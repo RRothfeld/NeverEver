@@ -22,4 +22,22 @@ $(document).ready(function() {
 	               $('#likes').hide();
 	    });
 	});
+
+
+	$("body").on('keypress', '.editable_name', function(event) {
+		if(event.keyCode == 13) {
+			event.preventDefault();
+			alert("hello");
+			var playernum;
+			playernum = $(this).attr("data-playernum");
+			var thisname;
+			thisname = $(this).html();
+			$.get('/set_name/', {stamp: playernum, name: thisname}, function(data) {
+				$('#answer_zone').html(data);
+			});
+		}
+	});
+
+
+
 });

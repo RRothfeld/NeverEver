@@ -120,7 +120,12 @@ def play(request):
     for i in range(0, num_players):
         forms.append(AnswerForm(prefix="form" + str(i)))
 
-    context_dict['forms'] = forms
+    #context_dict['forms'] = forms
+    #context_dict['players'] = Player.objects.all()
+    players = Player.objects.filter(session = session)
+    formlist = zip(forms, players)
+    context_dict['formlist'] = formlist
+    #context_dict['range'] = range(num_players)
 
     # Pick a random statement from the selected categories
     while True:
@@ -182,6 +187,29 @@ def like_statement(request):
             likes.save()
 
     return HttpResponse(likes)
+
+
+def set_name(request):
+
+    name = request.GET['name']
+    num = request.GET['stamp']
+    sid = request.session.session_key
+    session = Session.objects.get(sid=sid)
+    #pass it both stamp and session to make sure its the right player
+    player = Player.objects.get(stamp=num, session=session)
+    player.name = name
+    player.save()
+
+    num_players = session.num_players
+    forms = []
+    for i in range(0, num_players):
+        forms.append(AnswerForm(prefix="form" + str(i)))
+
+    players = Player.objects.filter(session = session)
+    formlist = zip(forms, players)
+
+    return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
+
 
 
 def play_summary(request):
@@ -370,6 +398,7 @@ def add_player(request):
     #sid = None
     #if request.method == 'GET':
         #sid = request.GET['session_id']
+    context_dict = []
     sid = request.session.session_key
     if sid:
         session = Session.objects.get(sid=(sid))
@@ -391,13 +420,16 @@ def add_player(request):
     forms = [];
     print "i got here"
     
+    session = Session.objects.get(sid=(sid))
+    
     for i in range(0, session.num_players):
         forms.append(AnswerForm(prefix="form" + str(i)))
     
-    context_dict = {'forms': forms}
+    players = Player.objects.filter(session = session)
+    print "i also got here"
+    formlist = zip(forms, players)
+    print "i got here too"
+    #context_dict = {}
+    print "and i got here"
     
-    return render(request, 'neverever/answerButtons.html', context_dict)
-
-
-   # return HttpResponse(num)
-    #return render(request, 'neverever/testingCategories.html', {'testmessage': "testing..."})
+    return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
