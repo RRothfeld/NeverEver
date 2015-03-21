@@ -27,7 +27,6 @@ $(document).ready(function() {
 	$("body").on('keypress', '.editable_name', function(event) {
 		if(event.keyCode == 13) {
 			event.preventDefault();
-			alert("hello");
 			var playernum;
 			playernum = $(this).attr("data-playernum");
 			var thisname;
