@@ -18,7 +18,7 @@ $(document).ready(function() {
 	$('#likes').click(function(){
 	    var title;
 	    title = $(this).attr("data-title");
-	    $.get('/neverever/like_statement/', {title: title}, function(data){
+	    $.get('/like_statement/', {title: title}, function(data){
 	               $('#like_count').html(data);
 	               $('#likes').hide();
 	    });

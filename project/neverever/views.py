@@ -177,14 +177,16 @@ def like_statement(request):
     print "getting to the top of the like statement function"
     title = None
     if request.method == 'GET':
-        title = request.GET('title')
+        title = request.GET['title']
     print title
     likes = 0
     if title:
         statement = Statement.objects.get(title=title)
         if statement:
             likes = statement.likes+1
-            likes.save()
+            statement.likes = likes
+            print statement.likes
+            statement.save()
 
     return HttpResponse(likes)
 
