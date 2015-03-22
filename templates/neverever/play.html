@@ -2,31 +2,29 @@
 
 {% load staticfiles %}
 
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
+{% endblock %}
+
+{% block title %} - play{% endblock %}
+
 {% block body_block %}
     {% if sid %}
         {% if statement %}
             <div class="container">
                 <h2>Never have I ever <b>{{ statement.title }}</b></h2>
                 <div class="row label-spacing">
-                    <h6>
-                        {% for cat in statement.categories.all %}
-                          <div class="label  label-default">{{ cat.name }}</div>
-                        {% endfor %}
-                        {% if statement.nsfw %}
-                            <div class="label  label-warning">NSFW</div>
-                        {% endif %}
+                    {% for cat in statement.categories.all %}
+                      <div class="label label-default lbl-lg">{{ cat.name }}</div>
+                    {% endfor %}
+                    {% if statement.nsfw %}
+                        <div class="label label-warning">NSFW</div>
+                    {% endif %}
 
-                        <!--below section adds in the like button-->
-                        <p>
-                            <strong id="like_count">{{ statement.likes }}</strong> people like this Statement
-
-                            <button id="likes" data-title="{{statement.title}}" class="btn btn-primary" type="button">
-                            <span class="glyphicon glyphicon-thumbs-up"></span>
-                            Like
-                            </button>
-                        </p>
-
-                    </h6>
+                    <!--below section adds in the like button-->
+                    <button id="likes" data-title="{{statement.title}}" class="btn btn-info btn-xs" type="button">
+                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                    </button>
                 </div>
             </div>
         {% endif %}
@@ -56,7 +54,7 @@
                             </div>
                         {% endif %}
                     </span>
-                    <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox" data-toggle="toggle" data-on="Done it!" data-off="Nope." data-onstyle="success" data-offstyle="danger">
+                    <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
                 </div>
                 {% endfor %}
             {% endfor %}
@@ -76,5 +74,10 @@
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">Final Stats Page</a>
             </div>
     </div>
+{% endblock %}
 
+{% block footer_block %}
+    <!-- Switch -->
+    <script src="{% static "js/bootstrap-switch.js" %}"></script>
+    <script>$('input:checkbox').bootstrapSwitch();</script>
 {% endblock %}

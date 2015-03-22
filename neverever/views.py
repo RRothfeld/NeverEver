@@ -17,7 +17,6 @@ import random  # Fetch random statements
 
 
 def index(request):
-
     context_dict = {}
     sid = request.session.session_key
     if not sid:
@@ -46,7 +45,6 @@ def about(request):
 
 
 def stats(request):
-
     gc = GlobalCounter.objects.all()[0]
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
@@ -181,13 +179,6 @@ def play(request):
             print "FOUND:", found, "ITEM LIST SIZE:", len(session.used_statements.all())
             if not found:
                 context_dict["no_more_statements"] = True
-            # if session.nsfw:
-            #     rand_statement = random.choice(Statement.objects.filter(categories=rand_cat))
-            # else:
-            #     rand_statement = random.choice(Statement.objects.filter(categories=rand_cat, nsfw=False))
-            # if rand_statement in session.used_statements.all():
-            #     print "STATEMENT HAS BEEN SELECTED IN THE PAST"
-            #     continue
             break
         except SyntaxError as e:
             print e.message
@@ -207,7 +198,6 @@ def play(request):
 
 
 def like_statement(request):
-
     print "getting to the top of the like statement function"
     title = None
     if request.method == 'GET':
@@ -226,7 +216,6 @@ def like_statement(request):
 
 
 def set_name(request):
-
     name = request.GET['name']
     num = request.GET['stamp']
     sid = request.session.session_key
@@ -262,7 +251,6 @@ def play_summary(request):
 
     if request.method == 'POST':
         # this is where we put things if the form has been submitted
-
         session = Session.objects.get(sid=sid)
         num_players = session.num_players
         forms = []
@@ -299,8 +287,7 @@ def play_summary(request):
                                                       nationality=nationality, age=age)
                 print "getting to saving response"
 
-
-    # end session
+        # end session
         try:
             s = Session.objects.get(sid=sid)
             s.delete()
@@ -309,9 +296,6 @@ def play_summary(request):
         except:
             response = HttpResponse("Something went wrong. Probably ending the session")
         return response
-
-
-
 
     else:
         #display the forms for each user
@@ -338,9 +322,6 @@ def play_summary(request):
     return response
 
 
-
-
-
 def play_options(request):
     context_dict = {}
 
@@ -354,11 +335,6 @@ def play_options(request):
         form = SessionForm(request.POST, instance=session)
         if form.is_valid():
             s = form.save(commit=True)
-            num_players = s.num_players
-            for i in range(1, num_players+1):
-                Player.objects.get_or_create(stamp=i, session = session)
-
-            #return play(request) # <- ERROR (Sends POST request to play()
             return HttpResponseRedirect('/play')
         else:
             print form.errors
@@ -389,42 +365,9 @@ def new_statement(request):
         else:
             print form.errors
     else:
-
-        # TODO: MODIFY (Testing prepopulated forms)
-        #u = Statement.objects.get(title="had sex in public")
-        #form = StatementForm(instance=u)
-
         form = StatementForm()
+
     return render(request, 'neverever/newStatement.html', {'form': form})
-
-
-
-#TODO:Remove
-def testing(request):
-    category_list = Category.objects.order_by('name')
-    context_dict = {'categories': category_list}
-    return render(request, 'neverever/testing.html', context_dict)
-
-def testing_category(request, category_name_slug):
-
-    context_dict = {}
-    try:
-        selected_category = Category.objects.get(slug=category_name_slug)
-        statements = Statement.objects.filter(categories=selected_category)
-
-        context_dict['category_name'] = selected_category.name
-        context_dict['statements'] = statements
-
-        # We also add the category object from the database to the context dictionary.
-        # We'll use this in the template to verify that the category exists.
-        context_dict['category'] = selected_category
-    except Category.DoesNotExist:
-        # We get here if we didn't find the specified category.
-        # Don't do anything - the template displays the "no category" message for us.
-        pass
-
-    # Go render the response and return it to the client.
-    return render(request, 'neverever/testingCategories.html', context_dict)
 
 
 def add_player(request):

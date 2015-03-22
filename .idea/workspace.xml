@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d71a513-678c-4507-be6b-1d102170465d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/about.html" afterPath="$PROJECT_DIR$/templates/neverever/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/neverever/testing.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/neverever/testingCategories.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/bootstrap-switch.css" afterPath="$PROJECT_DIR$/static/css/bootstrap-switch.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neverever/forms.py" afterPath="$PROJECT_DIR$/neverever/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/index.html" afterPath="$PROJECT_DIR$/templates/neverever/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/neverever.css" afterPath="$PROJECT_DIR$/static/css/neverever.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/newStatement.html" afterPath="$PROJECT_DIR$/templates/neverever/newStatement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/play.html" afterPath="$PROJECT_DIR$/templates/neverever/play.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/playOptions.html" afterPath="$PROJECT_DIR$/templates/neverever/playOptions.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neverever/urls.py" afterPath="$PROJECT_DIR$/neverever/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neverever/views.py" afterPath="$PROJECT_DIR$/neverever/views.py" />
     </list>
     <ignored path="ITECH-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,9 +40,61 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/neverever/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="825">
-              <caret line="6" column="58" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="58" />
+            <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="795">
+              <caret line="12" column="69" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="69" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="baseTemplate.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/neverever/baseTemplate.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.666666" vertical-offset="500" max-vertical-offset="1170">
+              <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="play.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/neverever/play.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.666666" vertical-offset="545" max-vertical-offset="1305">
+              <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="newStatement.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/neverever/newStatement.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.541666" vertical-offset="50" max-vertical-offset="810">
+              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playOptions.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/neverever/playOptions.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.416666" vertical-offset="170" max-vertical-offset="900">
+              <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/neverever/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.1945245" vertical-offset="4860" max-vertical-offset="6345">
+              <caret line="333" column="32" selection-start-line="333" selection-start-column="32" selection-end-line="333" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,18 +102,8 @@
       <file leaf-file-name="neverever.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/neverever.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="1260">
-              <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1716418" vertical-offset="290" max-vertical-offset="1335">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,13 +137,22 @@
         <option value="$PROJECT_DIR$/project/neverever/urls.py" />
         <option value="$PROJECT_DIR$/project/static/js/neverever-ajax.js" />
         <option value="$PROJECT_DIR$/project/neverever/views.py" />
-        <option value="$PROJECT_DIR$/templates/neverever/index.html" />
         <option value="$PROJECT_DIR$/templates/neverever/sessionFooter.html" />
         <option value="$PROJECT_DIR$/static/css/loader.css" />
-        <option value="$PROJECT_DIR$/static/js/neverever-ajax.js" />
         <option value="$PROJECT_DIR$/static/css/index.css" />
-        <option value="$PROJECT_DIR$/static/css/neverever.css" />
         <option value="$PROJECT_DIR$/templates/neverever/about.html" />
+        <option value="$PROJECT_DIR$/templates/neverever/playSummary.html" />
+        <option value="$PROJECT_DIR$/templates/neverever/answerButtons.html" />
+        <option value="$PROJECT_DIR$/static/js/neverever-ajax.js" />
+        <option value="$PROJECT_DIR$/templates/neverever/baseTemplate.html" />
+        <option value="$PROJECT_DIR$/templates/neverever/index.html" />
+        <option value="$PROJECT_DIR$/templates/neverever/play.html" />
+        <option value="$PROJECT_DIR$/templates/neverever/newStatement.html" />
+        <option value="$PROJECT_DIR$/static/css/neverever.css" />
+        <option value="$PROJECT_DIR$/neverever/urls.py" />
+        <option value="$PROJECT_DIR$/templates/neverever/playOptions.html" />
+        <option value="$PROJECT_DIR$/neverever/forms.py" />
+        <option value="$PROJECT_DIR$/neverever/views.py" />
       </list>
     </option>
   </component>
@@ -101,8 +160,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="268" />
-    <option name="y" value="146" />
+    <option name="x" value="22" />
+    <option name="y" value="203" />
     <option name="width" value="1148" />
     <option name="height" value="782" />
   </component>
@@ -216,6 +275,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NeverEver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NeverEver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="neverever" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -382,8 +455,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="268" y="146" width="1148" height="782" extended-state="0" />
-    <editor active="true" />
+    <frame x="22" y="203" width="1148" height="782" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -437,14 +510,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/neverever/play.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7488789" vertical-offset="501" max-vertical-offset="1260">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/neverever/sessionFooter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15395895" vertical-offset="0" max-vertical-offset="682">
@@ -461,22 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/neverever-ajax.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/neverever/newStatement.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64179105" vertical-offset="140" max-vertical-offset="810">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="45" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08486563" vertical-offset="0" max-vertical-offset="707">
@@ -485,27 +534,121 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.358209" vertical-offset="125" max-vertical-offset="1335">
+          <caret line="69" column="56" selection-start-line="69" selection-start-column="56" selection-end-line="69" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/playSummary.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08784773" vertical-offset="0" max-vertical-offset="720">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/answerButtons.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31343284" vertical-offset="0" max-vertical-offset="670">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/neverever-ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
+          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-switch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23338048" vertical-offset="0" max-vertical-offset="3030">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/neverever/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="825">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="58" />
+        <state vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="795">
+          <caret line="12" column="69" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/neverever.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="1260">
-          <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
+    <entry file="file://$PROJECT_DIR$/templates/neverever/newStatement.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1716418" vertical-offset="290" max-vertical-offset="1335">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state vertical-scroll-proportion="-18.541666" vertical-offset="50" max-vertical-offset="810">
+          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neverever/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21216407" vertical-offset="0" max-vertical-offset="707">
+          <caret line="10" column="66" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/baseTemplate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.666666" vertical-offset="500" max-vertical-offset="1170">
+          <caret line="68" column="23" selection-start-line="68" selection-start-column="23" selection-end-line="68" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/playOptions.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.416666" vertical-offset="170" max-vertical-offset="900">
+          <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neverever/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6393211" vertical-offset="43" max-vertical-offset="885">
+          <caret line="33" column="65" selection-start-line="33" selection-start-column="65" selection-end-line="33" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/neverever/play.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.666666" vertical-offset="545" max-vertical-offset="1305">
+          <caret line="63" column="10" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/neverever/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1945245" vertical-offset="4860" max-vertical-offset="6345">
+          <caret line="333" column="32" selection-start-line="333" selection-start-column="32" selection-end-line="333" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
