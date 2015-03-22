@@ -49,7 +49,7 @@
                             {{ player.name }}
                         {% else %}
                             <div class="editable_name" contenteditable = "false" data-playernum="{{ player.stamp }}" data-toggle="popover" title="what's your name?"
-                            data-content="Click to enter your name, then press return to save!" data-trigger="hover">
+                            data-content="Click to enter your name, then press return to save!" data-trigger="hover" data-placement="top">
                                     player {{ player.stamp }}
                             </div>
                         {% endif %}
