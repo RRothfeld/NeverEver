@@ -12,6 +12,29 @@
         <br />Total number of players: {{ globalCounter.total_players }}
         <br />
     {% endif %}
+
+    {% if statements %}
+        <br />
+        {% for statement in statements %}
+            "Never have I ever {{ statement.title }}":
+            {% if statement.total %}
+                {{ statement.yes }}
+                {% if statement.yes_percentage %}
+                    ({{ statement.yes_percentage }}%)
+                {% endif %}
+                answered Yes.
+                {{ statement.no }}
+                {% if statement.no_percentage %}
+                    ({{ statement.no_percentage }}%)
+                {% endif %}
+                answered No.
+                (Total: {{ statement.total }})
+            {% else %}
+                No answers yet.
+            {% endif %}
+            <br />
+        {% endfor %}
+    {% endif %}
     {% if results %}
         <br /><b>Results</b><br />
         {% for result in results %}

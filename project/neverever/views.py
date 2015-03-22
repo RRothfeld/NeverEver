@@ -3,7 +3,11 @@ from django.shortcuts import render
 from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 from neverever.forms import StatementForm, AnswerForm, SessionForm, PlayerForm
 
+import json
+from django.template.loader import render_to_string
+from django.template import RequestContext
 from django.db.models import Q
+from django.http import HttpResponseRedirect, HttpResponse
 
 
 import random  # Fetch random statements
@@ -27,6 +31,7 @@ def index(request):
     context_dict['nPlayers'] = num_players
     return render(request, 'neverever/index.html', context_dict)
 
+
 def update_count(request):
     context_dict = {}
     num_sessions = Session.objects.count()
@@ -41,9 +46,36 @@ def about(request):
 
 
 def stats(request):
+
     gc = GlobalCounter.objects.all()[0]
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
+
+    statements_list = []
+
+    statements = Statement.objects.all()
+    for statement in statements:
+        yes = 0
+        no = 0
+
+        statement_answers = Result.objects.filter(statement=statement)
+        # print len(statement_answers)
+        for result in statement_answers:
+            if result.answer:
+                yes += 1
+            else:
+                no += 1
+        total = yes+no
+        if total > 0:
+            yes_percentage = (yes*100/total)
+            no_percentage = (no*100/total)
+        else:
+            yes_percentage = False
+            no_percentage = False
+        statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
+                                "yes_percentage": yes_percentage, "no_percentage": no_percentage})
+
+    context_dict['statements'] = statements_list
     return render(request, 'neverever/stats.html', context_dict)
 
 
@@ -215,7 +247,6 @@ def set_name(request):
     return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
 
 
-
 def play_summary(request):
     context_dict = {}
     sid = request.session.session_key
@@ -307,7 +338,6 @@ def play_summary(request):
 
 
 
-# TODO: make sure that at least one Category is selected
 def play_options(request):
     context_dict = {}
 
@@ -334,10 +364,6 @@ def play_options(request):
 
     context_dict['form'] = form
     return render(request, 'neverever/playOptions.html', context_dict)
-
-
-# TODO: Remove
-from django.http import HttpResponseRedirect, HttpResponse
 
 
 def new_statement(request):
@@ -397,9 +423,6 @@ def testing_category(request, category_name_slug):
     # Go render the response and return it to the client.
     return render(request, 'neverever/testingCategories.html', context_dict)
 
-import json
-from django.template.loader import render_to_string
-from django.template import RequestContext
 
 def add_player(request):
     #sid = None
