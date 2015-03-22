@@ -17,8 +17,8 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
 	<link rel="stylesheet" href="{% static "css/neverever.css" %}" />
-    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
 
+    <!-- Page specific header -->
     {% block head_block %}{% endblock %}
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -55,7 +55,9 @@
       </div>
     </div>
 	<div class="text-center" id="content">
-			{% block body_block %}{% endblock %}
+        <!-- Page Body -->
+        {% block body_block %}{% endblock %}
+
 	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -64,8 +66,7 @@
 	<script src="{% static "js/bootstrap.js" %}"></script>
     <!-- AJAX -->
     <script src="{% static "js/neverever-ajax.js" %}"></script>
-    <!-- Switch -->
-    <script src="{% static "js/bootstrap-switch.js" %}"></script>
-    <script>$('input:checkbox').bootstrapSwitch();</script>
+    <!-- Page specific scripts -->
+    {% block footer_block %}{% endblock %}
   </body>
 </html>

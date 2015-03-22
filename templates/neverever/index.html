@@ -3,48 +3,46 @@
 {% load staticfiles %}
 
 {% block head_block %}
-<link rel="stylesheet" href="{% static "css/index.css" %}" />
-<link rel="stylesheet" href="{% static "css/loader.css" %}" />
+    <link rel="stylesheet" href="{% static "css/index.css" %}" />
+    <link rel="stylesheet" href="{% static "css/loader.css" %}" />
 {% endblock %}
 
 {% block body_block %}
-
-<div class="page-header text-center">
-    <h1>never/<b>ever</b></h1>
-    <p class="lead">Play never have I ever. Wherever you are.</p>
-</div>
-
-<div class="vertical-center">
-    <div class="container-fluid">
-            <div class="row row-spacing">
-                    <a href="/play" class="btn btn-primary btn-lg center-block btn-ne-main">Play</a>
-            </div>
-            <div class="row row-spacing">
-                <a href="/new-statement" class="btn btn-default btn-lg center-block btn-ne-main">New Statement</a>
-            </div>
+    <div class="page-header text-center">
+        <h1>never/<b>ever</b></h1>
+        <p class="lead">Play never have I ever. Wherever you are.</p>
     </div>
-</div>
 
-<footer class="footer">
-  <div class="container text-center" id="session_footer">
-        <p class="text-muted">
-            Currently, there
-            {% if nSessions %}
-                {% if nSessions > 1 %}are{% else %}is{% endif %}
-                {{ nSessions }} active session{% if nSessions > 1 %}s{% endif %}
-            {% else %}
-                are no active sessions
-            {% endif %}
-                , with
-            {% if nPlayers %}
-                {{ nPlayers }} player{% if nPlayers > 1 %}s{% endif %}
-            {% else %}
-                no players
-            {% endif %}
-            <!-- loading animation -->
-            <span class="one">.</span><span class="two">.</span><span class="three">.</span>​
-        </p>
+    <div class="vertical-center">
+        <div class="container-fluid">
+                <div class="row row-spacing">
+                        <a href="/play" class="btn btn-primary btn-lg center-block btn-ne-main">Play</a>
+                </div>
+                <div class="row row-spacing">
+                    <a href="/new-statement" class="btn btn-default btn-lg center-block btn-ne-main">New Statement</a>
+                </div>
+        </div>
     </div>
-</footer>
 
+    <footer class="footer">
+      <div class="container text-center" id="session_footer">
+            <p class="text-muted">
+                Currently, there
+                {% if nSessions %}
+                    {% if nSessions > 1 %}are{% else %}is{% endif %}
+                    {{ nSessions }} active session{% if nSessions > 1 %}s{% endif %}
+                {% else %}
+                    are no active sessions
+                {% endif %}
+                    , with
+                {% if nPlayers %}
+                    {{ nPlayers }} player{% if nPlayers > 1 %}s{% endif %}
+                {% else %}
+                    no players
+                {% endif %}
+                <!-- loading animation -->
+                <span class="one">.</span><span class="two">.</span><span class="three">.</span>​
+            </p>
+        </div>
+    </footer>
 {% endblock %}

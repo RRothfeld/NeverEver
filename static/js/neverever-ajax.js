@@ -33,7 +33,7 @@ $(document).ready(function() {
 			thisname = $(this).html();
 			$.get('/set_name/', {stamp: playernum, name: thisname}, function(data) {
 				$('#answer_zone').html(data);
-				//$.getScript("../../static/js/bootstrap-toggle.min.js");
+				$('input:checkbox').bootstrapSwitch();
 			});
 		}
 	});
