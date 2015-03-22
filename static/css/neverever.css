@@ -11,13 +11,12 @@ html,body {height:100%;}
   min-width: 150px;
 }
 
-h5,
-.h5 {
-  font-size: 17px;
-}
-
 h1 {
   font-size: 48pt;
+}
+
+.lead {
+    padding-bottom: 25px;
 }
 
 .row-spacing {

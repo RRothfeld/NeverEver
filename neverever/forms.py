@@ -32,11 +32,10 @@ class SessionForm(forms.ModelForm):
 
     categories = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,
                                            choices=category_list)
-    num_players = forms.IntegerField()
 
     class Meta:
         model = Session
-        fields = ('nsfw', 'categories', 'num_players')
+        fields = ('nsfw', 'categories')
 
 
 class AnswerForm(forms.ModelForm):

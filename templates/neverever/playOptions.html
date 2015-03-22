@@ -2,37 +2,54 @@
 
 {% load staticfiles %}
 
-{% block title %} - Game Options{% endblock %}
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
+{% endblock %}
+
+{% block title %} - game options{% endblock %}
 
 {% block body_block %}
-    <h1>Game Options</h1>
+    <h1>game options</h1>
+     <p class="lead">Change the game's categories and allow adult content.</p>
 
     <form id="category_form" method="post" action="{% url 'play_options' %}">
         {% csrf_token %}
 
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-
         {% for field in form.visible_fields %}
             {% if field.name == "nsfw" %}
-                Not Safe For Work:
+                <h2>adult content</h2>
+                Allow NSFW (adult content) statements:
             {% endif %}
             {% if field.name == "categories" %}
-                <h3>Categories</h3>
+                <h2>categories</h2>
             {% endif %}
             {% if field.name == "num_players" %}
+                <h2>DELETE AFTER TESTING!</h2>
                 Number of players:
             {% endif %}
             {{ field.errors }}
             {{ field.help_text }}
             {{ field }}
         {% endfor %}
-        </br>
-        <input type="submit" name="submit" value="Save changes" />
+        <div class="container">
+            <div class="row row-spacing">
+                <input type="submit" name="submit" value="Save Changes" class="btn btn-primary btn-lg btn-ne-add"/>
+            </div>
+        </div>
     </form>
 
-    <form action="{% url 'play' %}">
-        <input type="submit" value="Back">
-    </form>
+    <div class="container">
+        <div class="row row-spacing">
+            <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_block %}
+    <!-- Switch -->
+    <script src="{% static "js/bootstrap-switch.js" %}"></script>
+    <script>
+        $('input:checkbox').bootstrapSwitch();
+        $('input:checkbox').bootstrapSwitch('size','small');
+    </script>
 {% endblock %}

@@ -2,11 +2,11 @@
 
 {% load staticfiles %}
 
-{% block title %} - Add A Statement{% endblock %}
+{% block title %} - add statement{% endblock %}
 
 {% block body_block %}
     <div class="container">
-        <h1>Add a Statement</h1>
+        <h1>add a new statement</h1>
     </div>
     <form id="statement_form" method="post" action="{% url 'new_statement' %}">
             {% csrf_token %}
