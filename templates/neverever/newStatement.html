@@ -17,7 +17,10 @@
 
             {% for field in form.visible_fields %}
                 {% if field.name == "title" %}
-                    <h2>1. enter your statement</h2>
+                    <div id="sub-heading">
+                        <h4><span class="glyphicon glyphicon-pencil"></span></h4>
+                        <h2>enter your statement</h2>
+                    </div>
                     <div class="container row-spacing">
                       <div class="add-container text-left">
                           {{ field.help_text }}...
@@ -27,14 +30,20 @@
                 {% endif %}
                 {% if field.name == "nsfw" %}
                      <div class="container row-spacing">
-                         <h2>2. classify your statement</h2>
+                        <div id="sub-heading">
+                            <h4><span class="glyphicon glyphicon-eye-close"></span></h4>
+                            <h2>classify your statement</h2>
+                        </div>
                          Adult (NSFW) or clean (SFW) content:
                          <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
                      </div>
                 {% endif %}
                 {% if field.name == "categories" %}
                 <div class="container">
-                    <h2>3. select categories</h2>
+                    <div id="sub-heading">
+                        <h4><span class="glyphicon glyphicon-tags"></span></h4>
+                        <h2>select categories</h2>
+                    </div>
                     Please choose all applicable categories:
                     {{ field }}
                 </div>
