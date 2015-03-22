@@ -7,12 +7,23 @@
 {% block body_block %}
     <h1>Statistics</h1>
     <h3>Under development</h3>
+
+    <ul class="menu"> 
+        <li id="catlist">Categories - Hover Here
+            <ul style="visibility: hidden">
+            {% for category in categories %}
+                <li class="cat_list_item" style="list-style-type:none">{{ category.name }}</li>
+            {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
     {% if globalCounter %}
         <br />Total games: {{ globalCounter.total_sessions }}
         <br />Total number of players: {{ globalCounter.total_players }}
         <br />
     {% endif %}
-
+<div id="statements">
     {% if statements %}
         <br />
         {% for statement in statements %}
@@ -35,6 +46,7 @@
             <br />
         {% endfor %}
     {% endif %}
+</div>
     {% if results %}
         <br /><b>Results</b><br />
         {% for result in results %}
