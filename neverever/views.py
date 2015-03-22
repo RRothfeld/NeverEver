@@ -266,11 +266,12 @@ def play_summary(request):
         session = Session.objects.get(sid=sid)
         num_players = session.num_players
         forms = []
+        print num_players
         for i in range(0, num_players):
-            count = 1
-            p = Player.objects.get(stamp=count)  # TODO change so different player
+            #count = 1
+            p = Player.objects.get(stamp=i+1, session=session)  # TODO change so different player
             forms.append(PlayerForm(request.POST, prefix="form" + str(i), instance=p))
-            count = count+1
+            #count = count+1
 
         for i in range(0, num_players):
             if forms[i].is_valid():
@@ -293,7 +294,8 @@ def play_summary(request):
                 gender = answer.player.gender
                 nationality = answer.player.nationality
                 age = answer.player.age
-                result = Result.objects.get_or_create(statement=statement, answer=ans, gender=gender,
+                #use create not get_or_create as results don't have to be unique
+                result = Result.objects.create(statement=statement, answer=ans, gender=gender,
                                                       nationality=nationality, age=age)
                 print "getting to saving response"
 
@@ -302,7 +304,8 @@ def play_summary(request):
         try:
             s = Session.objects.get(sid=sid)
             s.delete()
-            response = HttpResponse("Session has ended")
+            return HttpResponseRedirect('/')
+            #response = HttpResponse("Session has ended")
         except:
             response = HttpResponse("Something went wrong. Probably ending the session")
         return response

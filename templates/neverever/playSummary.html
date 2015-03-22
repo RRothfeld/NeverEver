@@ -25,7 +25,8 @@
             {% endfor %}
         <br />
         {% endfor %}
-    <input type="submit">
+        <br/>
+    <input type="submit", value="End Game">
 
     </form>
 
@@ -38,5 +39,5 @@
         {% endfor %}
     {% endif %}
 
-    <br><a href="{% url 'index' %}">Return to main page</a>
+    <br><a href="{% url 'play' %}">I want to keep playing</a>
 {% endblock %}
