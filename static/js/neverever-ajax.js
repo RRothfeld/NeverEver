@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$('#add_button').click(function(){
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data["rendered"]);
@@ -24,6 +25,18 @@ $(document).ready(function() {
 	    });
 	});
 
+	//initialise popover when page is loaded
+	$(function() {
+		$("[data-toggle='popover']").popover();
+	});
+	
+	//reinitalise popover after ajax content is loaded
+	$(document).ajaxComplete(function() {
+		$(function() {
+			$("[data-toggle='popover']").popover();
+		});
+	});
+
 	$("body").on('keypress', '.editable_name', function(event) {
 		if(event.keyCode == 13) {
 			event.preventDefault();
@@ -37,4 +50,11 @@ $(document).ready(function() {
 			});
 		}
 	});
+
+	$("body").on('click', '.editable_name', function(event) {
+		$(this).html("");
+		$(this).attr('contenteditable', true);
+		$(this).focus();
+	});
+
 });
