@@ -406,48 +406,43 @@ def add_player(request):
     #if request.method == 'GET':
         #sid = request.GET['session_id']
     context_dict = []
-    try:
-        sid = request.session.session_key
-        if sid:
-            session = Session.objects.get(sid=(sid))
-            if session:
-                session.num_players += 1
-                session.save()
-                #create more players
-                for i in range(1, session.num_players+1):
-                    Player.objects.get_or_create(stamp=i, session = session)
-                #context_dict['num'] = num
-
-                #forms = []
-                #for i in range(0, num):
-                #    forms.append(AnswerForm(prefix="form" + str(i)))
-
-                #context_dict['forms'] = forms
-        #category_list = Category.objects.order_by('name')
-        #context_dict = {'categories': category_list}
-        forms = [];
-        print "i got here"
-
+    sid = request.session.session_key
+    if sid:
         session = Session.objects.get(sid=(sid))
+        if session:
+            session.num_players += 1
+            session.save()
+            #create more players
+            for i in range(1, session.num_players+1):
+                Player.objects.get_or_create(stamp=i, session = session)
+            #context_dict['num'] = num
 
-        for i in range(0, session.num_players):
-            forms.append(AnswerForm(prefix="form" + str(i)))
+            #forms = []
+            #for i in range(0, num):
+            #    forms.append(AnswerForm(prefix="form" + str(i)))
+            #context_dict['forms'] = forms
+    #category_list = Category.objects.order_by('name')
+    #context_dict = {'categories': category_list}
+    forms = []
+    print "i got here"
 
-        players = Player.objects.filter(session = session)
-        print "i also got here"
-        formlist = zip(forms, players)
-        print "i got here too"
-        #context_dict = {}
-        print "and i got here"
+    session = Session.objects.get(sid=(sid))
 
-        rendered = str(render_to_string('neverever/answerButtons.html',
-                                      {'formlist': formlist},
-                                      context_instance=RequestContext(request)))
-        print type(rendered)
+    for i in range(0, session.num_players):
+        forms.append(AnswerForm(prefix="form" + str(i)))
 
-        response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}), content_type="application/json")
+    players = Player.objects.filter(session = session)
+    print "i also got here"
+    formlist = zip(forms, players)
+    print "i got here too"
+    #context_dict = {}
+    print "and i got here"
 
-        return response
+    rendered = str(render_to_string('neverever/answerButtons.html',
+                                    {'formlist': formlist},
+                                    context_instance=RequestContext(request)))
+    print type(rendered)
 
-    except Exception as e:
-        print e
+    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}), content_type="application/json")
+
+    return response
