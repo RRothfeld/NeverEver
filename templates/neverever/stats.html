@@ -72,3 +72,8 @@
     {% endif %}
     <br><a href="{%  url 'index' %}">Return to main page</a>
 {% endblock %}
+
+{% block footer_block %}
+    <!-- AJAX -->
+    <script src="{% static "js/neverever-stats-ajax.js" %}"></script>
+{% endblock %}
