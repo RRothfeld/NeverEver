@@ -2,42 +2,47 @@
 
 {% load staticfiles %}
 
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
+{% endblock %}
+
 {% block title %} - add statement{% endblock %}
 
 {% block body_block %}
-    <div class="container">
-        <h1>add a new statement</h1>
-    </div>
+    <h1>add a new statement</h1>
+    <p class="lead">You can add your own statements. Just complete the sentence and select categories.</p>
+
     <form id="statement_form" method="post" action="{% url 'new_statement' %}">
             {% csrf_token %}
 
             {% for field in form.visible_fields %}
                 {% if field.name == "title" %}
-                    <div class="container">
-                          <div class="add-container text-left">
-                              {{ field.help_text }}...
-                              <input type="text" class="form-control new-statement" id="{{ field.auto_id }}" placeholder="added a new statement.">
-                          </div>
+                    <h2>1. enter your statement</h2>
+                    <div class="container row-spacing">
+                      <div class="add-container text-left">
+                          {{ field.help_text }}...
+                          <input type="text" class="form-control new-statement" id="{{ field.auto_id }}" placeholder="added a new statement.">
+                      </div>
                     </div>
                 {% endif %}
                 {% if field.name == "nsfw" %}
                      <div class="container row-spacing">
-                         <h3>Is your statement safe for work?</h3>
-                         <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox" data-toggle="toggle" data-on="NSFW" data-off="SFW" data-onstyle="warning" data-offstyle="default">
+                         <h2>2. classify your statement</h2>
+                         Adult (NSFW) or clean (SFW) content:
+                         <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
                      </div>
                 {% endif %}
                 {% if field.name == "categories" %}
                 <div class="container">
-                    <h3>Select Categories</h3>
-                        {{ field.errors }}
-                        {{ field.help_text }}
-                        {{ field }}
+                    <h2>3. select categories</h2>
+                    Please choose all applicable categories:
+                    {{ field }}
                 </div>
                 {% endif %}
             {% endfor %}
 
             <div class="container">
-                <div class="row row-spacing">
+                <div class="row row-spacing-top">
                     <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg btn-ne-add"/>
                 </div>
                 <div class="row row-spacing">
@@ -45,5 +50,15 @@
                 </div>
             </div>
     </form>
+{% endblock %}
 
+{% block footer_block %}
+    <!-- Switch -->
+    <script src="{% static "js/bootstrap-switch.js" %}"></script>
+    <script>
+        $('input:checkbox').bootstrapSwitch();
+        $('input:checkbox').bootstrapSwitch('size','small');
+        $("[name='nsfw']").bootstrapSwitch('onText','NSFW');
+        $("[name='nsfw']").bootstrapSwitch('offText','SFW');
+    </script>
 {% endblock %}

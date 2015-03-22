@@ -3,7 +3,7 @@ $(document).ready(function() {
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data["rendered"]);
             if (data["nPlayers"] >= 6){
-                $('#add_button').hide();
+                $('#add_button').prop('disabled', true);
             }
 			$('input:checkbox').bootstrapSwitch();
 		});
@@ -20,7 +20,7 @@ $(document).ready(function() {
 	    title = $(this).attr("data-title");
 	    $.get('/like_statement/', {title: title}, function(data){
 	               $('#like_count').html(data);
-	               $('#likes').hide();
+	               $('#likes').prop('disabled', true);
 	    });
 	});
 

@@ -15,7 +15,7 @@
                 <h2>Never have I ever <b>{{ statement.title }}</b></h2>
                 <div class="row label-spacing">
                     {% for cat in statement.categories.all %}
-                      <div class="label label-default lbl-lg">{{ cat.name }}</div>
+                      <div class="label label-default">{{ cat.name }}</div>
                     {% endfor %}
                     {% if statement.nsfw %}
                         <div class="label label-warning">NSFW</div>

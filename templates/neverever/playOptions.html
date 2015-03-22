@@ -10,29 +10,25 @@
 
 {% block body_block %}
     <h1>game options</h1>
-     <p class="lead">Change the game's categories and allow adult content.</p>
+    <p class="lead">Change the game's categories and allow adult content.</p>
 
     <form id="category_form" method="post" action="{% url 'play_options' %}">
         {% csrf_token %}
 
         {% for field in form.visible_fields %}
             {% if field.name == "nsfw" %}
-                <h2>adult content</h2>
-                Allow NSFW (adult content) statements:
+                <h2>enable adult content</h2>
+                Enable NSFW (adult content) statements:
+                {{ field }}
             {% endif %}
             {% if field.name == "categories" %}
-                <h2>categories</h2>
+                <h2>select categories</h2>
+                {{ field }}
             {% endif %}
-            {% if field.name == "num_players" %}
-                <h2>DELETE AFTER TESTING!</h2>
-                Number of players:
-            {% endif %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
+
         {% endfor %}
         <div class="container">
-            <div class="row row-spacing">
+            <div class="row row-spacing-top">
                 <input type="submit" name="submit" value="Save Changes" class="btn btn-primary btn-lg btn-ne-add"/>
             </div>
         </div>
@@ -40,7 +36,7 @@
 
     <div class="container">
         <div class="row row-spacing">
-            <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>
+            <a href="{% url 'play' %}" class="btn btn-default btn-ne-add">Cancel</a>
         </div>
     </div>
 {% endblock %}

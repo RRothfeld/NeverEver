@@ -23,6 +23,10 @@ h1 {
   padding: 10px 0 10px 0;
 }
 
+.row-spacing-top {
+  padding: 20px 0 5px 0;
+}
+
 .label-spacing {
   padding-bottom: 25px;
 }
@@ -36,19 +40,15 @@ h1 {
   font-size: 48px;
 }
 
-.player-name {
-  padding-right: 15px;
-}
-
 .new-statement {
   width: 35%;
   min-width: 330px;
 }
 
 .add-container {
-  float: left;
   width: 50%;
   min-width: 330px;
+  margin: 0 auto;
 }
 
 .vertical-center {
