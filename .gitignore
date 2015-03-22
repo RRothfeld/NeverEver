@@ -1,8 +1,11 @@
 # Databases
 *.sqlite3
 
-#Pycharm
+# Pycharm
 .ideas
+
+# Migrations
+neverever/migrations/*_initial.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
