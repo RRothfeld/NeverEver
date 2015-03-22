@@ -4,6 +4,7 @@
 
 {% block head_block %}
 <link rel="stylesheet" href="{% static "css/index.css" %}" />
+<link rel="stylesheet" href="{% static "css/loader.css" %}" />
 {% endblock %}
 
 {% block body_block %}
@@ -25,9 +26,9 @@
 </div>
 
 <footer class="footer">
-  <div class="container text-center">
-    <div id="session_footer">
-        <p class="text-muted">Currently, there
+  <div class="container text-center" id="session_footer">
+        <p class="text-muted">
+            Currently, there
             {% if nSessions %}
                 {% if nSessions > 1 %}are{% else %}is{% endif %}
                 {{ nSessions }} active session{% if nSessions > 1 %}s{% endif %}
@@ -36,13 +37,14 @@
             {% endif %}
                 , with
             {% if nPlayers %}
-                {{ nPlayers }} player{% if nPlayers > 1 %}s{% endif %}.
+                {{ nPlayers }} player{% if nPlayers > 1 %}s{% endif %}
             {% else %}
-                no players. :(
+                no players
             {% endif %}
+            <!-- loading animation -->
+            <span class="one">.</span><span class="two">.</span><span class="three">.</span>​
         </p>
     </div>
-  </div>
 </footer>
 
 {% endblock %}

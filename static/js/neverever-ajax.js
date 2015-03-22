@@ -5,7 +5,7 @@ $(document).ready(function() {
 		//sid = $(this).attr("data-sid");
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data["rendered"]);
-            if (data["nPlayers"] >= 5){
+            if (data["nPlayers"] >= 6){
                 $('#add_button').hide();
             }
 			//$.getScript("../../static/js/bootstrap-toggle.min.js");
@@ -16,7 +16,7 @@ $(document).ready(function() {
 		$.get('/update_count/', function(data) {
 			$("#session_footer").html(data);
 		})
-	}, 3000);
+	}, 2500);
 
 	$('#likes').click(function(){
 	    var title;
@@ -26,7 +26,6 @@ $(document).ready(function() {
 	               $('#likes').hide();
 	    });
 	});
-
 
 	$("body").on('keypress', '.editable_name', function(event) {
 		if(event.keyCode == 13) {
