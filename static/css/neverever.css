@@ -20,10 +20,6 @@ h1 {
   font-size: 48pt;
 }
 
-.lead,h1 {
-  color: #ffffff;
-}
-
 .row-spacing {
   padding: 10px 0 10px 0;
 }
@@ -62,4 +58,22 @@ h1 {
 
   display: flex;
   align-items: center;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    padding: 10px;
+}
+
+.team-img {
+    width: 100px;
+    height: 133px;
+}
+
+.team-text {
+    width: 250px;
 }

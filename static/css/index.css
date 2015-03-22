@@ -4,6 +4,10 @@ body{
 	background-size:cover;
 }
 
+.lead,h1 {
+  color: #ffffff;
+}
+
 .navbar {
    margin-bottom: 0px;
 }

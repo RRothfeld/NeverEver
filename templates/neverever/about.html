@@ -2,27 +2,83 @@
 
 {% load staticfiles %}
 
-{% block title %} - About{% endblock %}
+{% block title %} - about us{% endblock %}
 
 {% block body_block %}
-    <h1> About NeverEver</h1>
-    Lorem ipsum dolor sit amet, ius vitae fuisset cu.
+    <h1>about us</h1>
+    <div class="container"><p>Lorem ipsum dolor sit amet, ius vitae fuisset cu.
     Pro impetus oblique comprehensam eu, per ad erat vidit. Pri at
     fastidii mediocrem, usu et vero nulla laudem, nec an impetus convenire hendrerit.
     Elitr nobis mediocritatem eu mea, et eirmod equidem inciderint vim. Et sit cibo labore quaerendum,
-    eu tollit consulatu nam, vel sale primis ei.
+    eu tollit consulatu nam, vel sale primis ei.</p></div>
 
-<address>
-  <strong>Twitter, Inc.</strong><br>
-  795 Folsom Ave, Suite 600<br>
-  San Francisco, CA 94107<br>
-  <abbr title="Phone">P:</abbr> (123) 456-7890
-</address>
+    <h2>the team</h2>
+    <div class="container"><p>Lorem ipsum dolor sit amet, ius vitae fuisset cu.
+    Pro impetus oblique comprehensam eu, per ad erat vidit. Pri at
+    fastidii mediocrem, usu et vero nulla laudem, nec an impetus convenire hendrerit.
+    Elitr nobis mediocritatem eu mea, et eirmod equidem inciderint vim. Et sit cibo labore quaerendum,
+    eu tollit consulatu nam, vel sale primis ei.</p>
+        <div class="container">
+            <table class="text-left">
+                <tr>
+                    <td class="team-img"><img src="{% static "img/portraits/g_g.jpg" %}" alt="Giorgos Goulos"></td>
+                    <td class="team-text">
+                        <address>
+                            <br><strong>Giorgos Goulos</strong><br>
+                            MSc Computer Science<br>
+                            <a href="mailto:2156043g@student.gla.ac.uk">2156043g@student.gla.ac.uk</a>
+                        </address>
+                    </td>
 
-<address>
-  <strong>Full Name</strong><br>
-  <a href="mailto:#">first.last@example.com</a>
-</address>
+                    <td class="team-img"><img src="{% static "img/portraits/g_g.jpg" %}" alt="GG"></td>
+                    <td class="team-text">
+                        <address>
+                            <br><strong>Luke McPhee</strong><br>
+                            MSc Information Technology<br>
+                            <a href="mailto:0705986m@student.gla.ac.uk">0705986m@student.gla.ac.uk</a>
+                        </address>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="team-img"><img src="{% static "img/portraits/r_r.jpg" %}" alt="Raoul Rothfeld"></td>
+                    <td class="team-text">
+                        <address>
+                            <br><strong>Raoul Rothfeld</strong><br>
+                            MSc Information Technology<br>
+                            <a href="mailto:2164502r@student.gla.ac.uk">2164502r@student.gla.ac.uk</a>
+                        </address>
+                    </td>
 
-    <br><a href="{% url 'index' %}">Return to main page</a>
+                    <td class="team-img"><img src="{% static "img/portraits/g_g.jpg" %}" alt="GG"></td>
+                    <td class="team-text">
+                        <address>
+                            <br><strong>Tomás van Zeller</strong><br>
+                            MSc Information Technology<br>
+                            <a href="mailto:2125918v@student.gla.ac.uk">2125918v@student.gla.ac.uk</a>
+                        </address>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h2>the university</h2>
+    <div class="container"><p>Lorem ipsum dolor sit amet, ius vitae fuisset cu.
+    Pro impetus oblique comprehensam eu, per ad erat vidit. Pri at
+    fastidii mediocrem, usu et vero nulla laudem, nec an impetus convenire hendrerit.
+    Elitr nobis mediocritatem eu mea, et eirmod equidem inciderint vim. Et sit cibo labore quaerendum,
+    eu tollit consulatu nam, vel sale primis ei.</p>
+        <address>
+          <strong>Twitter, Inc.</strong><br>
+          795 Folsom Ave, Suite 600<br>
+          San Francisco, CA 94107<br>
+          <abbr title="Phone">P:</abbr> (123) 456-7890
+        </address>
+    </div>
+
+    <div class="container">
+        <div class="row row-spacing">
+            <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>
+        </div>
+    </div>
 {% endblock %}
