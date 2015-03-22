@@ -96,7 +96,7 @@ h1 {
 }
 
 #sub-heading {
-    padding-top: 25px;
+    padding-top: 35px;
     padding-bottom: 10px;
 }
 
@@ -104,4 +104,8 @@ h1 {
     padding-left: 2px;
     font-size: 11px;
     color: #999999;
+}
+
+.git-spacing {
+  padding: 10px 0 10px 0;
 }
