@@ -2,11 +2,6 @@
 
 {% load staticfiles %}
 
-{% block head_block %}
-    <link rel="stylesheet" href="{% static "css/bootstrap-switch.min.css" %}" />
-    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
-{% endblock %}
-
 {% block title %} - play{% endblock %}
 
 {% block body_block %}
@@ -82,12 +77,5 @@
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">Final Stats Page</a>
             </div>
     </div>
-<input type="checkbox" name="test" id="test" checked>
-<script>
-    $("[name='test']").bootstrapSwitch();
-    $('#test').bootstrapSwitch('setDisabled', true);
-</script>
-    <!-- Switch -->
-    <script src="{% static "js/bootstrap-switch.min.js" %}"></script>
-    <script src="{% static "js/bootstrap-switch.js" %}"></script>
+
 {% endblock %}

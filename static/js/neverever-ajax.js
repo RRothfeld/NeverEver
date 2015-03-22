@@ -5,7 +5,7 @@ $(document).ready(function() {
             if (data["nPlayers"] >= 6){
                 $('#add_button').hide();
             }
-			//$.getScript("../../static/js/bootstrap-toggle.min.js");
+			$('input:checkbox').bootstrapSwitch();
 		});
 	});
 

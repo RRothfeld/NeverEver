@@ -17,6 +17,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
 	<link rel="stylesheet" href="{% static "css/neverever.css" %}" />
+    <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
 
     {% block head_block %}{% endblock %}
 
@@ -63,5 +64,8 @@
 	<script src="{% static "js/bootstrap.js" %}"></script>
     <!-- AJAX -->
     <script src="{% static "js/neverever-ajax.js" %}"></script>
+    <!-- Switch -->
+    <script src="{% static "js/bootstrap-switch.js" %}"></script>
+    <script>$('input:checkbox').bootstrapSwitch();</script>
   </body>
 </html>
