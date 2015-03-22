@@ -57,8 +57,8 @@ h1 {
 }
 
 .vertical-center {
-  min-height: 50%;
-  min-height: 50vh;
+  min-height: 45%;
+  min-height: 45vh;
 
   display: flex;
   align-items: center;
@@ -96,6 +96,16 @@ h1 {
 }
 
 #sub-heading {
-    padding-top: 25px;
+    padding-top: 35px;
     padding-bottom: 10px;
+}
+
+.weak-glyph {
+    padding-left: 2px;
+    font-size: 11px;
+    color: #999999;
+}
+
+.git-spacing {
+  padding: 10px 0 10px 0;
 }

@@ -6,28 +6,35 @@
 
 {% block body_block %}
     <h1>about us</h1>
-    <p class="lead">A bit of information on the developers and the project itself.</p>
+    <p class="lead">A bit of information on the project and its developers.</p>
 
     <div id="sub-heading">
         <h4><span class="glyphicon glyphicon-folder-open"></span></h4>
         <h2>the project</h2>
     </div>
-    <div class="container"><p><a href="https://github.com/Redfielder/NeverEver">GitHub</a>
-    <a href="http://www.tangowithdjango.com/">Tango with Django</a>
-    <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>
-    <a href="http://getbootstrap.com/">Bootstrap</a>
-    <a href="http://www.bootstrap-switch.org/">(unofficial) Bootstrap Switch</a></p></div>
+    <div class="container text-justify"><p>This web application was built as the assessed project for the Master's level
+    course Internet Technology 2014/15. You can find all our code in our <a href="https://github.com/Redfielder/NeverEver">GitHub</a>
+    repository. never/<strong>ever</strong> was built using the Django framework with the aid of
+    <a href="http://www.tangowithdjango.com/">Tango with Django</a> by <a href="http://www.dcs.gla.ac.uk/~leif/">
+    Dr. Leif Azzopardi</a>. The live version of this project is hosted on <a href="https://www.pythonanywhere.com/">PythonAnywhere</a>
+    and was visually enhanced by using <a href="http://getbootstrap.com/">Bootstrap</a> and the (unofficial)
+    <a href="http://www.bootstrap-switch.org/">Bootstrap Switch</a>.</p></div>
+    <div class="container git-spacing">
+        <iframe src="https://ghbtns.com/github-btn.html?user=Redfielder&repo=NeverEver&type=star&count=true&size=large" frameborder="0" scrolling="0" width="190px" height="30px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=Redfielder&repo=NeverEver&type=watch&count=true&size=large&v=2" frameborder="0" scrolling="0" width="190px" height="30px"></iframe>
+        <iframe src="https://ghbtns.com/github-btn.html?user=Redfielder&repo=NeverEver&type=fork&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+    </div>
 
     <div id="sub-heading">
         <h4><span class="glyphicon glyphicon-user"></span></h4>
         <h2>the team</h2>
     </div>
-    <div class="container"><p>Lorem ipsum dolor sit amet, ius vitae fuisset cu.
-    Pro impetus oblique comprehensam eu, per ad erat vidit. Pri at
-    fastidii mediocrem, usu et vero nulla laudem, nec an impetus convenire hendrerit.
-    Elitr nobis mediocritatem eu mea, et eirmod equidem inciderint vim. Et sit cibo labore quaerendum,
-    eu tollit consulatu nam, vel sale primis ei.</p>
-        <div class="container">
+    <div class="container text-justify"><p>We, Team N00bel Prize, are all postgraduate students of the University of
+    Glasgow, taking the course Internet Technology. With one Computing Science student, who as previous programming
+    experience, and three Information Technology students, who have no previous experience; we have a diverse team with
+    and have yet to learn how to develop professional web applications. Still, we hope you can enjoy our work and
+    please feel encouraged to contact us in case you have any questions.</p>
+        <div class="container text-center">
             <div class="team-box">
                 <div class="team-img"><img src="{% static "img/portraits/g_g.jpg" %}" alt="Giorgos Goulos"></div>
                 <div class="team-text">
@@ -76,13 +83,16 @@
         <h4><span class="glyphicon glyphicon-education"></span></h4>
         <h2>the university</h2>
     </div>
-    <div class="container"><p>Lorem ipsum dolor sit amet, ius vitae fuisset cu.
-    Pro impetus oblique comprehensam eu, per ad erat vidit. Pri at
-    fastidii mediocrem, usu et vero nulla laudem, nec an impetus convenire hendrerit.
-    Elitr nobis mediocritatem eu mea, et eirmod equidem inciderint vim. Et sit cibo labore quaerendum,
-    eu tollit consulatu nam, vel sale primis ei.</p>
-
-        <div class="container">
+    <div class="container text-justify"><p>The University of Glasgow is a major research-led university
+    operating in an international context with the following fundamental aims:
+    <ul>
+        <li>to provide education through the development of learning in a research environment</li>
+        <li>to undertake fundamental, strategic and applied research</li>
+        <li>to make a major contribution to local, regional, national and international communities through widening
+            access and through working in partnership to support economic regeneration</li>
+        <li>to sustain and add value to Scottish culture, to the natural environment and to the national economy.</li>
+    </ul></p>
+        <div class="container text-center">
             <div class="team-box">
                 <div class="team-img"><img src="{% static "img/UofG.jpg" %}" alt="University of Glasgow"></div>
                 <div class="team-text" id="UofGadress">
