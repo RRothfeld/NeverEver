@@ -4,7 +4,10 @@ $(document).ready(function() {
 		//var sid;
 		//sid = $(this).attr("data-sid");
 		$.get('/add_player/', function(data) {
-			$('#answer_zone').html(data);
+			$('#answer_zone').html(data["rendered"]);
+            if (data["nPlayers"] >= 5){
+                $('#add_button').hide();
+            }
 			//$.getScript("../../static/js/bootstrap-toggle.min.js");
 		});
 	});
@@ -13,7 +16,7 @@ $(document).ready(function() {
 		$.get('/update_count/', function(data) {
 			$("#session_footer").html(data);
 		})
-	}, 3000);	
+	}, 3000);
 
 	$('#likes').click(function(){
 	    var title;

@@ -167,6 +167,8 @@ def play(request):
     session.save()
     # TESTING
     context_dict['this_session'] = session
+
+    context_dict["nPlayers"] = num_players
     
     response = render(request, 'neverever/play.html', context_dict)
     return response
@@ -395,43 +397,57 @@ def testing_category(request, category_name_slug):
     # Go render the response and return it to the client.
     return render(request, 'neverever/testingCategories.html', context_dict)
 
+import json
+from django.template.loader import render_to_string
+from django.template import RequestContext
 
 def add_player(request):
     #sid = None
     #if request.method == 'GET':
         #sid = request.GET['session_id']
     context_dict = []
-    sid = request.session.session_key
-    if sid:
+    try:
+        sid = request.session.session_key
+        if sid:
+            session = Session.objects.get(sid=(sid))
+            if session:
+                session.num_players += 1
+                session.save()
+                #create more players
+                for i in range(1, session.num_players+1):
+                    Player.objects.get_or_create(stamp=i, session = session)
+                #context_dict['num'] = num
+
+                #forms = []
+                #for i in range(0, num):
+                #    forms.append(AnswerForm(prefix="form" + str(i)))
+
+                #context_dict['forms'] = forms
+        #category_list = Category.objects.order_by('name')
+        #context_dict = {'categories': category_list}
+        forms = [];
+        print "i got here"
+
         session = Session.objects.get(sid=(sid))
-        if session:
-            session.num_players += 1
-            session.save()
-            #create more players
-            for i in range(1, session.num_players+1):
-                Player.objects.get_or_create(stamp=i, session = session)
-            #context_dict['num'] = num
 
-            #forms = []
-            #for i in range(0, num):
-            #    forms.append(AnswerForm(prefix="form" + str(i)))
+        for i in range(0, session.num_players):
+            forms.append(AnswerForm(prefix="form" + str(i)))
 
-            #context_dict['forms'] = forms
-    #category_list = Category.objects.order_by('name')
-    #context_dict = {'categories': category_list}
-    forms = [];
-    print "i got here"
-    
-    session = Session.objects.get(sid=(sid))
-    
-    for i in range(0, session.num_players):
-        forms.append(AnswerForm(prefix="form" + str(i)))
-    
-    players = Player.objects.filter(session = session)
-    print "i also got here"
-    formlist = zip(forms, players)
-    print "i got here too"
-    #context_dict = {}
-    print "and i got here"
-    
-    return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
+        players = Player.objects.filter(session = session)
+        print "i also got here"
+        formlist = zip(forms, players)
+        print "i got here too"
+        #context_dict = {}
+        print "and i got here"
+
+        rendered = str(render_to_string('neverever/answerButtons.html',
+                                      {'formlist': formlist},
+                                      context_instance=RequestContext(request)))
+        print type(rendered)
+
+        response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}), content_type="application/json")
+
+        return response
+
+    except Exception as e:
+        print e
