@@ -50,7 +50,7 @@
                         {% else %}
                             <div class="editable_name" contenteditable="false" data-playernum="{{ player.stamp }}" data-toggle="popover" title="What's your name?"
                             data-content="Click to enter your name, then press return to save!" data-trigger="hover" data-placement="top">
-                                    player {{ player.stamp }}
+                                    Player {{ player.stamp }} <span class="glyphicon glyphicon-pencil weak-glyph"></span>
                             </div>
                         {% endif %}
                     </span>
@@ -67,9 +67,7 @@
 
     <div class="container-fluid">
             <div class="row row-spacing">
-                {% if nPlayers < 5 %}
-                    <button id="add_button" class="btn btn-info" type="button">Add Player</button>
-                {% endif %}
+                <button id="add_button" class="btn btn-info" type="button">Add Player</button>
                 <a href="{% url 'play_options' %}" class="btn btn-info">Options</a>
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">Final Stats Page</a>
             </div>
@@ -80,4 +78,7 @@
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
     <script>$('input:checkbox').bootstrapSwitch();</script>
+    {% if nPlayers >= 6 %}
+        <script>$('#add_button').prop('disabled', true);</script
+    {% endif %}
 {% endblock %}

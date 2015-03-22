@@ -99,3 +99,9 @@ h1 {
     padding-top: 25px;
     padding-bottom: 10px;
 }
+
+.weak-glyph {
+    padding-left: 2px;
+    font-size: 11px;
+    color: #999999;
+}
