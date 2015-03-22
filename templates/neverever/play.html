@@ -59,7 +59,7 @@
                 {% endfor %}
             {% endfor %}
             <div class="container row-spacing">
-                <input class="btn btn-primary btn-lg center-block" type="submit" value="Submit">
+                <input class="btn btn-primary btn-lg center-block" type="submit" value="Next Statement">
             </div>
         </form>
     </div>
@@ -78,6 +78,8 @@
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
     <script>$('input:checkbox').bootstrapSwitch();</script>
+    <script>$('input:checkbox').bootstrapSwitch('onText','Yeah');</script>
+    <script>$('input:checkbox').bootstrapSwitch('offText','Nope');</script>
     {% if nPlayers >= 6 %}
         <script>$('#add_button').prop('disabled', true);</script
     {% endif %}
