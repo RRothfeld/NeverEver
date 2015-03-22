@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d71a513-678c-4507-be6b-1d102170465d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/portraits/g_g.jpg" afterPath="$PROJECT_DIR$/static/img/portraits/g_g.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/img/portraits/r_r.jpg" afterPath="$PROJECT_DIR$/static/img/portraits/r_r.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/neverever/about.html" afterPath="$PROJECT_DIR$/templates/neverever/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/index.css" afterPath="$PROJECT_DIR$/static/css/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/neverever-ajax.js" afterPath="$PROJECT_DIR$/static/js/neverever-ajax.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/neverever.css" afterPath="$PROJECT_DIR$/static/css/neverever.css" />
     </list>
     <ignored path="ITECH-Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,21 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="neverever.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="neverever.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/neverever.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6393211" vertical-offset="478" max-vertical-offset="1260">
+            <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="1260">
               <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.9166665" vertical-offset="110" max-vertical-offset="1335">
-              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.7089552" vertical-offset="290" max-vertical-offset="1335">
+              <caret line="51" column="79" selection-start-line="51" selection-start-column="79" selection-end-line="51" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -95,8 +90,8 @@
         <option value="$PROJECT_DIR$/static/css/loader.css" />
         <option value="$PROJECT_DIR$/static/js/neverever-ajax.js" />
         <option value="$PROJECT_DIR$/static/css/index.css" />
-        <option value="$PROJECT_DIR$/templates/neverever/about.html" />
         <option value="$PROJECT_DIR$/static/css/neverever.css" />
+        <option value="$PROJECT_DIR$/templates/neverever/about.html" />
       </list>
     </option>
   </component>
@@ -496,18 +491,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
+    <entry file="file://$PROJECT_DIR$/static/css/neverever.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.9166665" vertical-offset="110" max-vertical-offset="1335">
-          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="478" max-vertical-offset="1260">
+          <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/neverever.css">
+    <entry file="file://$PROJECT_DIR$/templates/neverever/about.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6393211" vertical-offset="478" max-vertical-offset="1260">
-          <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.7089552" vertical-offset="290" max-vertical-offset="1335">
+          <caret line="51" column="79" selection-start-line="51" selection-start-column="79" selection-end-line="51" selection-end-column="79" />
           <folding />
         </state>
       </provider>
