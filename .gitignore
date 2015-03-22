@@ -1,6 +1,9 @@
 # Databases
 *.sqlite3
 
+#Pycharm
+.ideas
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
