@@ -50,6 +50,7 @@ class Migration(migrations.Migration):
                 ('gender', models.CharField(max_length=1, null=True)),
                 ('age', models.IntegerField(null=True)),
                 ('nationality', models.CharField(max_length=128, null=True)),
+                ('name', models.CharField(max_length=128, null=True)),
             ],
             options={
             },
@@ -88,9 +89,9 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(unique=True, max_length=128)),
                 ('views', models.IntegerField(default=0)),
-                ('likes', models.IntegerField(default=0)),
                 ('slug', models.SlugField(unique=True)),
                 ('nsfw', models.BooleanField(default=True)),
+                ('likes', models.IntegerField(default=0)),
                 ('categories', models.ManyToManyField(to='neverever.Category')),
             ],
             options={
