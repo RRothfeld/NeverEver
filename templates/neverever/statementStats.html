@@ -1,29 +1,42 @@
 <br />
     {% if total %}
-        <strong>"Never have I ever {{ title }}":</strong>
-        <br/>
-        {{ yes }}
-        {% if yes_percentage %}
-            ({{ yes_percentage }}%)
-        {% endif %}
-        answered Yes.
-        <br/>
-        {{ no }}
-        {% if no_percentage %}
-            ({{ no_percentage }}%)
-        {% endif %}
-        answered No.
-        <br/>
-        (Total: {{ total }})
+        <strong style="font-size:200%">"Never have I ever {{ title }}":</strong>
+            <br/>
+            A total of {{ total }} people have answered this
+            <br/>
+                {{ yes_percentage }}% answered Yes
+            <br/>
+                {{ no_percentage }}% answered No
         <br/>
         <br/>List of yes answers per nationality </br>
         {% for nat in nat_freqs %}
-            {{ nat.0 }} -- {{ nat.1 }} <br/>
+            {% if nat.0 != null %}
+                {{ nat.0 }} 
+            {% else %}
+                Unknown Nationality
+            {% endif %}
+            -- {{ nat.1 }} <br/>
         {% endfor %}
         <br/>
+
         Of the yes answers: <br/>
-        {{ female_percentage }}% were female and {{ male_percentage }}% were male
+        {{ female_percentage }}% were female and {{ male_percentage }}% were male<br/>
+        {% if female_percentage|add:male_percentage != 100 %}
+            The rest did not provide their gender <br/>
+        {% endif %}
+        <br/>
+        {% if avg_yes_age > 0 %}
+            The average age of people who have done this is {{ avg_yes_age }} <br/>
+        {% else %}
+            The average age of people who have done this is unknown<br/>
+        {% endif %}
+        {% if avg_no_age > 0 %}
+            The average age of people who have not done this is {{ avg_no_age }} <br/>
+        {% else %}
+            The average age of people who have not done this is unknown<br/>
+        {% endif %}
+  
     {% else %}
-        No answers yet for this statement
+        <strong>No answers yet for this statement</strong>
     {% endif %}
 <br />

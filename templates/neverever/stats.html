@@ -14,19 +14,19 @@
         <br />
     {% endif %}
     <br/>
-    <ul class="menu"> 
+    <ul class="menu" style="list-style-type:none; margin:0px; padding:0px"> 
         <li id="catlist">Categories - Hover Here
             <ul style="visibility: hidden">
             {% for category in categories %}
-                <li class="cat_list_item" style="list-style-type:none">{{ category.name }}</li>
+                <li class="cat_list_item" style="list-style-type:none; display:inline" data-name="{{category.name}}">{{ category.name }} / </li>
             {% endfor %}
             </ul>
         </li>
     </ul>
-
+    <br/>
 <div id="statements">
     {% if statements %}
-        Never have I ever...
+        <strong>Never have I ever...</strong>
         <br/>
         {% for statement in statements %}
             <span class="single_statement" data-title="{{statement.title}}">

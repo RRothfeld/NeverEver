@@ -94,12 +94,6 @@ def stats_test(request):
 
 def statement_info(request):
     
-    nats = ('mexican', 'mexican', 'mexican', 'spanish', 'american', 'spanish', 'greek', 'spanish', 'mexican', 'spanish')
-    print nats
-    c = Counter(nats)
-    common = c.most_common(2)
-    print common[0][0]
-
     statement_title = ""
     if request.method == 'GET':
         statement_title = request.GET['title']
@@ -112,6 +106,11 @@ def statement_info(request):
     print statement
     female_yes = 0
     male_yes = 0
+    unknown_gender_yes = 0
+    yes_age=0
+    no_age=0
+    avg_yes_age=0
+    avg_no_age=0
 
     statement_answers = Result.objects.filter(statement=statement)
     yes_nationalities = []
@@ -119,31 +118,50 @@ def statement_info(request):
     print "got to start of loop"
     for result in statement_answers:
         if result.answer:
+            print "entered the loop!"
             yes += 1
+            if result.age:
+                yes_age += result.age
+            print "got past age"
             yes_nationalities.append(result.nationality)
             if(result.gender == 'f'):
                 female_yes += 1
             elif(result.gender == 'm'):
                 male_yes += 1
+            else:
+                unknown_gender_yes += 1
+            print "in the loop!"
         else:
             no += 1
-    
+            if result.age:
+                no_age += result.age
+
+    print yes_age
+    print no_age
     total = yes+no
     female_percentage = 0
     male_percentage = 0
+    unknown_gender_percentage = 0
     if total > 0:
         yes_percentage = (yes*100/total)
         no_percentage = (no*100/total)
     else:
         yes_percentage = False
         no_percentage = False
+    
     if yes > 0:
         female_percentage = (female_yes*100/yes)
         male_percentage = (male_yes*100/yes)
+        unknown_gender_percentage = (unknown_gender_yes*100/yes)
+        avg_yes_age = yes_age/yes
+    if no > 0:
+        avg_no_age = no_age/no
     #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
      #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
 
+    print "getting here"
     nat_freqs = Counter(yes_nationalities).most_common()
+    print "and here"
 
     context_dict = {}
     context_dict['title'] = statement
@@ -155,11 +173,16 @@ def statement_info(request):
     context_dict['nat_freqs'] = nat_freqs
     context_dict['female_percentage'] = female_percentage
     context_dict['male_percentage'] = male_percentage
+    print "and here too"
+    print unknown_gender_percentage
+    context_dict['unknown_gender_percentage'] = unknown_gender_percentage
+    context_dict['avg_yes_age'] = avg_yes_age
+    context_dict['avg_no_age'] = avg_no_age
     
     #context_dict['statements'] = statements_list
    # categories = Category.objects.all();
    # context_dict['categories'] = categories
-
+    print "and getting here"
     return render(request, 'neverever/statementStats.html', context_dict)
 
 
