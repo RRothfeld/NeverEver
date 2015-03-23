@@ -2,6 +2,10 @@
 
 {% load staticfiles %}
 
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/summary.css" %}" />
+{% endblock %}
+
 {% block title %} - summary{% endblock %}
 
 {% block body_block %}
@@ -13,36 +17,37 @@
           <h4><span class="glyphicon glyphicon-heart-empty"></span></h4>
           <h2>thank you for playing</h2>
         </div>
-        <div class="container text-justify">We hope you enjoyed. As to , however, we would like to ask you for some information on yourself.
+        <div class="container text-justify">We hope you enjoyed. As to dismantle social taboos, however, we would like to ask you for some information on yourself.
         Not to worry though, everything is anonymous!</div>
         <div class="add-container">
-          {% if field.errors %}
-            <div class="alert alert-danger text-center" role="alert">
-                <strong>Ups!</strong> You entered wrong information.
-            </div>
-          {% endif %}
+
         </div>
      </div>
 
 
     <form id = "player_form" method = "post" action = "">
         {% for player_name, form in player_forms %}
-            <b>{{ player_name }}</b>
-        {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
+            {% csrf_token %}
+            <strong>{{ player_name }}</strong><br>
             {% for field in form.visible_fields %}
-                {{ field.errors }}
+                {% if field.errors %}
+                  <div class="alert alert-danger text-center" role="alert">
+                      <strong>Ups!</strong> You entered wrong information.
+                  </div>
+                {% endif %}
                 {{ field.help_text }}
-                {{ field }}
+                {{ field }}<br>
             {% endfor %}
-        <br />
+        <br>
         {% endfor %}
-        <br/>
-    <input type="submit", value="End Game">
-
+        <div class="container">
+            <div class="row row-spacing-top">
+                <input type="submit" name="submit" value="End Game" class="btn btn-primary btn-lg btn-ne-add"/>
+            </div>
+            <div class="row row-spacing">
+                <a href="{% url 'play' %}" class="btn btn-default btn-ne-add">Continue Playing</a>
+            </div>
+        </div>
     </form>
 
     {% if player_total_yes_no %}
@@ -86,5 +91,5 @@
         {% endfor %}
     {% endif %}
 
-    <br><a href="{% url 'play' %}">I want to keep playing</a>
+
 {% endblock %}
