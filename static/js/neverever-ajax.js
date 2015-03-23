@@ -1,4 +1,13 @@
-$(document).ready(function() {
+$(document).ready(function(data) {
+
+    if ($('#No-statement').length){
+        disableLike();
+        disableAdd();
+    }
+
+    $.get('/get_game_data/', function(data) {
+        checkNumPlayers(data);
+    });
 
     $('input:checkbox').bootstrapSwitch();
     $('input:checkbox').bootstrapSwitch('onText','Yeah');
@@ -7,9 +16,7 @@ $(document).ready(function() {
 	$('#add_button').click(function(){
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data["rendered"]);
-            if (data["nPlayers"] >= 6){
-                disableAdd();
-            }
+            checkNumPlayers(data);
 			$('input:checkbox').bootstrapSwitch();
             $('input:checkbox').bootstrapSwitch('onText','Yeah');
             $('input:checkbox').bootstrapSwitch('offText','Nope');
@@ -65,4 +72,10 @@ function disableAdd() {
 
 function disableLike() {
     $('#likes').prop('disabled', true);
+}
+
+function checkNumPlayers(data){
+    if (data["nPlayers"] >= 6){
+        disableAdd();
+    }
 }

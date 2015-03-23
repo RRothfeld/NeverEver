@@ -15,4 +15,5 @@ urlpatterns = patterns('',
                        url(r'^set_name/$', views.set_name, name='set_name'),
                        url(r'^stats_test/$', views.stats_test, name='stats_test'),
                        url(r'^statement_info/$', views.statement_info, name='statement_info'),
+                       url(r'^get_game_data/$', views.get_game_data, name='get_game_data'),
 )

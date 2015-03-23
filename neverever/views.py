@@ -248,7 +248,7 @@ def play(request):
     # Pick a random statement from the selected categories
     while True:
         try:
-            rand_cat = random.choice(categories)
+            random.choice(categories)
             q_object = Q(categories=categories[0])
             if len(categories) > 1:
                 for category in categories[1:]:
@@ -502,6 +502,13 @@ def add_player(request):
                                     context_instance=RequestContext(request)))
     print type(rendered)
 
-    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}), content_type="application/json")
+    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}),
+                            content_type="application/json")
 
     return response
+
+def get_game_data(request):
+    sid = request.session.session_key
+    session = Session.objects.get(sid=sid)
+    num_players = len(Player.objects.filter(session=session))
+    return HttpResponse(json.dumps({'nPlayers': num_players}), content_type="application/json")
