@@ -1,14 +1,16 @@
 # NeverEver web application
-==============
-
-Info
--------------
-
-The NeverEver web application is a representation of the classic game "Never have I ever" providing easy access to the game via any web enabled device. 
-
-Installation
 --------------
+never/ever is a web application which represents the classic drinking game "Never have I ever...". This web app is an 
+assessed team project for the course Internet Technology (M) at the University of Glasgow.
 
+We aimed at developing an app that facilitate social interaction in a fun, engaging, and interactive way; brings people
+back together; and is intuitive in usage. You can play this game on any web enabled device!
+
+So get together with some friends, grab a few drinks, and play some never/ever. You'll learn new things about your best
+friends which you never actually wanted to know - but now you do! So, have fun and enjoy our game.
+
+Installations
+--------------
 The NeverEver web application is built using a range of technologies and requires the following pip set up:
 
 	Django==1.7
@@ -46,7 +48,6 @@ This will host the website on your localhost at the following address: 127.0.0.1
 
 Deployment
 -------------
-
 We have also included a number of production features to ensure successful deployment.
 
 The deleteOldSessions.py file should be scheduled to run once per hour to delete idle sessions using the following command:
