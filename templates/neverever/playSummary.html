@@ -5,6 +5,9 @@
 {% block title %} - summary{% endblock %}
 
 {% block body_block %}
+    <h1>game statistics</h1>
+    <p class="lead">Stats about your current game and player(s).</p>
+
     <form id = "player_form" method = "post" action = "">
         {% for player_name, form in player_forms %}
             <b>{{ player_name }}</b>
@@ -24,6 +27,15 @@
     <input type="submit", value="End Game">
 
     </form>
+
+    {% if player_total_yes_no %}
+        <h3>Players</h3>
+        {% for player in player_total_yes_no %}
+            {{ player.player }}: {{ player.total_yes }} 'Yes' ; {{ player.total_no }} 'No'.
+            (Total: {{ player.total }})
+            <br />
+        {% endfor %}
+    {% endif %}
 
     {% if player_answers %}
         <br /><b>Answers</b><br />

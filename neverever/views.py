@@ -53,6 +53,10 @@ def stats(request):
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
 
+    context_dict['nCategories'] = len(Category.objects.all())
+    context_dict['nStatements'] = len(Statement.objects.all())
+    context_dict['nAnswers'] = len(Answer.objects.all()) + len(Result.objects.all())
+
     categories = Category.objects.all();
     context_dict['categories'] = categories
     return render(request, 'neverever/stats.html', context_dict)
@@ -368,12 +372,20 @@ def play_summary(request):
     print "len(players):", len(players)
 
     player_answers = []
+    player_total_yes_no = []
     for player in players:
         print 1
         player_answers.append(Answer.objects.filter(player=player))
-        print "player_answers[-1]:", len(player_answers[-1])
+
+        total_yes = Answer.objects.filter(player=player, answer=True).count()
+        total_no = Answer.objects.filter(player=player, answer=False).count()
+        player_total_yes_no.append({'player': player,
+                                    'total_yes': total_yes,
+                                    'total_no': total_no,
+                                    'total': total_yes + total_no})
 
     context_dict['player_answers'] = player_answers
+    context_dict['player_total_yes_no'] = player_total_yes_no
 
     statements = session.used_statements.all()
 
@@ -391,6 +403,8 @@ def play_summary(request):
                 'total': count_total,
                 'answers': answers}
         statement_data.append((statement, data))
+
+
 
     context_dict['statement_data'] = statement_data
     response = render(request, 'neverever/playSummary.html', context_dict)

@@ -3,39 +3,77 @@
 {% load staticfiles %}
 {% load neverever_extras %}
 
-{% block title %} - Statistics{% endblock %}
+{% block title %} - statistics{% endblock %}
 
 {% block head_block %}
     <link rel="stylesheet" href="{% static "css/stats.css" %}" />
 {% endblock %}
 
 {% block body_block %}
-    <h1>Statistics</h1>
-    <h3>Under development</h3>
+    <h1>statistics</h1>
+    <p class="lead">Are you shy? Gain confidence from seeing the shit other people do.</p>
 
-    {% if globalCounter %}
-        <br />Total games: {{ globalCounter.total_sessions }}
-        <br />Total number of players: {{ globalCounter.total_players }}
-        <br />
-    {% endif %}
-    <br/>
-    <ul class="menu"> 
-        <li class="dropdown"> <a href ="#" data-toggle="dropdown" class="dropdown-toggle">Categories - Hover Here<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-            {% for category in categories %}
-                <li class="cat_list_item" data-name="{{category.name}}">{{ category.name }} </li> /
-            {% endfor %}
-            </ul>
-        </li>
-    </ul>
-    <br/>
-<div id="statements">
-    {% get_statement_titles %}
-</div>
-<div id="statement_stats">
-    <!-- via AJAX when statement is selected -->
-</div>
-    <br><a href="{%  url 'index' %}">Return to main page</a>
+    <div class="container row-spacing">
+        <div id="sub-heading">
+            <h4><span class="glyphicon glyphicon-globe"></span></h4>
+            <h2>global counters</h2>
+        </div>
+        {% if globalCounter %}
+            So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
+            <strong>{{ globalCounter.total_players }}</strong> players.
+            <br />
+            {% if nCategories%}
+                number of Categories: {{ nCategories }} <br />
+            {% endif %}
+            {% if nStatements%}
+                number of Statements: {{ nStatements }} <br />
+            {% endif %}
+            {% if nAnswers %}
+                number of Answers provided so far: {{ nAnswers }} <br />
+            {% endif %}
+        {% endif %}
+        {% if category.all %}
+        So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
+        <strong>{{ globalCounter.total_players }}</strong> players.
+        {% endif %}
+    </div>
+
+    <div class="container row-spacing">
+        <div id="sub-heading">
+            <h4><span class="glyphicon glyphicon-tags"></span></h4>
+            <h2>select categories</h2>
+        </div>
+        Please select the category you are interested in:
+        <div class="dropdown-box text-center">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Categories
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                {% for category in categories.all %}
+                    <li role="presentation" class="cat_list_item" data-name="{{category.name}}">
+                        <a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+              </ul>
+            </div>
+        </div>
+    </div>
+
+        <div id="statements">
+            {% get_statement_titles %}
+        </div>
+        <div id="statement_stats">
+        </div>
+    <div class="container">
+        <div class="row row-spacing-top">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg btn-ne-add"/>
+        </div>
+        <div class="row row-spacing">
+            <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block footer_block %}
