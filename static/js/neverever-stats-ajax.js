@@ -24,7 +24,7 @@ $(document).ready(function() {
     $("body").on('click', '.cat_list_item', function() {
         //alert("come on");
         var cat_name
-        cat_name = $(this).html();
+        cat_name = $(this).attr('data-name');
         $.get('/stats_test/', {cat_name: cat_name}, function(data) {
             $('#statements').html(data);
         });
