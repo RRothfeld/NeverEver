@@ -18,8 +18,18 @@
             <h2>global counters</h2>
         </div>
         {% if globalCounter %}
-        So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
-        <strong>{{ globalCounter.total_players }}</strong> players.
+            So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
+            <strong>{{ globalCounter.total_players }}</strong> players.
+            <br />
+            {% if nCategories%}
+                number of Categories: {{ nCategories }} <br />
+            {% endif %}
+            {% if nStatements%}
+                number of Statements: {{ nStatements }} <br />
+            {% endif %}
+            {% if nAnswers %}
+                number of Answers provided so far: {{ nAnswers }} <br />
+            {% endif %}
         {% endif %}
         {% if category.all %}
         So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
