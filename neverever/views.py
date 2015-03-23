@@ -392,11 +392,17 @@ def play_summary(request):
         count_no = answers.filter(answer=False).count()
         count_total = len(answers)
 
+        total_yes = len(Result.objects.filter(statement=statement, answer=True))
+        total_yes += len(Answer.objects.filter(statement=statement, answer=True))
+
+        total_no = len(Result.objects.filter(statement=statement, answer=False))
+        total_no += len(Answer.objects.filter(statement=statement, answer=False))
+
         data = {'yes':count_yes,
                 'no': count_no,
                 'total': count_total,
                 'answers': answers}
-        statement_data.append((statement, data))
+        statement_data.append((statement, data, total_yes, total_no))
 
 
 

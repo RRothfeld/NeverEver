@@ -65,6 +65,40 @@
         </div>
     </div>
 
+
+    {% if player_answers %}
+        <br /><b>Answers</b><br />
+        {% for answers in player_answers %}
+            {% for answer in answers %}
+                {% if answer.player.name %}
+                    {{ answer.player.name }}
+                {% else %}
+                    Player {{ answer.player.stamp }}
+                {% endif %}
+                answered {{ answer.answer }} for "{{ answer.statement }}" <br />
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    {% if statement_data %}
+        <h3>Statements</h3>
+        {% for statement, data, total_yes, total_no in statement_data %}
+            <b>"Never have I ever {{ statement }}":</b>
+            {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
+            ({{ total_yes }} Global Yes, {{ total_no }} Global No) <br />
+            {% for answer in data.answers %}
+                 - {{ answer.player }} answered
+                {% if answer.answer %}
+                    "Yes"
+                {% else %}
+                    "No"
+                {% endif %}
+                <br />
+            {% endfor %}
+            <br />
+        {% endfor %}
+    {% endif %}
+
     <div class="container row-spacing">
         <div class="sub-heading">
           <h4><span class="glyphicon glyphicon-stats"></span></h4>
