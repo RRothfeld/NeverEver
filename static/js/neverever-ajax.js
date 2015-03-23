@@ -9,6 +9,7 @@ $(document).ready(function(data) {
         checkNumPlayers(data);
     });
 
+    //enable animated switches
     playSwitches();
 
 	$('#add_button').click(function(){
