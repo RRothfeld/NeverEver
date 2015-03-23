@@ -34,7 +34,12 @@
         <br /><b>Answers</b><br />
         {% for answers in player_answers %}
             {% for answer in answers %}
-                {{ answer.player.name }} answered {{ answer.answer }} for "{{ answer.statement }}" <br />
+                {% if answer.player.name %}
+                    {{ answer.player.name }}
+                {% else %}
+                    Player {{ answer.player.stamp }}
+                {% endif %}
+                answered {{ answer.answer }} for "{{ answer.statement }}" <br />
             {% endfor %}
         {% endfor %}
     {% endif %}
