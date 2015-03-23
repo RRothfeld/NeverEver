@@ -215,7 +215,7 @@ def play(request):
         session.used_statements.add(used_statement)
 
         session = Session.objects.get(sid=sid)
-        num_players = session.num_players
+        num_players = len(Player.objects.filter(session=session))
         forms = []
         for i in range(0, num_players):
             forms.append(AnswerForm(request.POST, prefix="form" + str(i)))
@@ -233,7 +233,7 @@ def play(request):
     # displays a form for each player
 
     session = Session.objects.get(sid=sid)
-    num_players = session.num_players
+    num_players = len(Player.objects.filter(session=session))
     forms = []
     for i in range(0, num_players):
         forms.append(AnswerForm(prefix="form" + str(i)))
@@ -264,7 +264,6 @@ def play(request):
                     rand_statement = statement
                     found = True
                     break
-            print "FOUND:", found, "ITEM LIST SIZE:", len(session.used_statements.all())
             if not found:
                 context_dict["no_more_statements"] = True
             break
@@ -313,7 +312,7 @@ def set_name(request):
     player.name = name
     player.save()
 
-    num_players = session.num_players
+    num_players = len(Player.objects.filter(session=session))
     forms = []
     for i in range(0, num_players):
         forms.append(AnswerForm(prefix="form" + str(i)))
@@ -340,7 +339,7 @@ def play_summary(request):
     if request.method == 'POST':
         # this is where we put things if the form has been submitted
         session = Session.objects.get(sid=sid)
-        num_players = session.num_players
+        num_players = len(Player.objects.filter(session=session))
         forms = []
         print num_players
         for i in range(0, num_players):
@@ -388,7 +387,7 @@ def play_summary(request):
     else:
         #display the forms for each user
         session = Session.objects.get(sid=sid)
-        num_players = session.num_players
+        num_players = len(Player.objects.filter(session=session))
         forms = []
         for i in range(0, num_players):
             forms.append(PlayerForm(prefix="form" + str(i)))
@@ -464,20 +463,23 @@ def add_player(request):
         #sid = request.GET['session_id']
     context_dict = []
     sid = request.session.session_key
-    if sid:
-        session = Session.objects.get(sid=(sid))
-        if session:
-            session.num_players += 1
-            session.save()
-            #create more players
-            for i in range(1, session.num_players+1):
-                Player.objects.get_or_create(stamp=i, session = session)
-            #context_dict['num'] = num
-
-            #forms = []
-            #for i in range(0, num):
-            #    forms.append(AnswerForm(prefix="form" + str(i)))
-            #context_dict['forms'] = forms
+    players = 0
+    if not sid:
+        request.session.save()
+        request.session.modified = True
+        return HttpResponseRedirect('/play')
+    session = Session.objects.get(sid=sid)
+    if session:
+        players = Player.objects.filter(session=session)
+        session.save()
+        #create more players
+        print "NEW PLAYER:", (len(players) + 1)
+        Player.objects.create(stamp=(len(players) + 1), session = session)
+        #context_dict['num'] = num
+        #forms = []
+        #for i in range(0, num):
+        #    forms.append(AnswerForm(prefix="form" + str(i)))
+        #context_dict['forms'] = forms
     #category_list = Category.objects.order_by('name')
     #context_dict = {'categories': category_list}
     forms = []
@@ -485,7 +487,7 @@ def add_player(request):
 
     session = Session.objects.get(sid=(sid))
 
-    for i in range(0, session.num_players):
+    for i in range(0, len(players)+1):  # +1 since a new player was added
         forms.append(AnswerForm(prefix="form" + str(i)))
 
     players = Player.objects.filter(session = session)

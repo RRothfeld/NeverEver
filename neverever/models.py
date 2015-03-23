@@ -39,7 +39,6 @@ class Session(models.Model):
     sid = models.CharField(max_length=128, null=True)  # TODO: change to stamp = models.IntegerField(primary_key=True)
     categories = models.ManyToManyField(Category)
     nsfw = models.BooleanField(default=False)
-    num_players = models.IntegerField(default=1)
     last_modified = models.DateTimeField(auto_now_add=True, blank=True)
 
     # Testing

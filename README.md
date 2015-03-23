@@ -1,7 +1,10 @@
 # NeverEver web application
 ==============
 
-Internet Technology Team Project
+Info
+-------------
+
+The NeverEver web application is a representation of the classic game "Never have I ever" providing easy access to the game via any web enabled device. 
 
 Installation
 --------------
@@ -27,17 +30,30 @@ The NeverEver web application is built using a range of technologies and require
 	virtualenv-clone==0.2.5
 	virtualenvwrapper==4.3.2
 
+To install the application you must first configure your virtualenv with the above set up. The following commands will allow you to import the above pip setup:
+	
+	pip install -r /path/to/requirements.txt
 
-- python manage.py makemigrations neverever
-- python manage.py migrate
-- python populationScript.py
-- python manage.py createsuperuser (make admin admin)
-- python manage.py runserver
+Once installed in your virtual environment, delete any existing migrations and issue the following commands
 
-- run deleteOldSessions.py once every hour (to delete idle sessions)
+	python manage.py makemigrations neverever
+	python manage.py migrate
+	python populationScript.py
+	python manage.py createsuperuser (make admin admin)
+	python manage.py runserver
 
-- if you wish to reset the database, run emptyDBScript.py
+This will host the website on your localhost at the following address: 127.0.0.1:8000
 
-- pip file can be found in folder
+Deployment
+-------------
 
-Testing
+We have also included a number of production features to ensure successful deployment.
+
+The deleteOldSessions.py file should be scheduled to run once per hour to delete idle sessions using the following command:
+
+	python deleteOldSessions.py 
+
+If you wish to reset the database issue the following:
+
+	python emptyDBScript.py
+
