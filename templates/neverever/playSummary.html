@@ -39,5 +39,23 @@
         {% endfor %}
     {% endif %}
 
+    {% if statement_data %}
+        <h3>Statements</h3>
+        {% for statement, data in statement_data %}
+            <b>"Never have I ever {{ statement }}":</b>
+            {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
+            {% for answer in data.answers %}
+                 - {{ answer.player }} answered
+                {% if answer.answer %}
+                    "Yes"
+                {% else %}
+                    "No"
+                {% endif %}
+                <br />
+            {% endfor %}
+            <br />
+        {% endfor %}
+    {% endif %}
+
     <br><a href="{% url 'play' %}">I want to keep playing</a>
 {% endblock %}

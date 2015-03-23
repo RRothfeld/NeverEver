@@ -396,7 +396,7 @@ def play_summary(request):
         session = Session.objects.get(sid=sid)
         num_players = len(Player.objects.filter(session=session))
         forms = []
-        player_names=[]
+        player_names = []
         for i in range(0, num_players):
             forms.append(PlayerForm(prefix="form" + str(i)))
             player = Player.objects.get(stamp=i+1)
@@ -418,6 +418,24 @@ def play_summary(request):
 
     context_dict['player_answers'] = player_answers
 
+    statements = session.used_statements.all()
+
+    statement_data = []
+    for statement in statements:
+        answers = Answer.objects.filter(session=session, statement=statement).order_by('player__stamp')
+        count_yes = answers.filter(answer=True).count()
+        print "YES:", count_yes
+        count_no = answers.filter(answer=False).count()
+        print "NO:", count_no
+        count_total = len(answers)
+
+        data = {'yes':count_yes,
+                'no': count_no,
+                'total': count_total,
+                'answers': answers}
+        statement_data.append((statement, data))
+
+    context_dict['statement_data'] = statement_data
     response = render(request, 'neverever/playSummary.html', context_dict)
     return response
 

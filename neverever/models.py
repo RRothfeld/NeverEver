@@ -69,6 +69,8 @@ class Player(models.Model):
     #     super(Player, self).save(*args, **kwargs)
 
     def __unicode__(self):
+        if self.name:
+            return self.name
         return "Player " + str(self.stamp)
 
 
