@@ -11,7 +11,7 @@
         <br/>List of yes answers per nationality </br>
         {% if yes %}
             {% for nat in nat_freqs %}
-                {% if nat.0 != null %}
+                {% if nat.0 != '' %}
                     {{ nat.0 }} 
                 {% else %}
                     Unknown Nationality
