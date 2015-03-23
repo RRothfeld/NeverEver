@@ -51,7 +51,7 @@ If you wish to reset the database issue the following:
 
 	python emptyDBScript.py
 
-never/*ever* Instructions
+*never/*ever Instructions
 ------------
 
 From the homepage, a new game can be started by pressing the play button.
