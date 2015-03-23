@@ -1,6 +1,6 @@
 .statement {
   width: 80%;
-  min-width: 300px;
+  min-width: 250px;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -15,9 +15,24 @@ h2 {
 }
 
 h3 {
-    margin: 10px 0 5px 40px;
+    margin: 0px 0 5px 40px;
 }
 
 .inline {
     display: inline-block;
+}
+
+.inline-right {
+    float: right;
+}
+
+
+.warning-spacing {
+  padding: 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.warning-head {
+  font-size: 48px;
 }

@@ -4956,7 +4956,6 @@ a.thumbnail.active {
 }
 .alert-warning {
   background-color: #ff851b;
-  border-color: #ff7701;
   color: #ffffff;
 }
 .alert-warning hr {
@@ -4967,7 +4966,6 @@ a.thumbnail.active {
 }
 .alert-danger {
   background-color: #ff4136;
-  border-color: #ff1103;
   color: #ffffff;
 }
 .alert-danger hr {

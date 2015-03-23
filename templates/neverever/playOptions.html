@@ -72,11 +72,6 @@
 {% block footer_block %}
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
-    <script>
-        $('input:checkbox').bootstrapSwitch();
-        $('input:checkbox').bootstrapSwitch('size','small');
-        $("[name='nsfw']").bootstrapSwitch('onText','NSFW');
-        $("[name='nsfw']").bootstrapSwitch('offText','SFW');
-        $("[name='nsfw']").bootstrapSwitch('onColor','warning');
-    </script>
+    <script src="{% static "js/switch-buttons.js" %}"></script>
+    <script src="{% static "js/nsfw-button.js" %}"></script>
 {% endblock %}

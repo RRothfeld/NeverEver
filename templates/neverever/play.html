@@ -30,12 +30,12 @@
     {% endif %}
     {% if no_more_statements %}
         <div class="container-fluid text-center">
-            <p class="bg-warning warning-spacing"><b class="warning-head">Sorry! :(</b><br>
+            <p class="alert alert-danger statement warning-spacing"><b class="warning-head">Sorry! :(</b><br>
                 <b>There are no more statements to display.You played through all of them.</b><br>
                 Please select more categories, start a new game, or add statements yourself!</p>
         </div>
     {% else %}
-        <div id="answer_zone">
+    <div id="answer_zone">
         <form id="answer_form" method="post" action="/play/">
             {% for form, player in formlist %}
                 {% csrf_token %}
@@ -62,8 +62,8 @@
     </div>
     {% endif %}
 
-    <div class="container-fluid">
-            <div class="text-left inline">
+    <div class="statement text-left">
+            <div class="inline">
                 <button id="add_button" class="btn btn-default" type="button">
                     <span class="glyphicon glyphicon-plus"></span> Add Player</button>&nbsp;
                 <!--below section adds in the like button-->
@@ -71,7 +71,7 @@
                     <span class="glyphicon glyphicon-thumbs-up"></span> Like
                 </button>
             </div>
-            <div class="text-right inline">
+            <div class="inline inline-right">
                 <a href="{% url 'play_options' %}" class="btn btn-default">
                     <span class="glyphicon glyphicon-cog"></span> Options</a>&nbsp;
                 <a href="{% url 'play_summary' %}" class="btn btn-warning">
@@ -85,10 +85,13 @@
     <script src="{% static "js/neverever-ajax.js" %}"></script>
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
-    <script>$('input:checkbox').bootstrapSwitch();</script>
-    <script>$('input:checkbox').bootstrapSwitch('onText','Yeah');</script>
-    <script>$('input:checkbox').bootstrapSwitch('offText','Nope');</script>
+
+    <!-- GIORGOS
     {% if nPlayers >= 6 %}
-        <script>$('#add_button').prop('disabled', true);</script>
+        DISABLE ADD BUTTON
     {% endif %}
+    {% if no_more_statements %}
+        DISABLE ADD AND LIKE BUTTON
+    {% endif %}
+    -->
 {% endblock %}

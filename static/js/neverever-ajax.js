@@ -1,10 +1,14 @@
 $(document).ready(function() {
-	
+
+    $('input:checkbox').bootstrapSwitch();
+    $('input:checkbox').bootstrapSwitch('onText','Yeah');
+    $('input:checkbox').bootstrapSwitch('offText','Nope');
+
 	$('#add_button').click(function(){
 		$.get('/add_player/', function(data) {
 			$('#answer_zone').html(data["rendered"]);
             if (data["nPlayers"] >= 6){
-                $('#add_button').prop('disabled', true);
+                disableAdd();
             }
 			$('input:checkbox').bootstrapSwitch();
             $('input:checkbox').bootstrapSwitch('onText','Yeah');
@@ -12,14 +16,12 @@ $(document).ready(function() {
 		});
 	});
 
-
-
 	$('#likes').click(function(){
 	    var title;
 	    title = $(this).attr("data-title");
 	    $.get('/like_statement/', {title: title}, function(data){
 	               $('#like_count').html(data);
-	               $('#likes').prop('disabled', true);
+	               disableLike();
 	    });
 	});
 
@@ -56,3 +58,11 @@ $(document).ready(function() {
 	});
 
 });
+
+function disableAdd() {
+    $('#add_button').prop('disabled', true);
+}
+
+function disableLike() {
+    $('#likes').prop('disabled', true);
+}
