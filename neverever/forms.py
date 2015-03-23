@@ -4,9 +4,9 @@ from neverever.models import Statement, Category, Answer, Session, Player
 
 class StatementForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Never have I ever ")
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    no_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    yes_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0, required=False)
+    no_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0, required=False)
+    yes_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0, required=False)
     nsfw = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
     slug = forms.CharField(widget=forms.HiddenInput(), required=False)
 
