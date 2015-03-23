@@ -12,7 +12,7 @@
     <h1>statistics</h1>
     <p class="lead">Are you shy? Gain confidence from seeing the shit other people do.</p>
 
-    <div class="container">
+    <div class="container row-spacing">
         <div id="sub-heading">
             <h4><span class="glyphicon glyphicon-globe"></span></h4>
             <h2>global counters</h2>
@@ -21,20 +21,35 @@
         So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
         <strong>{{ globalCounter.total_players }}</strong> players.
         {% endif %}
+        {% if category.all %}
+        So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
+        <strong>{{ globalCounter.total_players }}</strong> players.
+        {% endif %}
     </div>
 
-    <br/>
-    <ul class="menu"> 
-        <li class="dropdown">
-            <a href ="#" data-toggle="dropdown" class="dropdown-toggle">Categories - Hover Here<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-            {% for category in categories.all %}
-                <li class="cat_list_item" data-name="{{category.name}}">{{ category.name }}</li> /
-            {% endfor %}
-            </ul>
-        </li>
-    </ul>
-    <br>
+    <div class="container row-spacing">
+        <div id="sub-heading">
+            <h4><span class="glyphicon glyphicon-tags"></span></h4>
+            <h2>select categories</h2>
+        </div>
+        Please select the category you are interested in:
+        <div class="dropdown-box text-center">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                Categories
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                {% for category in categories.all %}
+                    <li role="presentation" class="cat_list_item" data-name="{{category.name}}">
+                        <a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+              </ul>
+            </div>
+        </div>
+    </div>
+
         <div id="statements">
             {% if statements %}
                 <strong>Never have I ever...</strong>
