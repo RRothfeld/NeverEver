@@ -1,0 +1,9 @@
+{% if statements %}
+	Never have I ever...
+    <br/>
+    {% for statement in statements %}
+        <span class="single_statement" data-title="{{statement.title}}">
+            {{ statement.title }}||
+        </span>
+    {% endfor %}
+{% endif %}

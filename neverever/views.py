@@ -83,42 +83,54 @@ def stats_test(request):
         cat_name = request.GET['cat_name']
         print cat_name
 
-    print "sup"
-    #gc = GlobalCounter.objects.all()[0]
-    results = Result.objects.all()
-    #context_dict = {'globalCounter': gc, 'results': results}
-
-    statements_list = []
     category = Category.objects.get(name=cat_name)
 
     statements = Statement.objects.filter(categories=category)
-    for statement in statements:
-        yes = 0
-        no = 0
-        print statement
+    
+    return render(request, 'neverever/statementTitles.html', {'statements': statements})
 
-        statement_answers = Result.objects.filter(statement=statement)
-        # print len(statement_answers)
-        for result in statement_answers:
-            if result.answer:
-                yes += 1
-            else:
-                no += 1
-        total = yes+no
-        if total > 0:
-            yes_percentage = (yes*100/total)
-            no_percentage = (no*100/total)
+
+def statement_info(request):
+    statement_title = ""
+    if request.method == 'GET':
+        statement_title = request.GET['title']
+
+    statement = Statement.objects.get(title=statement_title)
+    print statement
+
+    yes = 0
+    no = 0
+    print statement
+
+    statement_answers = Result.objects.filter(statement=statement)
+    # print len(statement_answers)
+    for result in statement_answers:
+        if result.answer:
+            yes += 1
         else:
-            yes_percentage = False
-            no_percentage = False
-        statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
-                                "yes_percentage": yes_percentage, "no_percentage": no_percentage})
+            no += 1
+    total = yes+no
+    if total > 0:
+        yes_percentage = (yes*100/total)
+        no_percentage = (no*100/total)
+    else:
+        yes_percentage = False
+        no_percentage = False
+    #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
+     #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
 
+    context_dict = {}
+    context_dict['title'] = statement
+    context_dict['yes'] = yes
+    context_dict['no'] = no
+    context_dict['total'] = total
+    context_dict['yes_percentage'] = yes_percentage
+    context_dict['no_percentage'] = no_percentage
     #context_dict['statements'] = statements_list
-    print "got here"
    # categories = Category.objects.all();
    # context_dict['categories'] = categories
-    return render(request, 'neverever/statementStats.html', {'statements': statements_list})
+    return render(request, 'neverever/statementStats.html', context_dict)
+
 
 
 

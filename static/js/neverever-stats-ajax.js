@@ -29,4 +29,13 @@ $(document).ready(function() {
             $('#statements').html(data);
         });
     });
+
+    $("body").on('click', '.single_statement', function() {
+        //alert("hey there")
+        var statement_title;
+        statement_title = $(this).attr('data-title');
+        $.get('/statement_info/', {title: statement_title}, function(data) {
+            $('#statement_stats').html(data);
+        });
+    });
 });

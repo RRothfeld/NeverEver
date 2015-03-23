@@ -14,4 +14,5 @@ urlpatterns = patterns('',
                        url(r'^like_statement/$', views.like_statement, name='like_statement'),
                        url(r'^set_name/$', views.set_name, name='set_name'),
                        url(r'^stats_test/$', views.stats_test, name='stats_test'),
+                       url(r'^statement_info/$', views.statement_info, name='statement_info'),
 )

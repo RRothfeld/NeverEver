@@ -8,6 +8,12 @@
     <h1>Statistics</h1>
     <h3>Under development</h3>
 
+    {% if globalCounter %}
+        <br />Total games: {{ globalCounter.total_sessions }}
+        <br />Total number of players: {{ globalCounter.total_players }}
+        <br />
+    {% endif %}
+    <br/>
     <ul class="menu"> 
         <li id="catlist">Categories - Hover Here
             <ul style="visibility: hidden">
@@ -18,58 +24,19 @@
         </li>
     </ul>
 
-    {% if globalCounter %}
-        <br />Total games: {{ globalCounter.total_sessions }}
-        <br />Total number of players: {{ globalCounter.total_players }}
-        <br />
-    {% endif %}
 <div id="statements">
     {% if statements %}
-        <br />
+        Never have I ever...
+        <br/>
         {% for statement in statements %}
-            "Never have I ever {{ statement.title }}":
-            {% if statement.total %}
-                {{ statement.yes }}
-                {% if statement.yes_percentage %}
-                    ({{ statement.yes_percentage }}%)
-                {% endif %}
-                answered Yes.
-                {{ statement.no }}
-                {% if statement.no_percentage %}
-                    ({{ statement.no_percentage }}%)
-                {% endif %}
-                answered No.
-                (Total: {{ statement.total }})
-            {% else %}
-                No answers yet.
-            {% endif %}
-            <br />
+            <span class="single_statement" data-title="{{statement.title}}">
+                {{ statement.title }}||
+            </span>
         {% endfor %}
     {% endif %}
 </div>
-    {% if results %}
-        <br /><b>Results</b><br />
-        {% for result in results %}
-            - Statement: {{ result.statement }}<br />
-            - Answer:
-            {%  if result.answer %}
-                Yes
-            {% else %}
-                No
-            {% endif %}
-            <br />
-            {% if result.nationality %}
-                - Nationality: {{ result.nationality }} <br />
-            {% endif %}
-            {% if result.age %}
-                - Age: {{ result.age }} <br />
-            {% endif %}
-            {% if result.gender %}
-                - Gender: {{ result.gender }} <br />
-            {% endif %}
-            <br />
-        {% endfor %}
-    {% endif %}
+<div id="statement_stats">
+</div>
     <br><a href="{%  url 'index' %}">Return to main page</a>
 {% endblock %}
 
