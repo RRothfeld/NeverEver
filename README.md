@@ -1,6 +1,6 @@
 # NeverEver web application
 never/ever is a web application which represents the classic drinking game "Never have I ever...". This web app is an 
-assessed team project for the course Internet Technology (M) at the University of Glasgow.
+assessed team project for the course **Internet Technology (M)** at the University of Glasgow.
 
 We aimed at developing an app that facilitate social interaction in a fun, engaging, and interactive way; brings people
 back together; and is intuitive in usage. You can play this game on any web enabled device!
@@ -10,8 +10,8 @@ friends which you never actually wanted to know - but now you do! So, have fun a
 
 Installation
 --------------
-never/ever is built using a range of technologies (i.e. especially *Django*) and requires a specific *pip* setup. Install 
-pip on your local computer. Once all pip and *Python 2.7.5* is installed, you are ready to activate our application. 
+never/ever is built using a range of technologies (i.e. especially **Django**) and requires a specific **pip** setup. Install 
+pip on your local computer. Once all pip and **Python 2.7.5** is installed, you are ready to activate our application. 
 To do so, you must first configure your virtualenv with our pip requirements, which can be found as pip-requirements.txt 
 in our repository. Download the web application and unzip the file in a local folder of your choosing. Afterwards, 
 start a terminal and navigate to the used folder. Then, execute the following command within the downloaded 
@@ -36,7 +36,7 @@ command:
 
 	python manage.py runserver
 
-This will host the app locally and can then be reached via: *http://127.0.0.1:8000/*
+This will host the app locally and can then be reached via: **http://127.0.0.1:8000/**
 
 Maintaining Deployment
 -------------
@@ -52,18 +52,18 @@ If you wish to reset the database issue the following:
 
 never/ever Instructions
 ------------
-From the homepage, a new game can be started by pressing the PLAY button.
+From the homepage, a new game can be started by pressing the *PLAY* button.
 
-Once on the play screen, new users can be added by pressing the ADD PLAYER button and player names can be updated by 
-clicking above each players' response buttons. Use the NEXT STATEMENT button to continue to the next questions once 
+Once on the play screen, new users can be added by pressing the *ADD PLAYER* button and player names can be updated by 
+clicking above each players' response buttons. Use the *NEXT STATEMENT* button to continue to the next questions once 
 each player has marked their answer to the given statement using the provided switches. 
 
-When you are finished with your game, press the YOUR STATS button as to access a few statistics about your game. 
+When you are finished with your game, press the *YOUR STATS* button as to access a few statistics about your game. 
 Here you will also be presented with an opportunity to fill in some more information on each of the players and, 
 ultimately, are able to close the session of the game. Alternatively, you can just close any browser - after on hour
 of inactivity, your session is automatically being closed for you.
 
-If you wish to add a new statement to the game, simply press NEW STATEMENT and follow the on screen instructions.
+If you wish to add a new statement to the game, simply press *NEW STATEMENT* and follow the on screen instructions.
 
 Testing
 ----------------
@@ -77,5 +77,5 @@ admin page at this point confirms that the session has been deleted (including t
 updated with info on the answers that have been provided. 
 
 From the homepage when the Add statement button is clicked, users are able to add a statement which is then included in 
-the statements model. If users miss any neccessary info, this is highlighted to them accordingly. 
+the statements model. If users miss any necessary info, this is highlighted to them accordingly. 
 
