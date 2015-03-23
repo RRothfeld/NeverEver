@@ -11,8 +11,8 @@
     {% endif %}
 
     <form id = "player_form" method = "post" action = "">
-        {% for form in forms %}
-        <b>Player {{Player.id}}</b>
+        {% for player_name, form in player_forms %}
+            <b>{{ player_name }}</b>
         {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
