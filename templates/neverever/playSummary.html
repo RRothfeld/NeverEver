@@ -83,9 +83,10 @@
 
     {% if statement_data %}
         <h3>Statements</h3>
-        {% for statement, data in statement_data %}
+        {% for statement, data, total_yes, total_no in statement_data %}
             <b>"Never have I ever {{ statement }}":</b>
             {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
+            ({{ total_yes }} Global Yes, {{ total_no }} Global No) <br />
             {% for answer in data.answers %}
                  - {{ answer.player }} answered
                 {% if answer.answer %}
