@@ -9,19 +9,25 @@
                 {{ no_percentage }}% answered No
         <br/>
         <br/>List of yes answers per nationality </br>
-        {% for nat in nat_freqs %}
-            {% if nat.0 != null %}
-                {{ nat.0 }} 
-            {% else %}
-                Unknown Nationality
-            {% endif %}
-            -- {{ nat.1 }} <br/>
-        {% endfor %}
+        {% if yes %}
+            {% for nat in nat_freqs %}
+                {% if nat.0 != null %}
+                    {{ nat.0 }} 
+                {% else %}
+                    Unknown Nationality
+                {% endif %}
+                -- {{ nat.1 }} <br/>
+            {% endfor %}
+        {% else %}
+            Actually, nobody has said they've done this yet <br/>
+        {% endif %}
         <br/>
 
         Of the yes answers: <br/>
         {{ female_percentage }}% were female and {{ male_percentage }}% were male<br/>
-        {% if female_percentage|add:male_percentage != 100 %}
+        {% if yes == 0 %}
+            Because nobody has said they've done this yet <br/>
+        {% elif female_percentage|add:male_percentage != 100 %}
             The rest did not provide their gender <br/>
         {% endif %}
         <br/>
