@@ -13,13 +13,13 @@
 {% block body_block %}
     {% if sid %}
         {% if statement %}
-            <div class="statement statement-outer text-left jumbotron">
+            <div class="neverever-box statement-outer text-left jumbotron">
                 <h3>Never have I ever...</h3>
-                <div class="statement statement-inner text-center">
+                <div class="neverever-box statement-inner text-center">
                     <h2><b>{{ statement.title }}</b></h2>
                 </div>
             </div>
-            <div class="statement text-right">
+            <div class="neverever-box text-right">
                 {% for cat in statement.categories.all %}
                   <div class="label label-default">{{ cat.name }}</div>
                 {% endfor %}
@@ -31,31 +31,29 @@
     {% endif %}
     {% if no_more_statements %}
         <div class="container-fluid text-center">
-            <p id="No-statement" class="alert alert-danger statement warning-spacing"><b class="warning-head">Sorry! :(</b><br>
+            <p id="No-statement" class="alert alert-danger neverever-box warning-spacing"><b class="warning-head">Sorry! :(</b><br>
                 <b>There are no more statements to display.You played through all of them.</b><br>
                 Please select more categories, start a new game, or add statements yourself!</p>
         </div>
     {% else %}
-    <div id="answer_zone">
+    <div id="answer_zone" class="neverever-box">
         {% get_answer_buttons this_session %}
     </div>
     {% endif %}
-
-    <div class="statement text-left">
-            <div class="inline">
-                <button id="add_button" class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-plus"></span> Add Player</button>&nbsp;
-                <!--below section adds in the like button-->
-                <button id="likes" data-title="{{statement.title}}" class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                </button>
-            </div>
-            <div class="inline inline-right">
-                <a href="{% url 'play_options' %}" class="btn btn-default">
-                    <span class="glyphicon glyphicon-cog"></span> Options</a>&nbsp;
-                <a href="{% url 'play_summary' %}" class="btn btn-warning">
-                    <span class="glyphicon glyphicon-stats"></span> Your Stats</a>
-            </div>
+    <div class="footer-buttons">
+        <div class="neverever-box text-left">
+                <div class="inline">
+                    <button id="add_button" class="btn btn-default btn-sm" type="button">Add Player</button>&nbsp;
+                    <!--below section adds in the like button-->
+                    <button id="likes" data-title="{{statement.title}}" class="btn btn-default btn-sm" type="button">
+                        Like <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                </div>
+                <div class="inline inline-right">
+                    <a href="{% url 'play_options' %}" class="btn btn-default btn-sm">Options</a>&nbsp;
+                    <a href="{% url 'play_summary' %}" class="btn btn-warning btn-sm">Your Stats</a>
+                </div>
+        </div>
     </div>
 {% endblock %}
 
@@ -64,18 +62,4 @@
     <script src="{% static "js/neverever-ajax.js" %}"></script>
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
-
-
-    <!-- outsource these tests -->
-    <!--
-    {% if nPlayers >= 6 %}
-        <script>disableAdd();</script>
-    {% endif %}
-    {% if no_more_statements %}
-        <script>
-            disableAdd();
-            disableLike();
-        </script>
-    {% endif %}
-    -->
 {% endblock %}

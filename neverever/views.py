@@ -39,7 +39,7 @@ def update_count(request):
     context_dict['nSessions'] = num_sessions
     num_players = Player.objects.count()
     context_dict['nPlayers'] = num_players
-    return render(request, 'neverever/sessionFooter.html', context_dict)
+    return render(request, 'neverever/indexFooter.html', context_dict)
 
 
 def about(request):
@@ -396,10 +396,16 @@ def play_summary(request):
         session = Session.objects.get(sid=sid)
         num_players = len(Player.objects.filter(session=session))
         forms = []
+        player_names=[]
         for i in range(0, num_players):
             forms.append(PlayerForm(prefix="form" + str(i)))
+            player = Player.objects.get(stamp=i+1)
+            if player.name:
+                player_names.append(player.name)
+            else:
+                player_names.append("Player " + str(player.stamp))
 
-    context_dict['forms'] = forms
+    context_dict['player_forms'] = zip(player_names, forms)
 
     players = Player.objects.filter(session=session).order_by('id')
     print "len(players):", len(players)
