@@ -1,6 +1,7 @@
 {% extends 'neverever/baseTemplate.html' %}
 
 {% load staticfiles %}
+{% load neverever_extras %}
 
 {% block title %} - statistics{% endblock %}
 
@@ -61,16 +62,7 @@
     </div>
 
         <div id="statements">
-            {% if statements %}
-                <strong>Never have I ever...</strong>
-                <br/>
-                {% for statement in statements %}
-                    <span class="single_statement" data-title="{{statement.title}}">
-                        {{ statement.title }}
-                    </span>
-                    ||
-                {% endfor %}
-            {% endif %}
+            {% get_statement_titles %}
         </div>
         <div id="statement_stats">
         </div>
