@@ -109,3 +109,7 @@ h1 {
 .git-spacing {
   padding: 10px 0 10px 0;
 }
+
+.cat-spacing {
+    padding: 5px 0px 5px 5px;
+}
