@@ -497,6 +497,7 @@ def add_player(request):
 
     return response
 
+
 def get_game_data(request):
     sid = request.session.session_key
     session = Session.objects.get(sid=sid)

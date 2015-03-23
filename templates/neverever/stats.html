@@ -18,11 +18,11 @@
         <br />
     {% endif %}
     <br/>
-    <ul class="menu" style="list-style-type:none; margin:0px; padding:0px"> 
-        <li id="catlist">Categories - Hover Here
-            <ul style="visibility: hidden">
+    <ul class="menu"> 
+        <li class="dropdown"> <a href ="#" data-toggle="dropdown" class="dropdown-toggle">Categories - Hover Here<b class="caret"></b></a>
+            <ul class="dropdown-menu">
             {% for category in categories %}
-                <li class="cat_list_item" style="list-style-type:none; display:inline" data-name="{{category.name}}">{{ category.name }} </li> /
+                <li class="cat_list_item" data-name="{{category.name}}">{{ category.name }} </li> /
             {% endfor %}
             </ul>
         </li>
