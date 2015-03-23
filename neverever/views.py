@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 
 from collections import Counter
-
+from operator import itemgetter
 
 import random  # Fetch random statements
 
@@ -384,6 +384,7 @@ def play_summary(request):
                                     'total_no': total_no,
                                     'total': total_yes + total_no})
 
+    player_total_yes_no = sorted(player_total_yes_no, key=itemgetter('total_yes'), reverse=True)
     context_dict['player_answers'] = player_answers
     context_dict['player_total_yes_no'] = player_total_yes_no
 
