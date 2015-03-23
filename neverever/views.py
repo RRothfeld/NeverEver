@@ -15,9 +15,6 @@ from collections import Counter
 import random  # Fetch random statements
 
 
-# TODO: fix duplicate code in play and index (detect sid)
-
-
 # view for the home page
 def index(request):
     context_dict = {}
@@ -369,12 +366,10 @@ def play_summary(request):
     context_dict['player_forms'] = zip(player_names, forms)
 
     players = Player.objects.filter(session=session).order_by('id')
-    print "len(players):", len(players)
 
     player_answers = []
     player_total_yes_no = []
     for player in players:
-        print 1
         player_answers.append(Answer.objects.filter(player=player))
 
         total_yes = Answer.objects.filter(player=player, answer=True).count()
@@ -393,9 +388,7 @@ def play_summary(request):
     for statement in statements:
         answers = Answer.objects.filter(session=session, statement=statement).order_by('player__stamp')
         count_yes = answers.filter(answer=True).count()
-        print "YES:", count_yes
         count_no = answers.filter(answer=False).count()
-        print "NO:", count_no
         count_total = len(answers)
 
         data = {'yes':count_yes,
