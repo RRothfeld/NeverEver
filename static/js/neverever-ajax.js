@@ -7,6 +7,8 @@ $(document).ready(function() {
                 $('#add_button').prop('disabled', true);
             }
 			$('input:checkbox').bootstrapSwitch();
+            $('input:checkbox').bootstrapSwitch('onText','Yeah');
+            $('input:checkbox').bootstrapSwitch('offText','Nope');
 		});
 	});
 

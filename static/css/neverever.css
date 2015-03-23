@@ -109,3 +109,8 @@ h1 {
     width: 100px;
     margin: 10px 10px;
 }
+
+.no-wrap {
+    display: inline-block;
+    white-space: nowrap;
+}
