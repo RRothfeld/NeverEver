@@ -40,8 +40,10 @@
                             <h4><span class="glyphicon glyphicon-eye-close"></span></h4>
                             <h2>classify your statement</h2>
                         </div>
-                         Adult (NSFW) or clean (SFW) content:
-                         <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
+                         Adult (NSFW) or clean (SFW) content:<br>
+                         <div class="cat-box">
+                            <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
+                         </div>
                      </div>
                 {% endif %}
                 {% if field.name == "categories" %}
@@ -56,12 +58,16 @@
                         </div>
                     {% endif %}
                     Please choose all applicable categories:
-                  <!--  {% for cat in form.categories.field.choices %}
-                    <div class="row cat-spacing">
-                        {{ cat }}-<input id="id_categories_{{ cat.0 }}" name="id_categories_{{ cat.0 }}" value="{{ cat.0 }}" type="checkbox"><br>
+                    <div class="container text-center">
+                        {% for cat in form.categories.field.choices %}
+                            <div class="cat-box text-left">
+                                {{ cat.1 }}<br><input id="id_categories_{{ cat.0 }}" name="categories" value="{{ cat.0 }}" type="checkbox">
+                            </div>
+                            {% if cat.0|divisibleby:3 %}
+                                <br>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endfor %} -->
-                    {{ field }}
                 </div>
                 {% endif %}
             {% endfor %}
@@ -85,5 +91,6 @@
         $('input:checkbox').bootstrapSwitch('size','small');
         $("[name='nsfw']").bootstrapSwitch('onText','NSFW');
         $("[name='nsfw']").bootstrapSwitch('offText','SFW');
+        $("[name='nsfw']").bootstrapSwitch('onColor','warning');
     </script>
 {% endblock %}

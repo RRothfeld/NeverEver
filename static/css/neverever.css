@@ -110,6 +110,10 @@ h1 {
   padding: 10px 0 10px 0;
 }
 
-.cat-spacing {
-    padding: 5px 0px 5px 5px;
+.cat-box {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    margin: 10px 10px;
 }
