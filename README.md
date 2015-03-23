@@ -1,5 +1,4 @@
 # NeverEver web application
-
 never/ever is a web application which represents the classic drinking game "Never have I ever...". This web app is an 
 assessed team project for the course Internet Technology (M) at the University of Glasgow.
 
@@ -51,21 +50,32 @@ If you wish to reset the database issue the following:
 
 	python emptyDBScript.py
 
-*never/*ever Instructions
+never/ever Instructions
 ------------
+From the homepage, a new game can be started by pressing the PLAY button.
 
-From the homepage, a new game can be started by pressing the play button.
+Once on the play screen, new users can be added by pressing the ADD PLAYER button and player names can be updated by 
+clicking above each players' response buttons. Use the NEXT STATEMENT button to continue to the next questions once 
+each player has marked their answer to the given statement using the provided switches. 
 
-Once on the play screen, new users can be added by pressing the add player button and player names can be updated by entering them above each players response button. Use the submit button to navigate between questions once each player has responded. 
+When you are finished with your game, press the YOUR STATS button as to access a few statistics about your game. 
+Here you will also be presented with an opportunity to fill in some more information on each of the players and, 
+ultimately, are able to close the session of the game. Alternatively, you can just close any browser - after on hour
+of inactivity, your session is automatically being closed for you.
 
-When you are finished your game, press the Your Stats button to be shown each of your responses. Here you will also be presented with an opportunity to fill in some more info on each of the players. 
+If you wish to add a new statement to the game, simply press NEW STATEMENT and follow the on screen instructions.
 
 Testing
 ----------------
+To test the application we have gone through a number of scenarios manually and tested the outcome to test whether it 
+is as expected by using the Django admin page. 
 
-To test the application we have gone through a number of scenarios manually and tested the outcome to test whether it is as expected by using the Django admin page. 
+From the homepage, clicking on the Play button starts a new session with a single player as expected. By clicking the 
+add player button a new player is added in the models. When a game is finished, the Results model is updated with info 
+on all the answers provided, including information about each of the players if this has been provided. Looking at the 
+admin page at this point confirms that the session has been deleted (including the players) and the Results model is 
+updated with info on the answers that have been provided. 
 
-From the homepage, clicking on the Play button starts a new session with a single player as expected. By clicking the add player button a new player is added in the models. When a game is finished, the Results model is updated with info on all the answers provided, including information about each of the players if this has been provided. Looking at the admin page at this point confirms that the session has been deleted (including the players) and the Results model is updated with info on the answers that have been provided. 
-
-From the homepage when the Add statement button is clicked, users are able to add a statement which is then included in the statements model. If users miss any neccessary info, this is highlighted to them accordingly. 
+From the homepage when the Add statement button is clicked, users are able to add a statement which is then included in 
+the statements model. If users miss any neccessary info, this is highlighted to them accordingly. 
 
