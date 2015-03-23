@@ -12,23 +12,12 @@ from datetime import datetime, timedelta
 
 num_hours = 1
 
+
 sessions = Session.objects.filter(last_modified__lte=datetime.now()-timedelta(hours=num_hours))
-
-# # debug line below to just bring in all sessions
-# sessions = Session.objects.all()
-# print sessions
-
-allAnswers = Answer.objects.all()
-
-for answer in allAnswers:
-    if answer.session in sessions:
-        statement = answer.statement
-        result = answer.answer
-        result = Result.objects.create(statement=statement, answer=result)
-
-
-# print len(sessions), " old sessions were detected"
+for session in sessions:
+    answers = Answer.objects.filter(player__session=session)
+    for answer in answers:
+        Result.objects.create(statement=answer.statement, answer=answer.answer, gender=answer.player.gender,
+                              nationality=answer.player.nationality, age=answer.player.age)
 
 sessions.delete()
-
-# print len(sessions), " old sessions remain"
