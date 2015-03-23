@@ -1,8 +1,6 @@
 $(document).ready(function() {
 
-    $('input:checkbox').bootstrapSwitch();
-    $('input:checkbox').bootstrapSwitch('onText','Yeah');
-    $('input:checkbox').bootstrapSwitch('offText','Nope');
+    playSwitches();
 
 	$('#add_button').click(function(){
 		$.get('/add_player/', function(data) {
@@ -10,9 +8,7 @@ $(document).ready(function() {
             if (data["nPlayers"] >= 6){
                 disableAdd();
             }
-			$('input:checkbox').bootstrapSwitch();
-            $('input:checkbox').bootstrapSwitch('onText','Yeah');
-            $('input:checkbox').bootstrapSwitch('offText','Nope');
+			playSwitches();
 		});
 	});
 
@@ -46,7 +42,7 @@ $(document).ready(function() {
 			thisname = $(this).html();
 			$.get('/set_name/', {stamp: playernum, name: thisname}, function(data) {
 				$('#answer_zone').html(data);
-				$('input:checkbox').bootstrapSwitch();
+                playSwitches();
 			});
 		}
 	});
@@ -58,6 +54,12 @@ $(document).ready(function() {
 	});
 
 });
+
+function playSwitches() {
+    $('input:checkbox').bootstrapSwitch();
+    $('input:checkbox').bootstrapSwitch('onText','Yeah');
+    $('input:checkbox').bootstrapSwitch('offText','Nope');
+}
 
 function disableAdd() {
     $('#add_button').prop('disabled', true);

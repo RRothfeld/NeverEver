@@ -45,8 +45,10 @@
                         {% if player.name != null %} 
                             {{ player.name }}
                         {% else %}
-                            <div class="editable_name" contenteditable="false" data-playernum="{{ player.stamp }}" data-toggle="popover" title="What's your name?"
-                            data-content="Click to enter your name, then press return to save!" data-trigger="hover" data-placement="top">
+                            <div class="editable_name" contenteditable="false" data-playernum="{{ player.stamp }}"
+                                 data-toggle="popover" title="What's your name?"
+                                 data-content="Click to enter your name, then press return to save!"
+                                 data-trigger="hover" data-placement="top">
                                     Player {{ player.stamp }} <span class="glyphicon glyphicon-pencil weak-glyph"></span>
                             </div>
                         {% endif %}
