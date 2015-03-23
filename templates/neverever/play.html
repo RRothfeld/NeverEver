@@ -88,12 +88,14 @@
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
 
-    <!-- GIORGOS
+    <!-- outsource these tests -->
     {% if nPlayers >= 6 %}
-        DISABLE ADD BUTTON
+        <script>disableAdd();</script>
     {% endif %}
     {% if no_more_statements %}
-        DISABLE ADD AND LIKE BUTTON
+        <script>
+            disableAdd();
+            disableLike();
+        </script>
     {% endif %}
-    -->
 {% endblock %}
