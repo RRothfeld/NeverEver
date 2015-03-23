@@ -8,6 +8,23 @@
     <h1>game statistics</h1>
     <p class="lead">Stats about your current game and player(s).</p>
 
+    <div class="container row-spacing">
+        <div id="sub-heading">
+          <h4><span class="glyphicon glyphicon-heart-empty"></span></h4>
+          <h2>thank you for playing</h2>
+        </div>
+        <div class="container text-justify">We hope you enjoyed. As to , however, we would like to ask you for some information on yourself.
+        Not to worry though, everything is anonymous!</div>
+        <div class="add-container">
+          {% if field.errors %}
+            <div class="alert alert-danger text-center" role="alert">
+                <strong>Ups!</strong> You entered wrong information.
+            </div>
+          {% endif %}
+        </div>
+     </div>
+
+
     <form id = "player_form" method = "post" action = "">
         {% for player_name, form in player_forms %}
             <b>{{ player_name }}</b>

@@ -55,7 +55,6 @@ h1 {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    width: 310px;
     margin: 5px 0;
 }
 
@@ -134,4 +133,8 @@ h1 {
   padding-top: 10px;
   width: 100px;
   margin: 0 auto;
+}
+
+.text-justify {
+    max-width: 650px;
 }
