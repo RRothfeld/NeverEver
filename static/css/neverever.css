@@ -128,3 +128,10 @@ h1 {
     width: 115px;
     margin: 10px 15px 10px 15px;
 }
+
+.dropdown-box {
+  text-align: left;
+  padding-top: 10px;
+  width: 100px;
+  margin: 0 auto;
+}
