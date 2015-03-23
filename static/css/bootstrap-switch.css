@@ -67,7 +67,7 @@
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
   color: #fff;
-  background: #428bca;
+  background: #158cba;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info {
@@ -81,7 +81,7 @@
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-warning,
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning {
-  background: #f0ad4e;
+  background: #ff851b;
   color: #fff;
 }
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger,

@@ -6597,8 +6597,8 @@ button.close {
 .btn-default:hover,
 .btn-default:focus,
 .btn-group.open .dropdown-toggle.btn-default {
-  background-color: #eeeeee;
-  border-color: #e2e2e2;
+  background-color: #dddddd;
+  border-color: #cccccc;
 }
 .btn-primary:hover,
 .btn-primary:focus,
