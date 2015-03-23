@@ -4,6 +4,10 @@
 
 {% block title %} - Statistics{% endblock %}
 
+{% block head_block %}
+    <link rel="stylesheet" href="{% static "css/stats.css" %}" />
+{% endblock %}
+
 {% block body_block %}
     <h1>Statistics</h1>
     <h3>Under development</h3>
@@ -18,7 +22,7 @@
         <li id="catlist">Categories - Hover Here
             <ul style="visibility: hidden">
             {% for category in categories %}
-                <li class="cat_list_item" style="list-style-type:none; display:inline" data-name="{{category.name}}">{{ category.name }} / </li>
+                <li class="cat_list_item" style="list-style-type:none; display:inline" data-name="{{category.name}}">{{ category.name }} </li> /
             {% endfor %}
             </ul>
         </li>
@@ -30,8 +34,9 @@
         <br/>
         {% for statement in statements %}
             <span class="single_statement" data-title="{{statement.title}}">
-                {{ statement.title }}||
+                {{ statement.title }}
             </span>
+            ||
         {% endfor %}
     {% endif %}
 </div>
