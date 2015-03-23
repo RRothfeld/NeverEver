@@ -115,7 +115,7 @@ def statement_info(request):
 
     statement_answers = Result.objects.filter(statement=statement)
     yes_nationalities = []
-    # print len(statement_answers)
+    
     print "got to start of loop"
     for result in statement_answers:
         if result.answer:
@@ -140,8 +140,6 @@ def statement_info(request):
     if yes > 0:
         female_percentage = (female_yes*100/yes)
         male_percentage = (male_yes*100/yes)
-    #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
-     #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
 
     nat_freqs = Counter(yes_nationalities).most_common()
 
@@ -155,10 +153,6 @@ def statement_info(request):
     context_dict['nat_freqs'] = nat_freqs
     context_dict['female_percentage'] = female_percentage
     context_dict['male_percentage'] = male_percentage
-    
-    #context_dict['statements'] = statements_list
-   # categories = Category.objects.all();
-   # context_dict['categories'] = categories
 
     return render(request, 'neverever/statementStats.html', context_dict)
 
@@ -458,10 +452,6 @@ def new_statement(request):
 
 
 def add_player(request):
-    #sid = None
-    #if request.method == 'GET':
-        #sid = request.GET['session_id']
-    context_dict = []
     sid = request.session.session_key
     players = 0
     if not sid:
@@ -475,32 +465,19 @@ def add_player(request):
         #create more players
         print "NEW PLAYER:", (len(players) + 1)
         Player.objects.create(stamp=(len(players) + 1), session = session)
-        #context_dict['num'] = num
-        #forms = []
-        #for i in range(0, num):
-        #    forms.append(AnswerForm(prefix="form" + str(i)))
-        #context_dict['forms'] = forms
-    #category_list = Category.objects.order_by('name')
-    #context_dict = {'categories': category_list}
-    forms = []
-    print "i got here"
 
+    forms = []
     session = Session.objects.get(sid=(sid))
 
     for i in range(0, len(players)+1):  # +1 since a new player was added
         forms.append(AnswerForm(prefix="form" + str(i)))
 
     players = Player.objects.filter(session = session)
-    print "i also got here"
     formlist = zip(forms, players)
-    print "i got here too"
-    #context_dict = {}
-    print "and i got here"
 
     rendered = str(render_to_string('neverever/answerButtons.html',
                                     {'formlist': formlist},
                                     context_instance=RequestContext(request)))
-    print type(rendered)
 
     response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}), content_type="application/json")
 
