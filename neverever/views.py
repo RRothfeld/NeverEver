@@ -10,23 +10,30 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 
 from collections import Counter
-
+from operator import itemgetter
 
 import random  # Fetch random statements
 
 
-# TODO: fix duplicate code in play and index (detect sid)
-
-
-# display home page
+# view for the home page
 def index(request):
-    return render(request, 'neverever/index.html')
+    context_dict = {}
+    sid = request.session.session_key
+    if not sid:
+        request.session.save()
+        request.session.modified = True
+        sid = request.session.session_key
+    context_dict['sid'] = sid
+    num_sessions = Session.objects.count()
+    context_dict['nSessions'] = num_sessions
+    num_players = Player.objects.count()
+    context_dict['nPlayers'] = num_players
+    return render(request, 'neverever/index.html', context_dict)
 
 # view for updating the global session and player count on home page
 # called by AJAX script 
 def update_count(request):
     context_dict = {}
-    # get num sessions and num players to use in template
     num_sessions = Session.objects.count()
     context_dict['nSessions'] = num_sessions
     num_players = Player.objects.count()
@@ -39,15 +46,14 @@ def about(request):
 
 # display overall stats page
 def stats(request):
-    # get info on total number of games and players
     gc = GlobalCounter.objects.all()[0]
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
-    # get info on total number of categories, statements and answers
+
     context_dict['nCategories'] = len(Category.objects.all())
     context_dict['nStatements'] = len(Statement.objects.all())
     context_dict['nAnswers'] = len(Answer.objects.all()) + len(Result.objects.all())
-    # get all the categories to use in template
+
     categories = Category.objects.all();
     context_dict['categories'] = categories
     return render(request, 'neverever/stats.html', context_dict)
@@ -56,11 +62,11 @@ def stats(request):
 # (called using AJAX)
 def stats_test(request):
     if request.method == 'GET':
-        # get category name received from AJAX get request
         cat_name = request.GET['cat_name']
+        print cat_name
 
-    # get list of statements within the category to pass to template
     category = Category.objects.get(name=cat_name)
+
     statements = Statement.objects.filter(categories=category)
 
     return render(request, 'neverever/statementTitles.html', {'statements': statements})
@@ -70,57 +76,49 @@ def stats_test(request):
 def statement_info(request):
     statement_title = ""
     if request.method == 'GET':
-        # get statement title received from AJAX get request
         statement_title = request.GET['title']
 
     statement = Statement.objects.get(title=statement_title)
+    print statement
 
-    # set up stats variables
     yes = 0
     no = 0
+    print statement
     female_yes = 0
     male_yes = 0
-    female_percentage = 0
-    male_percentage = 0
     yes_age=0
     no_age=0
     avg_yes_age=0
     avg_no_age=0
-    yes_nationalities = []
-    
-    # get list of answers for this statement
+
     statement_answers = Result.objects.filter(statement=statement)
+    yes_nationalities = []
 
     for result in statement_answers:
-        # if answer is yes
         if result.answer:
             yes += 1
-            # if player provided their age
             if result.age:
                 yes_age += result.age
-            # add player's nationality to nationalities list
             yes_nationalities.append(result.nationality)
-            # increment gender counts
-            if(result.gender == 'F'):
+            if(result.gender == 'f'):
                 female_yes += 1
-            elif(result.gender == 'M'):
+            elif(result.gender == 'm'):
                 male_yes += 1
-        # if answer is no
         else:
             no += 1
-            # if player provided their age
             if result.age:
                 no_age += result.age
 
     total = yes+no
-    # if answers exist, get percentage of yes and no answers
+    female_percentage = 0
+    male_percentage = 0
     if total > 0:
         yes_percentage = (yes*100/total)
         no_percentage = (no*100/total)
     else:
         yes_percentage = False
         no_percentage = False
-    # if yes answers exist, get percentage of female and male answers
+    
     if yes > 0:
         female_percentage = (female_yes*100/yes)
         male_percentage = (male_yes*100/yes)
@@ -128,10 +126,8 @@ def statement_info(request):
     if no > 0:
         avg_no_age = no_age/no
 
-    # get frequencies in which nationalities appear in yes results
     nat_freqs = Counter(yes_nationalities).most_common()
 
-    # set up context_dict with stats variable to pass to template
     context_dict = {}
     context_dict['title'] = statement
     context_dict['yes'] = yes
@@ -361,7 +357,7 @@ def play_summary(request):
         player_names = []
         for i in range(0, num_players):
             forms.append(PlayerForm(prefix="form" + str(i)))
-            player = Player.objects.get(stamp=i+1, session=session)
+            player = Player.objects.get(stamp=i+1)
             if player.name:
                 player_names.append(player.name)
             else:
@@ -370,12 +366,10 @@ def play_summary(request):
     context_dict['player_forms'] = zip(player_names, forms)
 
     players = Player.objects.filter(session=session).order_by('id')
-    print "len(players):", len(players)
 
     player_answers = []
     player_total_yes_no = []
     for player in players:
-        print 1
         player_answers.append(Answer.objects.filter(player=player))
 
         total_yes = Answer.objects.filter(player=player, answer=True).count()
@@ -385,6 +379,7 @@ def play_summary(request):
                                     'total_no': total_no,
                                     'total': total_yes + total_no})
 
+    player_total_yes_no = sorted(player_total_yes_no, key=itemgetter('total_yes'), reverse=True)
     context_dict['player_answers'] = player_answers
     context_dict['player_total_yes_no'] = player_total_yes_no
 
@@ -394,9 +389,7 @@ def play_summary(request):
     for statement in statements:
         answers = Answer.objects.filter(session=session, statement=statement).order_by('player__stamp')
         count_yes = answers.filter(answer=True).count()
-        print "YES:", count_yes
         count_no = answers.filter(answer=False).count()
-        print "NO:", count_no
         count_total = len(answers)
 
         data = {'yes':count_yes,
