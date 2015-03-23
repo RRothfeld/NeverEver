@@ -2,7 +2,7 @@
 *.sqlite3
 
 # Pycharm
-.ideas
+idea/
 
 # Migrations
 neverever/migrations/*_initial.*
