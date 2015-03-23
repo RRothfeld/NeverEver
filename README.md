@@ -34,7 +34,7 @@ To install the application you must first configure your virtualenv with the abo
 	
 	pip install -r /path/to/requirements.txt
 
-Once installed in your virtual environment, delete any existing migrations and issue the following commands
+Once installed in your virtual environment, **delete any existing migrations** and issue the following commands
 
 	python manage.py makemigrations neverever
 	python manage.py migrate
