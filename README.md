@@ -9,9 +9,9 @@ back together; and is intuitive in usage. You can play this game on any web enab
 So get together with some friends, grab a few drinks, and play some never/ever. You'll learn new things about your best
 friends which you never actually wanted to know - but now you do! So, have fun and enjoy our game.
 
-Installations
+Installation
 --------------
-The NeverEver web application is built using a range of technologies and requires the following pip set up:
+never/ever is built using a range of technologies (i.e. especially Django) and requires the following pip setup:
 
 	Django==1.7
 	dnspython==1.12.0
@@ -31,12 +31,16 @@ The NeverEver web application is built using a range of technologies and require
 	virtualenv==12.0.7
 	virtualenv-clone==0.2.5
 	virtualenvwrapper==4.3.2
-
-To install the application you must first configure your virtualenv with the above set up. The following commands will allow you to import the above pip setup:
 	
-	pip install -r /path/to/requirements.txt
+The can also find the pip-requirements.txt file within our repository. Once all pip requirements are met and python 
+2.7.5 is installed, you are ready to activate our application. To do so, you must first configure your virtualenv with 
+the above set up. Download the web application and unzip the file in a local folder of your choosing. Afterwards, 
+start a terminal and navigate to the used folder. Afterwards, execute the following command within the downloaded 
+folder as to allow you to import the pip setup and start the actual application:
+	
+	pip install -r pip-requirements.txt
 
-Once installed in your virtual environment, **delete any existing migrations** and issue the following commands
+Once pip is set up and Django working, issue the following commands:
 
 	python manage.py makemigrations neverever
 	python manage.py migrate
