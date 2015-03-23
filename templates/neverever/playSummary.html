@@ -5,6 +5,9 @@
 {% block title %} - summary{% endblock %}
 
 {% block body_block %}
+    <h1>game statistics</h1>
+    <p class="lead">Stats about your current game and player(s).</p>
+
     <form id = "player_form" method = "post" action = "">
         {% for player_name, form in player_forms %}
             <b>{{ player_name }}</b>
