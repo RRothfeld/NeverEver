@@ -94,12 +94,6 @@ def stats_test(request):
 
 def statement_info(request):
     
-    nats = ('mexican', 'mexican', 'mexican', 'spanish', 'american', 'spanish', 'greek', 'spanish', 'mexican', 'spanish')
-    print nats
-    c = Counter(nats)
-    common = c.most_common(2)
-    print common[0][0]
-
     statement_title = ""
     if request.method == 'GET':
         statement_title = request.GET['title']
@@ -112,14 +106,19 @@ def statement_info(request):
     print statement
     female_yes = 0
     male_yes = 0
+    yes_age=0
+    no_age=0
+    avg_yes_age=0
+    avg_no_age=0
 
     statement_answers = Result.objects.filter(statement=statement)
     yes_nationalities = []
-    # print len(statement_answers)
-    print "got to start of loop"
+
     for result in statement_answers:
         if result.answer:
             yes += 1
+            if result.age:
+                yes_age += result.age
             yes_nationalities.append(result.nationality)
             if(result.gender == 'f'):
                 female_yes += 1
@@ -127,7 +126,9 @@ def statement_info(request):
                 male_yes += 1
         else:
             no += 1
-    
+            if result.age:
+                no_age += result.age
+
     total = yes+no
     female_percentage = 0
     male_percentage = 0
@@ -137,9 +138,13 @@ def statement_info(request):
     else:
         yes_percentage = False
         no_percentage = False
+    
     if yes > 0:
         female_percentage = (female_yes*100/yes)
         male_percentage = (male_yes*100/yes)
+        avg_yes_age = yes_age/yes
+    if no > 0:
+        avg_no_age = no_age/no
     #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
      #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
 
@@ -155,6 +160,8 @@ def statement_info(request):
     context_dict['nat_freqs'] = nat_freqs
     context_dict['female_percentage'] = female_percentage
     context_dict['male_percentage'] = male_percentage
+    context_dict['avg_yes_age'] = avg_yes_age
+    context_dict['avg_no_age'] = avg_no_age
     
     #context_dict['statements'] = statements_list
    # categories = Category.objects.all();
@@ -458,10 +465,6 @@ def new_statement(request):
 
 
 def add_player(request):
-    #sid = None
-    #if request.method == 'GET':
-        #sid = request.GET['session_id']
-    context_dict = []
     sid = request.session.session_key
     players = 0
     if not sid:
@@ -475,32 +478,19 @@ def add_player(request):
         #create more players
         print "NEW PLAYER:", (len(players) + 1)
         Player.objects.create(stamp=(len(players) + 1), session = session)
-        #context_dict['num'] = num
-        #forms = []
-        #for i in range(0, num):
-        #    forms.append(AnswerForm(prefix="form" + str(i)))
-        #context_dict['forms'] = forms
-    #category_list = Category.objects.order_by('name')
-    #context_dict = {'categories': category_list}
-    forms = []
-    print "i got here"
 
+    forms = []
     session = Session.objects.get(sid=(sid))
 
     for i in range(0, len(players)+1):  # +1 since a new player was added
         forms.append(AnswerForm(prefix="form" + str(i)))
 
     players = Player.objects.filter(session = session)
-    print "i also got here"
     formlist = zip(forms, players)
-    print "i got here too"
-    #context_dict = {}
-    print "and i got here"
 
     rendered = str(render_to_string('neverever/answerButtons.html',
                                     {'formlist': formlist},
                                     context_instance=RequestContext(request)))
-    print type(rendered)
 
     response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}),
                             content_type="application/json")
