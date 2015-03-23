@@ -1,0 +1,23 @@
+.statement {
+  width: 80%;
+  min-width: 300px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.statement-outer {
+  margin-top: 10px;
+  background-color: #eeeeee;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 10px 0 5px 40px;
+}
+
+.inline {
+    display: inline-block;
+}

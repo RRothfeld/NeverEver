@@ -45,9 +45,9 @@ class AnswerForm(forms.ModelForm):
 
 
 class PlayerForm(forms.ModelForm):
-    gender = forms.CharField(max_length=1, help_text="Gender")
-    age = forms.IntegerField(help_text="Age")
-    nationality = forms.CharField(max_length=128, help_text="Nationality")
+    gender = forms.CharField(max_length=1, help_text="Gender", required=False)
+    age = forms.IntegerField(help_text="Age", required=False)
+    nationality = forms.CharField(max_length=128, help_text="Nationality", required=False)
 
     class Meta:
         model = Player

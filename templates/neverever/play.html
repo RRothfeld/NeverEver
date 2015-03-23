@@ -4,6 +4,7 @@
 
 {% block head_block %}
     <link rel="stylesheet" href="{% static "css/bootstrap-switch.css" %}" />
+    <link rel="stylesheet" href="{% static "css/play.css" %}" />
 {% endblock %}
 
 {% block title %} - play{% endblock %}
@@ -11,25 +12,22 @@
 {% block body_block %}
     {% if sid %}
         {% if statement %}
-            <div class="container">
-                <h2>Never have I ever <b>{{ statement.title }}</b></h2>
-                <div class="row label-spacing">
-                    {% for cat in statement.categories.all %}
-                      <div class="label label-default">{{ cat.name }}</div>
-                    {% endfor %}
-                    {% if statement.nsfw %}
-                        <div class="label label-warning">NSFW</div>
-                    {% endif %}&nbsp;&nbsp;
-                    <!--below section adds in the like button-->
-                    <button id="likes" data-title="{{statement.title}}" class="btn btn-info btn-xs" type="button">
-                        <span class="glyphicon glyphicon-thumbs-up"></span> Like
-                    </button>
+            <div class="statement statement-outer text-left jumbotron">
+                <h3>Never have I ever...</h3>
+                <div class="statement statement-inner text-center">
+                    <h2><b>{{ statement.title }}</b></h2>
                 </div>
+            </div>
+            <div class="statement text-right">
+                {% for cat in statement.categories.all %}
+                  <div class="label label-default">{{ cat.name }}</div>
+                {% endfor %}
+                {% if statement.nsfw %}
+                    <div class="label label-warning">NSFW</div>
+                {% endif %}
             </div>
         {% endif %}
     {% endif %}
-
-
     {% if no_more_statements %}
         <div class="container-fluid text-center">
             <p class="bg-warning warning-spacing"><b class="warning-head">Sorry! :(</b><br>
@@ -65,10 +63,19 @@
     {% endif %}
 
     <div class="container-fluid">
-            <div class="row row-spacing">
-                <button id="add_button" class="btn btn-default" type="button">Add Player</button>&nbsp;
-                <a href="{% url 'play_options' %}" class="btn btn-default">Options</a>&nbsp;
-                <a href="{% url 'play_summary' %}" class="btn btn-warning">Your Statistics</a>
+            <div class="text-left inline">
+                <button id="add_button" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-plus"></span> Add Player</button>&nbsp;
+                <!--below section adds in the like button-->
+                <button id="likes" data-title="{{statement.title}}" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                </button>
+            </div>
+            <div class="text-right inline">
+                <a href="{% url 'play_options' %}" class="btn btn-default">
+                    <span class="glyphicon glyphicon-cog"></span> Options</a>&nbsp;
+                <a href="{% url 'play_summary' %}" class="btn btn-warning">
+                    <span class="glyphicon glyphicon-stats"></span> Your Stats</a>
             </div>
     </div>
 {% endblock %}
