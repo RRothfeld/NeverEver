@@ -51,6 +51,10 @@ def stats(request):
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
 
+    context_dict['nCategories'] = len(Category.objects.all())
+    context_dict['nStatements'] = len(Statement.objects.all())
+    context_dict['nAnswers'] = len(Answer.objects.all()) + len(Result.objects.all())
+
     statements_list = []
 
     statements = Statement.objects.all()
