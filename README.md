@@ -47,10 +47,13 @@ This will host the website on your localhost at the following address: 127.0.0.1
 Deployment
 -------------
 
-- run deleteOldSessions.py once every hour (to delete idle sessions)
+We have also included a number of production features to ensure successful deployment.
 
-- if you wish to reset the database, run emptyDBScript.py
+The deleteOldSessions.py file should be scheduled to run once per hour to delete idle sessions using the following command:
 
-- pip file can be found in folder
+	python deleteOldSessions.py 
 
-Testing
+If you wish to reset the database issue the following:
+
+	python emptyDBScript.py
+
