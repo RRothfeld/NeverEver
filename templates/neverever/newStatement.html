@@ -17,7 +17,7 @@
 
             {% for field in form.visible_fields %}
                 {% if field.name == "title" %}
-                    <div id="sub-heading">
+                    <div class="sub-heading">
                         <h4><span class="glyphicon glyphicon-pencil"></span></h4>
                         <h2>enter your statement</h2>
                     </div>
@@ -37,7 +37,7 @@
                 {% endif %}
                 {% if field.name == "nsfw" %}
                      <div class="container row-spacing">
-                        <div id="sub-heading">
+                        <div class="sub-heading">
                             <h4><span class="glyphicon glyphicon-eye-close"></span></h4>
                             <h2>classify your statement</h2>
                         </div>
@@ -49,7 +49,7 @@
                 {% endif %}
                 {% if field.name == "categories" %}
                 <div class="container">
-                    <div id="sub-heading">
+                    <div class="sub-heading">
                         <h4><span class="glyphicon glyphicon-tags"></span></h4>
                         <h2>select categories</h2>
                     </div>

@@ -13,7 +13,7 @@
     <p class="lead">Stats about your current game and player(s).</p>
 
     <div class="container row-spacing">
-        <div id="sub-heading">
+        <div class="sub-heading">
           <h4><span class="glyphicon glyphicon-heart-empty"></span></h4>
           <h2>thank you for playing</h2>
         </div>
@@ -22,8 +22,7 @@
         <div class="add-container">
 
         </div>
-     </div>
-
+    </div>
     <form id="player_form" method="post" action="">
         {% for player_name, form in player_forms %}
             {% csrf_token %}
@@ -49,6 +48,16 @@
         </div>
     </form>
 
+    <div class="container row-spacing">
+        <div class="sub-heading">
+          <h4><span class="glyphicon glyphicon-sunglasses"></span></h4>
+          <h2>and the winner is...</h2>
+        </div>
+        Let's see who has done the most weird stuff in their lives.
+        <div class="add-container">
+
+        </div>
+    </div>
     {% if player_total_yes_no %}
         <h3>Players</h3>
         {% for player in player_total_yes_no %}

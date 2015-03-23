@@ -18,7 +18,7 @@
         {% for field in form.visible_fields %}
             {% if field.name == "nsfw" %}
                  <div class="container row-spacing">
-                    <div id="sub-heading">
+                    <div class="sub-heading">
                         <h4><span class="glyphicon glyphicon-eye-close"></span></h4>
                         <h2>enable adult content</h2>
                     </div>
@@ -29,7 +29,7 @@
                  </div>
             {% endif %}
             {% if field.name == "categories" %}
-                <div id="sub-heading">
+                <div class="sub-heading">
                     <h4><span class="glyphicon glyphicon-tags"></span></h4>
                     <h2>select categories</h2>
                 </div>
