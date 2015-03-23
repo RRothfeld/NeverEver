@@ -30,7 +30,7 @@
     {% endif %}
     {% if no_more_statements %}
         <div class="container-fluid text-center">
-            <p class="alert alert-danger statement warning-spacing"><b class="warning-head">Sorry! :(</b><br>
+            <p id="No-statement" class="alert alert-danger statement warning-spacing"><b class="warning-head">Sorry! :(</b><br>
                 <b>There are no more statements to display.You played through all of them.</b><br>
                 Please select more categories, start a new game, or add statements yourself!</p>
         </div>
@@ -91,7 +91,9 @@
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
 
+
     <!-- outsource these tests -->
+    <!--
     {% if nPlayers >= 6 %}
         <script>disableAdd();</script>
     {% endif %}
@@ -101,4 +103,5 @@
             disableLike();
         </script>
     {% endif %}
+    -->
 {% endblock %}

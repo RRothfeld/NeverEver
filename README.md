@@ -65,3 +65,13 @@ From the homepage, a new game can be started by pressing the play button.
 Once on the play screen, new users can be added by pressing the add player button and player names can be updated by entering them above each players response button. Use the submit button to navigate between questions once each player has responded. 
 
 When you are finished your game, press the Your Stats button to be shown each of your responses. Here you will also be presented with an opportunity to fill in some more info on each of the players. 
+
+Testing
+----------------
+
+To test the application we have gone through a number of scenarios manually and tested the outcome to test whether it is as expected by using the Django admin page. 
+
+From the homepage, clicking on the Play button starts a new session with a single player as expected. By clicking the add player button a new player is added in the models. When a game is finished, the Results model is updated with info on all the answers provided, including information about each of the players if this has been provided. Looking at the admin page at this point confirms that the session has been deleted (including the players) and the Results model is updated with info on the answers that have been provided. 
+
+From the homepage when the Add statement button is clicked, users are able to add a statement which is then included in the statements model. If users miss any neccessary info, this is highlighted to them accordingly. 
+
