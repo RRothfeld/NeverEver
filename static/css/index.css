@@ -1,6 +1,10 @@
-.index-bg{
-	background:url('../img/index_banner.jpg') no-repeat center center;
+body {
+    background:url('../img/index_banner.jpg') no-repeat center center;
 	background-size:cover;
+}
+
+html {
+    background-color: #222222;
 }
 
 .lead,h1 {
@@ -9,6 +13,7 @@
 
 h1 {
     font-size: 100px;
+    line-height:75%;
 }
 
 .navbar {
