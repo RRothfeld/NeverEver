@@ -1,4 +1,4 @@
-# never/ever web application
+# never/ever Web Application
 never/ever is a web application which represents the classic drinking game "Never have I ever...". This web app is an 
 assessed team project for the course **Internet Technology (M)** at the University of Glasgow.
 
