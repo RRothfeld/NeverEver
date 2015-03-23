@@ -1,4 +1,4 @@
-# NeverEver web application
+# never/ever web application
 never/ever is a web application which represents the classic drinking game "Never have I ever...". This web app is an 
 assessed team project for the course **Internet Technology (M)** at the University of Glasgow.
 
@@ -50,7 +50,7 @@ If you wish to reset the database issue the following:
 
 	python emptyDBScript.py
 
-never/ever Instructions
+Playing/Using Instructions
 ------------
 From the homepage, a new game can be started by pressing the *PLAY* button.
 
@@ -65,7 +65,7 @@ of inactivity, your session is automatically being closed for you.
 
 If you wish to add a new statement to the game, simply press *NEW STATEMENT* and follow the on screen instructions.
 
-Testing
+Application Testing
 ----------------
 To test the application we have gone through a number of scenarios manually and tested the outcome to test whether it 
 is as expected by using the Django admin page. 
