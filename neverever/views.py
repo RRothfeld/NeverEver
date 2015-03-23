@@ -39,7 +39,7 @@ def update_count(request):
     context_dict['nSessions'] = num_sessions
     num_players = Player.objects.count()
     context_dict['nPlayers'] = num_players
-    return render(request, 'neverever/sessionFooter.html', context_dict)
+    return render(request, 'neverever/indexFooter.html', context_dict)
 
 
 def about(request):
