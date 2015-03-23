@@ -29,6 +29,11 @@
                     <h4><span class="glyphicon glyphicon-tags"></span></h4>
                     <h2>select categories</h2>
                 </div>
+                {% if field.errors %}
+                    <div class="add-container alert alert-danger text-center" role="alert">
+                        <strong>Ups!</strong> Please select at least one category.
+                    </div>
+                {% endif %}
                 {{ field }}
             {% endif %}
 
