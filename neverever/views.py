@@ -9,6 +9,8 @@ from django.template import RequestContext
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponse
 
+from collections import Counter
+
 
 import random  # Fetch random statements
 
@@ -86,11 +88,18 @@ def stats_test(request):
     category = Category.objects.get(name=cat_name)
 
     statements = Statement.objects.filter(categories=category)
-    
+
     return render(request, 'neverever/statementTitles.html', {'statements': statements})
 
 
 def statement_info(request):
+    
+    nats = ('mexican', 'mexican', 'mexican', 'spanish', 'american', 'spanish', 'greek', 'spanish', 'mexican', 'spanish')
+    print nats
+    c = Counter(nats)
+    common = c.most_common(2)
+    print common[0][0]
+
     statement_title = ""
     if request.method == 'GET':
         statement_title = request.GET['title']
@@ -101,23 +110,40 @@ def statement_info(request):
     yes = 0
     no = 0
     print statement
+    female_yes = 0
+    male_yes = 0
 
     statement_answers = Result.objects.filter(statement=statement)
+    yes_nationalities = []
     # print len(statement_answers)
+    print "got to start of loop"
     for result in statement_answers:
         if result.answer:
             yes += 1
+            yes_nationalities.append(result.nationality)
+            if(result.gender == 'f'):
+                female_yes += 1
+            elif(result.gender == 'm'):
+                male_yes += 1
         else:
             no += 1
+    
     total = yes+no
+    female_percentage = 0
+    male_percentage = 0
     if total > 0:
         yes_percentage = (yes*100/total)
         no_percentage = (no*100/total)
     else:
         yes_percentage = False
         no_percentage = False
+    if yes > 0:
+        female_percentage = (female_yes*100/yes)
+        male_percentage = (male_yes*100/yes)
     #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
      #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
+
+    nat_freqs = Counter(yes_nationalities).most_common()
 
     context_dict = {}
     context_dict['title'] = statement
@@ -126,9 +152,14 @@ def statement_info(request):
     context_dict['total'] = total
     context_dict['yes_percentage'] = yes_percentage
     context_dict['no_percentage'] = no_percentage
+    context_dict['nat_freqs'] = nat_freqs
+    context_dict['female_percentage'] = female_percentage
+    context_dict['male_percentage'] = male_percentage
+    
     #context_dict['statements'] = statements_list
    # categories = Category.objects.all();
    # context_dict['categories'] = categories
+
     return render(request, 'neverever/statementStats.html', context_dict)
 
 

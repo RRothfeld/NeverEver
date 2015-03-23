@@ -1,17 +1,29 @@
 <br />
-    "Never have I ever {{ title }}":
-    <br/>
-    {{ yes }}
-    {% if yes_percentage %}
-        ({{ yes_percentage }}%)
+    {% if total %}
+        <strong>"Never have I ever {{ title }}":</strong>
+        <br/>
+        {{ yes }}
+        {% if yes_percentage %}
+            ({{ yes_percentage }}%)
+        {% endif %}
+        answered Yes.
+        <br/>
+        {{ no }}
+        {% if no_percentage %}
+            ({{ no_percentage }}%)
+        {% endif %}
+        answered No.
+        <br/>
+        (Total: {{ total }})
+        <br/>
+        <br/>List of yes answers per nationality </br>
+        {% for nat in nat_freqs %}
+            {{ nat.0 }} -- {{ nat.1 }} <br/>
+        {% endfor %}
+        <br/>
+        Of the yes answers: <br/>
+        {{ female_percentage }}% were female and {{ male_percentage }}% were male
+    {% else %}
+        No answers yet for this statement
     {% endif %}
-    answered Yes.
-    <br/>
-    {{ no }}
-    {% if no_percentage %}
-        ({{ no_percentage }}%)
-    {% endif %}
-    answered No.
-    <br/>
-    (Total: {{ total }})
 <br />
