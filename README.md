@@ -57,3 +57,11 @@ If you wish to reset the database issue the following:
 
 	python emptyDBScript.py
 
+never/**ever** Instructions
+------------
+
+From the homepage, a new game can be started by pressing the play button.
+
+Once on the play screen, new users can be added by pressing the add player button and player names can be updated by entering them above each players response button. Use the submit button to navigate between questions once each player has responded. 
+
+When you are finished your game, press the Your Stats button to be shown each of your responses. Here you will also be presented with an opportunity to fill in some more info on each of the players. 
