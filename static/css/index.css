@@ -27,6 +27,7 @@ h1 {
 .vertical-center {
   min-height: 40%;
   min-height: 40vh;
+  margin-bottom: 20px;
 
   display: flex;
   align-items: center;
