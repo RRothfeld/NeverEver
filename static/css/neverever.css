@@ -106,12 +106,11 @@ h1 {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    width: 80px;
+    width: 100px;
     margin: 10px 10px;
 }
 
-.cat-sep {
+.no-wrap {
     display: inline-block;
-    max-width: 10px;
-    width: 0%;
+    white-space: nowrap;
 }
