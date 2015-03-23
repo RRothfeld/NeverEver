@@ -25,6 +25,15 @@
 
     </form>
 
+    {% if player_total_yes_no %}
+        <h3>Players</h3>
+        {% for player in player_total_yes_no %}
+            {{ player.player }}: {{ player.total_yes }} 'Yes' ; {{ player.total_no }} 'No'.
+            (Total: {{ player.total }})
+            <br />
+        {% endfor %}
+    {% endif %}
+
     {% if player_answers %}
         <br /><b>Answers</b><br />
         {% for answers in player_answers %}
