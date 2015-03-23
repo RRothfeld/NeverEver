@@ -1,0 +1,38 @@
+.statement {
+  width: 90%;
+  min-width: 250px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.statement-outer {
+  margin-top: 10px;
+  background-color: #eeeeee;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 0px 0 5px 40px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.inline-right {
+    float: right;
+}
+
+
+.warning-spacing {
+  padding: 15px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.warning-head {
+  font-size: 48px;
+}

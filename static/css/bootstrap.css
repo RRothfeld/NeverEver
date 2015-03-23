@@ -4956,7 +4956,6 @@ a.thumbnail.active {
 }
 .alert-warning {
   background-color: #ff851b;
-  border-color: #ff7701;
   color: #ffffff;
 }
 .alert-warning hr {
@@ -4967,7 +4966,6 @@ a.thumbnail.active {
 }
 .alert-danger {
   background-color: #ff4136;
-  border-color: #ff1103;
   color: #ffffff;
 }
 .alert-danger hr {
@@ -6937,6 +6935,7 @@ a.list-group-item-danger.active:focus {
 }
 .jumbotron {
   border: 1px solid #dddddd;
+  border-radius: 10px;
   -webkit-box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.05);
 }
