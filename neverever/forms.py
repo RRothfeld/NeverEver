@@ -45,7 +45,7 @@ class AnswerForm(forms.ModelForm):
 
 
 class PlayerForm(forms.ModelForm):
-    genders = (('F', 'Female'), ('M', 'Male'),)
+    genders = (('', 'N/A'),('F', 'Female'), ('M', 'Male'),)
     gender = forms.ChoiceField(choices=genders, help_text="Gender", required=False)
     age = forms.IntegerField(help_text="Age", required=False)
     nationality = forms.CharField(max_length=128, help_text="Nationality", required=False)
