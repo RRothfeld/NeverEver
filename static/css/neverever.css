@@ -1,5 +1,9 @@
 html,body {height:100%;}
 
+body {
+    background-color: #f9f9f9;
+}
+
 .btn-ne-main {
   width: 15%;
   min-width: 175px;
