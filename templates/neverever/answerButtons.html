@@ -2,7 +2,7 @@
     {% for form, player in formlist %}
         {% csrf_token %}
         {% for field in form.visible_fields %}
-        <div class="player-box">
+        <div class="switch-box">
             <span class="player-name text-left">
                 <div class="editable_name" contenteditable="false" data-playernum="{{ player.stamp }}"
                      data-toggle="popover" title="What's your name?"

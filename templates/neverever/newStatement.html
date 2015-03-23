@@ -42,7 +42,7 @@
                             <h2>classify your statement</h2>
                         </div>
                          Adult (NSFW) or clean (SFW) content:<br>
-                         <div class="cat-box">
+                         <div class="switch-box">
                             <input id="{{ field.auto_id }}" name="{{ field.html_name }}" type="checkbox">
                          </div>
                      </div>
@@ -59,14 +59,11 @@
                         </div>
                     {% endif %}
                     Please choose all applicable categories:
-                    <div class="container text-center">
+                    <div class="neverever-box ne-box-adjust text-center">
                         {% for cat in form.categories.field.choices %}
-                            <div class="cat-box text-left">
+                            <div class="switch-box text-left">
                                 {{ cat.1 }}<br><input id="id_categories_{{ cat.0 }}" name="categories" value="{{ cat.0 }}" type="checkbox">
                             </div>
-                            {% if cat.0|divisibleby:3 %}
-                                <br>
-                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -87,6 +84,6 @@
 {% block footer_block %}
     <!-- Switch -->
     <script src="{% static "js/bootstrap-switch.js" %}"></script>
-    <script src="{% static "js/switch-button.js" %}"></script>
+    <script src="{% static "js/switch-buttons.js" %}"></script>
     <script src="{% static "js/nsfw-button.js" %}"></script>
 {% endblock %}

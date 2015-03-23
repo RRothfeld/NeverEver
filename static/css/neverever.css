@@ -109,3 +109,22 @@ h1 {
     display: inline-block;
     white-space: nowrap;
 }
+
+.neverever-box {
+  width: 90%;
+  min-width: 250px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.ne-box-adjust {
+  padding-left: 40px;
+}
+
+.switch-box {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 115px;
+    margin: 10px 15px 10px 15px;
+}
