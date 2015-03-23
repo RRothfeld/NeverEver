@@ -27,7 +27,7 @@ Once pip is set up and Django working, issue the following commands:
 	python populationScript.py
 	
 Technically, the web application is now able to run locally. To be able to access the Django administration features 
-however, you should create an admin account via this command (you can use "admin" as name and password for local 
+however, you should create an admin account using the following command (you can use "admin" as name and password for local 
 testing):
 	
 	python manage.py createsuperuser
@@ -39,9 +39,9 @@ command:
 
 This will host the website locally and, thus, can be reached via the following address: http://127.0.0.1:8000/
 
-Deployment
+Maintaining Deployment
 -------------
-We have also included a number of production features to ensure successful deployment.
+We have included additional production features to ensure successful, long-term deployment.
 
 The deleteOldSessions.py file should be scheduled to run once per hour to delete idle sessions using the following command:
 
@@ -51,7 +51,7 @@ If you wish to reset the database issue the following:
 
 	python emptyDBScript.py
 
-never/**ever** Instructions
+never/*ever* Instructions
 ------------
 
 From the homepage, a new game can be started by pressing the play button.
