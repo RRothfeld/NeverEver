@@ -18,6 +18,7 @@ import random  # Fetch random statements
 # TODO: fix duplicate code in play and index (detect sid)
 
 
+# view for the home page
 def index(request):
     context_dict = {}
     sid = request.session.session_key
@@ -32,7 +33,8 @@ def index(request):
     context_dict['nPlayers'] = num_players
     return render(request, 'neverever/index.html', context_dict)
 
-
+# view for updating the global session and player count on home page
+# called by AJAX script 
 def update_count(request):
     context_dict = {}
     num_sessions = Session.objects.count()
@@ -41,45 +43,22 @@ def update_count(request):
     context_dict['nPlayers'] = num_players
     return render(request, 'neverever/indexFooter.html', context_dict)
 
-
+# display about page
 def about(request):
     return render(request, 'neverever/about.html')
 
-
+# display overall stats page
 def stats(request):
     gc = GlobalCounter.objects.all()[0]
     results = Result.objects.all()
     context_dict = {'globalCounter': gc, 'results': results}
 
-    statements_list = []
-
-    statements = Statement.objects.all()
-    for statement in statements:
-        yes = 0
-        no = 0
-
-        statement_answers = Result.objects.filter(statement=statement)
-        # print len(statement_answers)
-        for result in statement_answers:
-            if result.answer:
-                yes += 1
-            else:
-                no += 1
-        total = yes+no
-        if total > 0:
-            yes_percentage = (yes*100/total)
-            no_percentage = (no*100/total)
-        else:
-            yes_percentage = False
-            no_percentage = False
-        statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
-                                "yes_percentage": yes_percentage, "no_percentage": no_percentage})
-
-    context_dict['statements'] = statements_list
     categories = Category.objects.all();
     context_dict['categories'] = categories
     return render(request, 'neverever/stats.html', context_dict)
 
+# display statements within chosen category on overall stats page
+# (called using AJAX)
 def stats_test(request):
     if request.method == 'GET':
         cat_name = request.GET['cat_name']
@@ -91,9 +70,9 @@ def stats_test(request):
 
     return render(request, 'neverever/statementTitles.html', {'statements': statements})
 
-
+# display statistics on an individual statement on overall stats page
+# (called using AJAX)
 def statement_info(request):
-    
     statement_title = ""
     if request.method == 'GET':
         statement_title = request.GET['title']
@@ -145,8 +124,6 @@ def statement_info(request):
         avg_yes_age = yes_age/yes
     if no > 0:
         avg_no_age = no_age/no
-    #statements_list.append({'title': statement, "yes": yes, "no": no, "total": total,
-     #                       "yes_percentage": yes_percentage, "no_percentage": no_percentage})
 
     nat_freqs = Counter(yes_nationalities).most_common()
 
@@ -162,18 +139,11 @@ def statement_info(request):
     context_dict['male_percentage'] = male_percentage
     context_dict['avg_yes_age'] = avg_yes_age
     context_dict['avg_no_age'] = avg_no_age
-    
-    #context_dict['statements'] = statements_list
-   # categories = Category.objects.all();
-   # context_dict['categories'] = categories
 
     return render(request, 'neverever/statementStats.html', context_dict)
 
-
-
-
+# display the gameplay page
 def play(request):
-
     context_dict = {}
     sid = request.session.session_key
     SESSION_NSFW = False
@@ -195,7 +165,7 @@ def play(request):
         session.nsfw = SESSION_NSFW
         for cat in Category.objects.all():
             session.categories.add(cat)
-        # s.players[0] = Player.objects.get_or_create(stamp=123)  # TODO: CHANGE TO create()
+
         session.save()
         # manually creating player 1
         p1 = Player.objects.create(stamp=1, session=session)
@@ -237,20 +207,8 @@ def play(request):
             else:
                 print forms[i].errors
 
-    # displays a form for each player
 
-    session = Session.objects.get(sid=sid)
-    num_players = len(Player.objects.filter(session=session))
-    forms = []
-    for i in range(0, num_players):
-        forms.append(AnswerForm(prefix="form" + str(i)))
-
-    #context_dict['forms'] = forms
-    #context_dict['players'] = Player.objects.all()
-    players = Player.objects.filter(session = session)
-    formlist = zip(forms, players)
-    context_dict['formlist'] = formlist
-    #context_dict['range'] = range(num_players)
+    #num_players = len(Player.objects.filter(session=session))
 
     # Pick a random statement from the selected categories
     while True:
@@ -282,33 +240,33 @@ def play(request):
     # Testing
     session.last_statement = rand_statement
     session.save()
-    # TESTING
+
     context_dict['this_session'] = session
 
+    num_players = len(Player.objects.filter(session=session))
     context_dict["nPlayers"] = num_players
     
     response = render(request, 'neverever/play.html', context_dict)
     return response
 
-
+# display the number of likes for a statement on the gameplay page
 def like_statement(request):
-    print "getting to the top of the like statement function"
     title = None
     if request.method == 'GET':
         title = request.GET['title']
-    print title
+
     likes = 0
     if title:
         statement = Statement.objects.get(title=title)
         if statement:
             likes = statement.likes+1
             statement.likes = likes
-            print statement.likes
             statement.save()
 
     return HttpResponse(likes)
 
-
+# view to save names entered by the players on the gameplay page
+# and display the updated page using AJAX
 def set_name(request):
     name = request.GET['name']
     num = request.GET['stamp']
@@ -329,7 +287,7 @@ def set_name(request):
 
     return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
 
-
+# display the end of game summary page
 def play_summary(request):
     context_dict = {}
     sid = request.session.session_key
@@ -348,7 +306,7 @@ def play_summary(request):
         session = Session.objects.get(sid=sid)
         num_players = len(Player.objects.filter(session=session))
         forms = []
-        print num_players
+
         for i in range(0, num_players):
             #count = 1
             p = Player.objects.get(stamp=i+1, session=session)  # TODO change so different player
@@ -379,7 +337,6 @@ def play_summary(request):
                 #use create not get_or_create as results don't have to be unique
                 result = Result.objects.create(statement=statement, answer=ans, gender=gender,
                                                       nationality=nationality, age=age)
-                print "getting to saving response"
 
         # end session
         try:
@@ -439,7 +396,7 @@ def play_summary(request):
     response = render(request, 'neverever/playSummary.html', context_dict)
     return response
 
-
+# display the options page
 def play_options(request):
     context_dict = {}
 
@@ -462,7 +419,7 @@ def play_options(request):
     context_dict['form'] = form
     return render(request, 'neverever/playOptions.html', context_dict)
 
-
+# display page to add new statement
 def new_statement(request):
     context_dict = {}
 
@@ -487,7 +444,7 @@ def new_statement(request):
 
     return render(request, 'neverever/newStatement.html', {'form': form})
 
-
+# view to add a player during game and display the updated page using AJAX
 def add_player(request):
     sid = request.session.session_key
     players = 0

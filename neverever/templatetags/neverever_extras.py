@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django import template
 
-from neverever.models import Player
+from neverever.models import Player, Statement
 from neverever.forms import AnswerForm
 
 
@@ -21,3 +21,9 @@ def get_answer_buttons(session):
     formlist = zip(forms, players)
     
     return {'formlist': formlist}
+
+@register.inclusion_tag('neverever/statementTitles.html')
+def get_statement_titles():
+    statements = Statement.objects.all()
+
+    return {'statements': statements}
