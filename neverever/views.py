@@ -118,7 +118,7 @@ def stats_test(request):
     print "got here"
    # categories = Category.objects.all();
    # context_dict['categories'] = categories
-    return render(request, 'neverever/statement_stats.html', {'statements': statements_list})
+    return render(request, 'neverever/statementStats.html', {'statements': statements_list})
 
 
 
