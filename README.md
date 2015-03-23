@@ -11,31 +11,11 @@ friends which you never actually wanted to know - but now you do! So, have fun a
 
 Installation
 --------------
-never/ever is built using a range of technologies (i.e. especially Django) and requires the following pip setup:
-
-	Django==1.7
-	dnspython==1.12.0
-	ecdsa==0.13
-	Electrum==2.0.1
-	pbkdf2==1.3
-	pbr==0.10.7
-	protobuf==3.0.0a1
-	pyasn1==0.1.7
-	pyasn1-modules==0.0.5
-	qrcode==5.1
-	requests==2.5.3
-	six==1.9.0
-	slowaes==0.1a1
-	stevedore==1.2.0
-	tlslite==0.4.8
-	virtualenv==12.0.7
-	virtualenv-clone==0.2.5
-	virtualenvwrapper==4.3.2
-	
-The can also find the pip-requirements.txt file within our repository. Once all pip requirements are met and python 
-2.7.5 is installed, you are ready to activate our application. To do so, you must first configure your virtualenv with 
-the above set up. Download the web application and unzip the file in a local folder of your choosing. Afterwards, 
-start a terminal and navigate to the used folder. Afterwards, execute the following command within the downloaded 
+never/ever is built using a range of technologies (i.e. especially Django) and requires a specific pip setup. Install 
+pip on your local computer. Once all pip and python 2.7.5 is installed, you are ready to activate our application. 
+To do so, you must first configure your virtualenv with our pip requirements, which can be found as pip-requirements.txt 
+in our repository. Download the web application and unzip the file in a local folder of your choosing. Afterwards, 
+start a terminal and navigate to the used folder. Then, execute the following command within the downloaded 
 folder as to allow you to import the pip setup and start the actual application:
 	
 	pip install -r pip-requirements.txt
@@ -45,10 +25,19 @@ Once pip is set up and Django working, issue the following commands:
 	python manage.py makemigrations neverever
 	python manage.py migrate
 	python populationScript.py
-	python manage.py createsuperuser (make admin admin)
+	
+Technically, the web application is now able to run locally. To be able to access the Django administration features 
+however, you should create an admin account via this command (you can use "admin" as name and password for local 
+testing):
+	
+	python manage.py createsuperuser
+	
+Alright, your local web application is ready to be played. Simply start the application by issueing the following 
+command:
+
 	python manage.py runserver
 
-This will host the website on your localhost at the following address: 127.0.0.1:8000
+This will host the website locally and, thus, can be reached via the following address: http://127.0.0.1:8000/
 
 Deployment
 -------------
