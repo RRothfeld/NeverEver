@@ -24,8 +24,7 @@
         </div>
      </div>
 
-
-    <form id = "player_form" method = "post" action = "">
+    <form id="player_form" method="post" action="">
         {% for player_name, form in player_forms %}
             {% csrf_token %}
             <strong>{{ player_name }}</strong><br>
