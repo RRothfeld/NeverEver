@@ -56,14 +56,6 @@ h1 {
   margin: 0 auto;
 }
 
-.vertical-center {
-  min-height: 45%;
-  min-height: 45vh;
-
-  display: flex;
-  align-items: center;
-}
-
 .team-box {
     display: inline-block;
     margin-left: auto;
