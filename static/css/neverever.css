@@ -56,14 +56,6 @@ h1 {
   margin: 0 auto;
 }
 
-.vertical-center {
-  min-height: 45%;
-  min-height: 45vh;
-
-  display: flex;
-  align-items: center;
-}
-
 .team-box {
     display: inline-block;
     margin-left: auto;
@@ -110,6 +102,10 @@ h1 {
   padding: 10px 0 10px 0;
 }
 
-.cat-spacing {
-    padding: 5px 0px 5px 5px;
+.cat-box {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    margin: 10px 10px;
 }

@@ -21,8 +21,12 @@
                     <h4><span class="glyphicon glyphicon-eye-open"></span></h4>
                     <h2>enable adult content</h2>
                 </div>
-                Enable NSFW (adult content) statements:
-                {{ field }}
+                Enable NSFW (adult content) statements:<br>
+                <div class="cat-box">
+                   <input id="{{ field.auto_id }}" name="{{ field.html_name }}"
+                          {% if field.value %}checked="checked"{% endif %}
+                          type="checkbox">
+                </div>
             {% endif %}
             {% if field.name == "categories" %}
                 <div id="sub-heading">
@@ -34,7 +38,20 @@
                         <strong>Ups!</strong> Please select at least one category.
                     </div>
                 {% endif %}
-                {{ field }}
+                Please choose your preferred categories:
+                <div class="container text-center">
+                    {% for cat in form.categories.field.choices %}
+                        <div class="cat-box text-left">
+                            {{ cat.1 }}<br>
+                            <input id="id_categories_{{ cat.0 }}"
+                                   {% if cat.0 in field.value %}checked="checked"{% endif %}
+                                   name="categories" value="{{ cat.0 }}" type="checkbox">
+                        </div>
+                        {% if cat.0|divisibleby:3 %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             {% endif %}
 
         {% endfor %}
@@ -58,5 +75,8 @@
     <script>
         $('input:checkbox').bootstrapSwitch();
         $('input:checkbox').bootstrapSwitch('size','small');
+        $("[name='nsfw']").bootstrapSwitch('onText','NSFW');
+        $("[name='nsfw']").bootstrapSwitch('offText','SFW');
+        $("[name='nsfw']").bootstrapSwitch('onColor','warning');
     </script>
 {% endblock %}
