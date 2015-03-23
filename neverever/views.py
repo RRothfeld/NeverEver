@@ -115,7 +115,7 @@ def statement_info(request):
 
     statement_answers = Result.objects.filter(statement=statement)
     yes_nationalities = []
-    
+
     print "got to start of loop"
     for result in statement_answers:
         if result.answer:
