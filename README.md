@@ -10,8 +10,8 @@ friends which you never actually wanted to know - but now you do! So, have fun a
 
 Installation
 --------------
-never/ever is built using a range of technologies (i.e. especially Django) and requires a specific pip setup. Install 
-pip on your local computer. Once all pip and python 2.7.5 is installed, you are ready to activate our application. 
+never/ever is built using a range of technologies (i.e. especially *Django*) and requires a specific *pip* setup. Install 
+pip on your local computer. Once all pip and *Python 2.7.5* is installed, you are ready to activate our application. 
 To do so, you must first configure your virtualenv with our pip requirements, which can be found as pip-requirements.txt 
 in our repository. Download the web application and unzip the file in a local folder of your choosing. Afterwards, 
 start a terminal and navigate to the used folder. Then, execute the following command within the downloaded 
@@ -31,12 +31,12 @@ testing):
 	
 	python manage.py createsuperuser
 	
-Alright, your local web application is ready to be played. Simply start the application by issueing the following 
+Alright, your local web application is ready to be played. Simply start the application by issuing the following 
 command:
 
 	python manage.py runserver
 
-This will host the website locally and, thus, can be reached via the following address: http://127.0.0.1:8000/
+This will host the app locally and can then be reached via: *http://127.0.0.1:8000/*
 
 Maintaining Deployment
 -------------
