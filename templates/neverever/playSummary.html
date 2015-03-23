@@ -5,11 +5,6 @@
 {% block title %} - summary{% endblock %}
 
 {% block body_block %}
-
-    {% if session %}
-        <b>Session status: </b> {{ session }} <br />
-    {% endif %}
-
     <form id = "player_form" method = "post" action = "">
         {% for form in forms %}
         <b>Player {{Player.id}}</b>

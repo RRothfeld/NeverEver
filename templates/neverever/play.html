@@ -66,19 +66,20 @@
         </form>
     </div>
     {% endif %}
-
-    <div class="neverever-box text-left">
-            <div class="inline">
-                <button id="add_button" class="btn btn-default btn-sm" type="button">Add Player</button>&nbsp;
-                <!--below section adds in the like button-->
-                <button id="likes" data-title="{{statement.title}}" class="btn btn-default btn-sm" type="button">
-                    Like <span class="glyphicon glyphicon-thumbs-up"></span>
-                </button>
-            </div>
-            <div class="inline inline-right">
-                <a href="{% url 'play_options' %}" class="btn btn-default btn-sm">Options</a>&nbsp;
-                <a href="{% url 'play_summary' %}" class="btn btn-warning btn-sm">Your Stats</a>
-            </div>
+    <div class="footer-buttons">
+        <div class="neverever-box text-left">
+                <div class="inline">
+                    <button id="add_button" class="btn btn-default btn-sm" type="button">Add Player</button>&nbsp;
+                    <!--below section adds in the like button-->
+                    <button id="likes" data-title="{{statement.title}}" class="btn btn-default btn-sm" type="button">
+                        Like <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                </div>
+                <div class="inline inline-right">
+                    <a href="{% url 'play_options' %}" class="btn btn-default btn-sm">Options</a>&nbsp;
+                    <a href="{% url 'play_summary' %}" class="btn btn-warning btn-sm">Your Stats</a>
+                </div>
+        </div>
     </div>
 {% endblock %}
 
