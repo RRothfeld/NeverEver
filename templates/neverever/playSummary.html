@@ -74,11 +74,11 @@
         {% if statement_data %}
             <div class="neverever-box text-left">
                 <table class="table table-condensed">
-                    <thead><tr>
-                        <th>Statement</th><th>Done It</th><th>Game Answers</th><th>Global Answers</th>
-                    </tr></thead><tbody>
+                    <tr>
+                        <th>Statement</th><th>Done It</th><th>Game Answers</th><th>Global Answers</th><th></th>
+                    </tr><tbody>
                     {% for statement, data, total_yes, total_no in statement_data %}
-                        <tr>
+                        <tr class="light-line">
                             <td>Never have I ever <strong>{{ statement }}</strong></td>
                             <td>
                                 {% for answer in data.answers %}
@@ -87,8 +87,17 @@
                                     {% endif %}
                                 {% endfor %}
                             </td>
-                            <td>{% widthratio data.yes data.total 100 %}%</td>
-                            <td>{% widthratio total_yes total_yes|add:total_no 100 %}%</td>
+                            <td class="text-center">{% widthratio data.yes data.total 100 %}%</td>
+                            <td class="text-center">{% widthratio total_yes total_yes|add:total_no 100 %}%</td>
+                            <td>
+                                {% widthratio data.yes data.total 100 as percentGame %}
+                                {% widthratio total_yes total_yes|add:total_no 100 as percentTotal %}
+                                {% if percentGame >= percentTotal %}
+                                    <span class="glyphicon glyphicon-ok text-primary"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-remove text-warning"></span>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody></table>
