@@ -482,15 +482,7 @@ def add_player(request):
         # create new player in this session
         Player.objects.create(stamp=(len(players) + 1), session = session)
 
-    forms = []
-    # add a form for each player to list
-    for i in range(0, len(players)+1):  # +1 since a new player was added
-        forms.append(AnswerForm(prefix="form" + str(i)))
-
-    # get list of players in this session
-    players = Player.objects.filter(session = session)
-    # zip list of forms and players so that we can loop through both in the template
-    formlist = zip(forms, players)
+    formlist = get_answer_forms(session)
 
     rendered = str(render_to_string('neverever/answerButtons.html',
                                     {'formlist': formlist},
@@ -507,3 +499,15 @@ def get_game_data(request):
     session = Session.objects.get(sid=sid)
     num_players = len(Player.objects.filter(session=session))
     return HttpResponse(json.dumps({'nPlayers': num_players}), content_type="application/json")
+
+def get_answer_forms(session):
+    # get list of players
+    players = Player.objects.filter(session = session)
+    forms = []
+    # add a form for each player to list of forms
+    for i in range(0, len(players)):  # +1 since a new player was added
+        forms.append(AnswerForm(prefix="form" + str(i)))
+    # zip list of forms and players so that we can loop through both in the template   
+    formlist = zip(forms, players)
+    return formlist
+
