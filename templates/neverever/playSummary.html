@@ -55,49 +55,40 @@
         </div>
         Let's see who has done the most weird stuff in their lives.
         <div class="add-container">
+            <span class="glyphicon glyphicon-star"></span>
             {% if player_total_yes_no %}
                 {% for player in player_total_yes_no %}
-                    {{ player.player }}: {{ player.total_yes }} 'Yes' ; {{ player.total_no }} 'No'.
-                    (Total: {{ player.total }})
-                    <br />
+                    <strong>{{ player.player }}</strong>
+                    has done {{ player.total_yes }} out of {{ player.total }} statements.<br>
                 {% endfor %}
             {% endif %}
         </div>
     </div>
 
-
-
-    {% if player_answers %}
-        <br /><b>Answers</b><br />
-        {% for answers in player_answers %}
-            {% for answer in answers %}
-                {% if answer.player.name %}
-                    {{ answer.player.name }}
-                {% else %}
-                    Player {{ answer.player.stamp }}
-                {% endif %}
-                answered {{ answer.answer }} for "{{ answer.statement }}" <br />
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
-
-    {% if statement_data %}
-        <h3>Statements</h3>
-        {% for statement, data in statement_data %}
-            <b>"Never have I ever {{ statement }}":</b>
-            {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
-            {% for answer in data.answers %}
-                 - {{ answer.player }} answered
-                {% if answer.answer %}
-                    "Yes"
-                {% else %}
-                    "No"
-                {% endif %}
-                <br />
-            {% endfor %}
-            <br />
-        {% endfor %}
-    {% endif %}
-
-
+    <div class="container row-spacing">
+        <div class="sub-heading">
+          <h4><span class="glyphicon glyphicon-stats"></span></h4>
+          <h2>all your answered statements</h2>
+        </div>
+        You probably don't want a full recap of what you've just admitted, but here it is nonetheless:
+        <div class="add-container">
+            {% if statement_data %}
+                {% for statement, data, total_yes, total_no in statement_data %}
+                    <b>"Never have I ever {{ statement }}":</b>
+                    {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
+                    ({{ total_yes }} Global Yes, {{ total_no }} Global No) <br />
+                    {% for answer in data.answers %}
+                         - {{ answer.player }} answered
+                        {% if answer.answer %}
+                            "Yes"
+                        {% else %}
+                            "No"
+                        {% endif %}
+                        <br />
+                    {% endfor %}
+                    <br />
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock %}
