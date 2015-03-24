@@ -87,21 +87,29 @@
                                     {% endif %}
                                 {% endfor %}
                             </td>
-                            <td class="text-center">{% widthratio data.yes data.total 100 %}%</td>
-                            <td class="text-center">{% widthratio total_yes total_yes|add:total_no 100 %}%</td>
-                            <td>
+                            <td class="text-center">
                                 {% widthratio data.yes data.total 100 as percentGame %}
+                                {{ percentGame }}%
+                            </td>
+                            <td class="text-center">
                                 {% widthratio total_yes total_yes|add:total_no 100 as percentTotal %}
-                                {% if percentGame >= percentTotal %}
-                                    <span class="glyphicon glyphicon-ok text-primary"></span>
+                                {{ percentTotal }}%
+                            </td>
+                            <td>
+                                <!-- Django problem with < or > operations with percentGame being 100 -->
+                                {% widthratio data.yes data.total 99 as percentGame %}
+                                {% if percentGame < percentTotal %}
+                                    <span class="glyphicon glyphicon-remove"></span>
                                 {% else %}
-                                    <span class="glyphicon glyphicon-remove text-warning"></span>
+                                    <span class="glyphicon glyphicon-ok text-primary"></span>
                                 {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody></table>
             </div>
+        {% else %}
+            <div class="neverever-box text-center"><br><strong>Well, you have to play first!</strong></div>
         {% endif %}
     </div>
 {% endblock %}
