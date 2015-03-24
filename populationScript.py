@@ -8,6 +8,7 @@ django.setup()
 
 from neverever.models import Category, Statement, Session, Player, Answer, GlobalCounter, Result
 
+VERBOSE = 0
 
 def populate():
 
@@ -168,7 +169,8 @@ def populate():
 
 def add_category(name):
     c = Category.objects.get_or_create(name=name)[0]
-    print "Adding category " + str(name)
+    if VERBOSE:
+        print "Adding category " + str(name)
     return c
 
 def add_statement(categories, title, views=0, nsfw=False):
@@ -176,7 +178,8 @@ def add_statement(categories, title, views=0, nsfw=False):
     for category in categories:
         s.categories.add(category)
     s.save()
-    print "Adding statement " + str(title)
+    if VERBOSE:
+        print "Adding statement " + str(title)
     return s
 
 def add_session(sid, categories):
@@ -184,13 +187,15 @@ def add_session(sid, categories):
     for category in categories:
         s.categories.add(category)
     s.save()
-    print "Adding session " + str(s.sid)
+    if VERBOSE:
+        print "Adding session " + str(s.sid)
     return s
 
 def add_player(stamp):
     p = Player.objects.get_or_create(stamp=stamp)[0]
     p.save()
-    print "Adding player " + str(p.stamp)
+    if VERBOSE:
+        print "Adding player " + str(p.stamp)
     return p
 
 def add_answer(stamp, session, statement, player, answer):
@@ -200,22 +205,26 @@ def add_answer(stamp, session, statement, player, answer):
     a.player = player
     a.answer = answer
     a.save()
-    print "Adding answer " + str(a.stamp)
+    if VERBOSE:
+        print "Adding answer " + str(a.stamp)
     return a
 
 def add_global_counters(t_sessions, t_players):
     gc = GlobalCounter.objects.create(total_sessions=t_sessions, total_players=t_players)
-    print "Adding global counter " + str(gc)
+    if VERBOSE:
+        print "Adding global counter " + str(gc)
     return gc
 
 def add_result(statement, answer, gender=None, nationality=None, age=None):
     result = Result.objects.create(statement=statement, answer=answer, gender=gender, nationality=nationality,
                                    age=age)
-    print "Adding result " + str(result)
+    if VERBOSE:
+        print "Adding result " + str(result)
     return result
 
 # Start execution here!
 if __name__ == '__main__':
+    VERBOSE = 1
     print "Starting NeverHaveIEver population script..."
     populate()
     print "Population successful."

@@ -143,6 +143,17 @@ def statement_info(request):
 
 # display the gameplay page
 def play(request):
+
+    num_categories = len(Category.objects.all())
+    if not num_categories:
+        return HttpResponse("""We apologise but no categories have been found. The admins are probably working on fixing this
+        right now!""")
+
+    num_statements = len(Statement.objects.all())
+    if not num_statements:
+        return HttpResponse("""We apologise but no statements have been found. The admins are probably working on fixing this
+        right now!""")
+
     context_dict = {}
     sid = request.session.session_key
     SESSION_NSFW = False
@@ -176,7 +187,6 @@ def play(request):
         gc.total_players += 1
         gc.save()
 
-    print "SESSION last_modified:", session.last_modified
     categories = session.categories.all()
     #context_dict['categories'] = categories
 
@@ -429,6 +439,12 @@ def play_options(request):
 
 # display page to add new statement
 def new_statement(request):
+
+    num_categories = len(Category.objects.all())
+    if not num_categories:
+        return HttpResponse("""We apologise but no categories have been found. The admins are probably working on fixing this
+        right now!""")
+
     context_dict = {}
 
     if request.method=='POST':
@@ -462,7 +478,6 @@ def add_player(request):
         players = Player.objects.filter(session=session)
         session.save()
         #create more players
-        print "NEW PLAYER:", (len(players) + 1)
         # create new player in this session
         Player.objects.create(stamp=(len(players) + 1), session = session)
 
