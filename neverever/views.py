@@ -472,7 +472,7 @@ def add_player(request):
                                     {'formlist': formlist},
                                     context_instance=RequestContext(request)))
 
-    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}),
+    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)+1}),
                             content_type="application/json")
 
     return response

@@ -88,7 +88,7 @@ function disableLike() {
 
 // disable add player button if number of players in game gets to 6
 function checkNumPlayers(data){
-    if (data["nPlayers"] >= 5){
+    if (data["nPlayers"] >= 6){
         disableAdd();
     }
 }
