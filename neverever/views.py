@@ -173,6 +173,7 @@ def play(request):
         # Update global counters
         gc = GlobalCounter.objects.all()[0]
         gc.total_sessions += 1
+        print "adding to total sessions"
         gc.total_players += 1
         gc.save()
 
@@ -468,10 +469,12 @@ def add_player(request):
     if session:
         players = Player.objects.filter(session=session)
         session.save()
-        #create more players
-        print "NEW PLAYER:", (len(players) + 1)
         # create new player in this session
         Player.objects.create(stamp=(len(players) + 1), session = session)
+        # update global player counter
+        gc = GlobalCounter.objects.all()[0]
+        gc.total_players += 1
+        gc.save()
 
     formlist = get_answer_forms(session)
     # rendering the answer buttons template and context to load within gameplay page
