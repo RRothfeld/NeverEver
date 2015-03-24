@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 
 
-# Class to store categories
+# Model to store categories
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
     slug = models.SlugField(unique=True)
@@ -15,7 +15,7 @@ class Category(models.Model):
         return self.name
 
 
-# Class to store statements
+# Model to store statements
 class Statement(models.Model):
     categories = models.ManyToManyField(Category)
     title = models.CharField(max_length=128, unique=True)
@@ -33,15 +33,12 @@ class Statement(models.Model):
         return self.title
 
 
-# Class to store play sessions
+# Model to store play sessions
 class Session(models.Model):
-    # stamp = models.IntegerField(null=True) # TODO: change to stamp = models.IntegerField(primary_key=True)
-    sid = models.CharField(max_length=128, null=True)  # TODO: change to stamp = models.IntegerField(primary_key=True)
+    sid = models.CharField(max_length=128, null=True)
     categories = models.ManyToManyField(Category)
     nsfw = models.BooleanField(default=False)
     last_modified = models.DateTimeField(auto_now_add=True, blank=True)
-
-    # Testing
     last_statement = models.ForeignKey(Statement, null=True, related_name="last_statement")
     used_statements = models.ManyToManyField(Statement, null=True, related_name="used_statements")
 
@@ -53,11 +50,10 @@ class Session(models.Model):
         return "Session " + str(self.sid)
 
 
-# Class to store players
+# Model to store players
 class Player(models.Model):
-    stamp = models.IntegerField(primary_key=False)  # TODO: CHANGE TO True
+    stamp = models.IntegerField(primary_key=False) 
     session = models.ForeignKey(Session)
-    # id = models.IntegerField(primary_key=True)
     gender = models.CharField(max_length=1, null=True)
     age = models.IntegerField(null=True)
     nationality = models.CharField(max_length=128, null=True)
@@ -74,14 +70,13 @@ class Player(models.Model):
         return "Player " + str(self.stamp)
 
 
-# Class to store answers
+# Model to store answers
 class Answer(models.Model):
     stamp = models.IntegerField(primary_key=True)
     session = models.ForeignKey(Session, null=True)
     statement = models.ForeignKey(Statement, null=True)
     player = models.ForeignKey(Player, null=True)
     answer = models.BooleanField(default=False)
-    # id = models.IntegerField(primary_key=True)
     # slug = models.SlugField(unique=True)
 
     # def save(self, *args, **kwargs):
@@ -91,7 +86,7 @@ class Answer(models.Model):
     def __unicode__(self):
         return "Answer " + str(self.stamp)
 
-
+# Model to store results (info on answers and players who submitted them, for statistical purposes)
 class Result(models.Model):
     statement = models.ForeignKey(Statement)
     gender = models.CharField(max_length=128, null=True)
@@ -102,7 +97,7 @@ class Result(models.Model):
     def __unicode__(self):
         return "result_" + str(self.id)
 
-
+# Model to store counter of total number of sessions and players so far
 class GlobalCounter(models.Model):
     total_sessions = models.IntegerField()
     total_players = models.IntegerField()

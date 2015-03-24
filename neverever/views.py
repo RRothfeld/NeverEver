@@ -173,17 +173,12 @@ def play(request):
         # Update global counters
         gc = GlobalCounter.objects.all()[0]
         gc.total_sessions += 1
-        print "adding to total sessions"
         gc.total_players += 1
         gc.save()
 
-    print "SESSION last_modified:", session.last_modified
+    # get lists of categories and players in this session to use below
     categories = session.categories.all()
-    #context_dict['categories'] = categories
-
-    # Testing players
     players = Player.objects.filter(session=session)
-    #context_dict['Players'] = players
 
     # if we get answers back from the client
     if request.method == 'POST':
@@ -193,7 +188,7 @@ def play(request):
         session.used_statements.add(used_statement)
         
         # get number of players in this game
-        num_players = len(Player.objects.filter(session=session))
+        num_players = len(players)
         forms = []
         # get answer forms for each player
         for i in range(0, num_players):
