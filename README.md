@@ -31,7 +31,7 @@ testing):
 	
 	python manage.py createsuperuser
 	
-Alright, your local web application is ready to be played. Simply start the application by issuing the following 
+Finally, you have to edit /project/settings.py (line 36) for the allowed hosts. Add your url or localhost as to enable access to the application. Alright, your local web application is ready to be played. Simply start the application by issuing the following 
 command:
 
 	python manage.py runserver
