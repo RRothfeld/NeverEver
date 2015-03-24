@@ -51,7 +51,7 @@ def stats(request):
 
 # display statements within chosen category on overall stats page
 # (called using AJAX)
-def stats_test(request):
+def statement_titles(request):
     if request.method == 'GET':
         # get category name received from AJAX get request
         cat_name = request.GET['cat_name']
@@ -295,19 +295,15 @@ def play_summary(request):
     context_dict = {}
     sid = request.session.session_key
     if sid:
-        session = Session.objects.filter(sid=sid)
-        if session:
-            context_dict['session'] = session[0]
+        session = Session.objects.get(sid=sid)
     else:
         request.session.save()
         request.session.modified = True
         sid = request.session.session_key
-    
-    context_dict['sid'] = sid
+        session = Session.objects.get(sid=sid)
     
     # if we are getting the player forms back from the client
     if request.method == 'POST':
-        session = Session.objects.get(sid=sid)
         num_players = len(Player.objects.filter(session=session))
         forms = []
         # loop through forms and put in list
@@ -348,7 +344,6 @@ def play_summary(request):
     # else if request is GET
     else:
         #display the forms for each player
-        session = Session.objects.get(sid=sid)
         num_players = len(Player.objects.filter(session=session))
         forms = []
         player_names = []
