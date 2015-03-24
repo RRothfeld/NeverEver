@@ -42,19 +42,20 @@
     <div class="container row-spacing">
         <div class="sub-heading">
             <h4><span class="glyphicon glyphicon-tags"></span></h4>
-            <h2 id="cat">select a category</h2>
+            <h2>select a category</h2>
         </div>
         Please select the category you are interested in:
         <div class="dropdown-box text-center">
             <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                      data-toggle="dropdown" aria-expanded="true">
                 Categories
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 {% for category in categories.all %}
                     <li role="presentation" class="cat_list_item" data-name="{{category.name}}">
-                        <a role="menuitem" tabindex="-1" href="#cat">{{ category.name }}</a>
+                        <a role="menuitem" tabindex="-1">{{ category.name }}</a>
                     </li>
                 {% endfor %}
               </ul>
@@ -65,7 +66,7 @@
     <div class="container row-spacing">
         <div class="sub-heading">
             <h4><span class="glyphicon glyphicon-tag"></span></h4>
-            <h2 id="state">select a statement</h2>
+            <h2>select a statement</h2>
         </div>
         Please select the statement you are interested in:
         <div id="statements" class="neverever-box">
