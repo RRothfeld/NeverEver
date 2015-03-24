@@ -1,9 +1,18 @@
 {% if statements %}
-	<strong>Never have I ever...</strong>
-    <br/>
-    {% for statement in statements %}
-        <span class="single_statement" data-title="{{statement.title}}">
-            {{ statement.title }}||
-        </span>
-    {% endfor %}
+    <div class="dropdown-box dropdown-box-wide text-center">
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Never have I ever...
+            <span class="caret"></span>
+          </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                {% for statement in statements %}
+                    <li role="presentation" class="cat_list_item">
+                        <a role="menuitem" tabindex="-1" class="single_statement"
+                           data-title="{{statement.title}}">{{ statement.title }}</a>
+                    </li>
+                {% endfor %}
+             </ul>
+        </div>
+    </div>
 {% endif %}
