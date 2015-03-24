@@ -226,6 +226,13 @@ def play(request):
             for statement in statement_list:
                 if statement not in session.used_statements.all():
                     rand_statement = statement
+
+                    # increment view counter
+                    views = statement.views+1
+                    statement.views = views
+                    statement.save()
+
+                    # present found statement
                     found = True
                     break
             if not found:
