@@ -186,12 +186,11 @@ def play(request):
 
     # if we get answers back from the client
     if request.method == 'POST':
-        session = Session.objects.filter(sid=sid)[0]
+        session = Session.objects.get(sid=sid)
         # get statement that has just been answered
         used_statement = session.last_statement
         session.used_statements.add(used_statement)
-
-        session = Session.objects.get(sid=sid)
+        
         # get number of players in this game
         num_players = len(Player.objects.filter(session=session))
         forms = []
@@ -204,7 +203,7 @@ def play(request):
             if forms[i].is_valid():
                 answer = forms[i].save(commit=False)
                 answer.statement = used_statement
-                answer.session = Session.objects.get(sid=sid)
+                answer.session = session
                 answer.player = players[i] 
                 answer.save()
             else:
@@ -240,7 +239,6 @@ def play(request):
     # save statement to be used in this round as the last statement
     session.last_statement = rand_statement
     session.save()
-
     # put session in context_dict to pass to template
     context_dict['this_session'] = session
     
@@ -285,16 +283,7 @@ def set_name(request):
         player.name = name
         player.save()
 
-    # get num players and put an answer form for each player in list
-    num_players = len(Player.objects.filter(session=session))
-    forms = []
-    for i in range(0, num_players):
-        forms.append(AnswerForm(prefix="form" + str(i)))
-
-    # get list of players in this game
-    players = Player.objects.filter(session = session)
-    # zip the list of forms and the list of players so we can loop through both in the template
-    formlist = zip(forms, players)
+    formlist = get_answer_forms(session)
 
     return render(request, 'neverever/answerButtons.html', {'formlist': formlist})
 
@@ -483,7 +472,7 @@ def add_player(request):
         Player.objects.create(stamp=(len(players) + 1), session = session)
 
     formlist = get_answer_forms(session)
-
+    # rendering the answer buttons template and context to load within gameplay page
     rendered = str(render_to_string('neverever/answerButtons.html',
                                     {'formlist': formlist},
                                     context_instance=RequestContext(request)))
@@ -505,7 +494,7 @@ def get_answer_forms(session):
     players = Player.objects.filter(session = session)
     forms = []
     # add a form for each player to list of forms
-    for i in range(0, len(players)):  # +1 since a new player was added
+    for i in range(0, len(players)): 
         forms.append(AnswerForm(prefix="form" + str(i)))
     # zip list of forms and players so that we can loop through both in the template   
     formlist = zip(forms, players)
