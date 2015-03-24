@@ -75,6 +75,8 @@ For a coverage report, however, please run the following commands:
 
     coverage run --source='.' manage.py test neverever
     coverage report
+    
+This will output the test report and show the coverage rate of the provided tests.
 
 Play Testing
 ----------------
