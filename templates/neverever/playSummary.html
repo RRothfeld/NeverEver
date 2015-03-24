@@ -17,28 +17,29 @@
           <h4><span class="glyphicon glyphicon-heart-empty"></span></h4>
           <h2>thank you for playing</h2>
         </div>
-        <div class="container text-justify">We hope you enjoyed. As to dismantle social taboos, however, we would like to ask you for some information on yourself.
-        Not to worry though, everything is anonymous!</div>
+        <div class="container text-justify">We hope you enjoyed. As to dismantle social taboos, however, we would like
+            to ask you for some information on yourself. Not to worry though, everything is anonymous!</div>
         <div class="add-container">
 
         </div>
     </div>
+
     <form id="player_form" method="post" action="">
-        {% for player_name, form in player_forms %}
-            {% csrf_token %}
-            <strong>{{ player_name }}</strong><br>
-            {% for field in form.visible_fields %}
-                {% if field.errors %}
-                  <div class="alert alert-danger text-center" role="alert">
-                      <strong>Ups!</strong> You entered wrong information.
-                  </div>
-                {% endif %}
-                {{ field.help_text }}
-                {{ field }}<br>
+        <div class="neverever-box">
+            {% for player_name, form in player_forms %}
+                {% csrf_token %}
+                <div class="container info-box-outer">
+                    <h4><strong>{{ player_name }}</strong></h4><br>
+                    {% for field in form.visible_fields %}
+                        <div class="container info-box">
+                            <div class="container info-text inline">{{ field.help_text }}</div>
+                            <div class="container info-field inline">{{ field }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
             {% endfor %}
-        <br>
-        {% endfor %}
-        <div class="container">
+        </div>
+        <div class="container text-center">
             <div class="row row-spacing-top">
                 <input type="submit" name="submit" value="End Game" class="btn btn-primary btn-lg btn-ne-add"/>
             </div>
@@ -50,12 +51,11 @@
 
     <div class="container row-spacing">
         <div class="sub-heading">
-          <h4><span class="glyphicon glyphicon-sunglasses"></span></h4>
+          <h4><span class="glyphicon glyphicon-star"></span></h4>
           <h2>and the winner is...</h2>
         </div>
-        Let's see who has done the most weird stuff in their lives.
+        Let's see who has done the most weird stuff in their lifes:
         <div class="add-container">
-            <span class="glyphicon glyphicon-star"></span>
             {% if player_total_yes_no %}
                 {% for player in player_total_yes_no %}
                     <strong>{{ player.player }}</strong>
@@ -71,24 +71,28 @@
           <h2>all your answered statements</h2>
         </div>
         You probably don't want a full recap of what you've just admitted, but here it is nonetheless:
-        <div class="add-container">
-            {% if statement_data %}
-                {% for statement, data, total_yes, total_no in statement_data %}
-                    <b>"Never have I ever {{ statement }}":</b>
-                    {{ data.yes}} answered "Yes", {{ data.no }} answered "No" (Total: {{ data.total }})<br />
-                    ({{ total_yes }} Global Yes, {{ total_no }} Global No) <br />
-                    {% for answer in data.answers %}
-                         - {{ answer.player }} answered
-                        {% if answer.answer %}
-                            "Yes"
-                        {% else %}
-                            "No"
-                        {% endif %}
-                        <br />
+        {% if statement_data %}
+            <div class="neverever-box text-left">
+                <table class="table table-condensed">
+                    <thead><tr>
+                        <th>Statement</th><th>Done It</th><th>Game Answers</th><th>Global Answers</th>
+                    </tr></thead><tbody>
+                    {% for statement, data, total_yes, total_no in statement_data %}
+                        <tr>
+                            <td>Never have I ever <strong>{{ statement }}</strong></td>
+                            <td>
+                                {% for answer in data.answers %}
+                                    {% if answer.answer %}
+                                        {{ answer.player }}<br>
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{% widthratio data.yes data.total 100 %}%</td>
+                            <td>{% widthratio total_yes total_yes|add:total_no 100 %}%</td>
+                        </tr>
                     {% endfor %}
-                    <br />
-                {% endfor %}
-            {% endif %}
-        </div>
+                </tbody></table>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
