@@ -1,7 +1,7 @@
 from django import forms
 from neverever.models import Statement, Category, Answer, Session, Player
 
-
+# Form for submitting new statements
 class StatementForm(forms.ModelForm):
     title = forms.CharField(max_length=128, help_text="Never have I ever ")
     views = forms.IntegerField(widget=forms.HiddenInput(), initial=0, required=False)
@@ -21,7 +21,7 @@ class StatementForm(forms.ModelForm):
         model = Statement
         fields = ('title', 'nsfw', 'categories')
 
-
+# Form for submitting nsfw setting for a session/game
 class SessionForm(forms.ModelForm):
     sid = forms.CharField(widget=forms.HiddenInput(), required=False)
     nsfw = forms.BooleanField(widget=forms.CheckboxInput(), required=False)
@@ -37,13 +37,13 @@ class SessionForm(forms.ModelForm):
         model = Session
         fields = ('nsfw', 'categories')
 
-
+# Form for submitting answers from the game play page
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ('answer',)
 
-
+# Form for submititng info on players at the end of the game
 class PlayerForm(forms.ModelForm):
     genders = (('', 'N/A'),('F', 'Female'), ('M', 'Male'),)
     gender = forms.ChoiceField(choices=genders, help_text="Gender", required=False)

@@ -21,15 +21,16 @@
         {% if globalCounter %}
             So far, <strong>{{ globalCounter.total_sessions }}</strong> games have been played, with a total of
             <strong>{{ globalCounter.total_players }}</strong> players.
-            <br />
-            {% if nCategories%}
-                number of Categories: {{ nCategories }} <br />
+            <br>
+            {% if nCategories %}
+                We have <strong>{{ nCategories }}</strong> categories, with
             {% endif %}
-            {% if nStatements%}
-                number of Statements: {{ nStatements }} <br />
+            {% if nStatements %}
+                a total of <strong>{{ nStatements }}</strong> statements.<br>
             {% endif %}
             {% if nAnswers %}
-                number of Answers provided so far: {{ nAnswers }} <br />
+                From our players, we have recorded a total of <strong>{{ nAnswers }}</strong> answers.<br>
+                Let's keep those numbers rising. :)
             {% endif %}
         {% endif %}
         {% if category.all %}
@@ -41,19 +42,20 @@
     <div class="container row-spacing">
         <div class="sub-heading">
             <h4><span class="glyphicon glyphicon-tags"></span></h4>
-            <h2>select categories</h2>
+            <h2>select a category</h2>
         </div>
         Please select the category you are interested in:
         <div class="dropdown-box text-center">
             <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                      data-toggle="dropdown" aria-expanded="true">
                 Categories
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 {% for category in categories.all %}
                     <li role="presentation" class="cat_list_item" data-name="{{category.name}}">
-                        <a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a>
+                        <a role="menuitem" tabindex="-1">{{ category.name }}</a>
                     </li>
                 {% endfor %}
               </ul>
@@ -61,11 +63,29 @@
         </div>
     </div>
 
-        <div id="statements">
-            {% get_statement_titles %}
+    <div class="container row-spacing">
+        <div class="sub-heading">
+            <h4><span class="glyphicon glyphicon-tag"></span></h4>
+            <h2>select a statement</h2>
         </div>
-        <div id="statement_stats">
+        Please select the statement you are interested in:
+        <div id="statements" class="neverever-box">
+                {% get_statement_titles %}
         </div>
+    </div>
+
+    <div class="container row-spacing">
+        <div class="sub-heading">
+            <h4><span class="glyphicon glyphicon-stats"></span></h4>
+            <h2>statement statistics</h2>
+        </div>
+        We present you the statement's stats.
+        <div id="statement_stats" class="neverever-box">
+            <br>
+            <strong>Please select a statement first via the above menus.</strong>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row row-spacing-bottom">
             <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>

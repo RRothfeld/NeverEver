@@ -135,6 +135,10 @@ h1 {
   margin: 0 auto;
 }
 
+.dropdown-box-wide {
+  width: 135px;
+}
+
 .text-justify {
     max-width: 650px;
 }

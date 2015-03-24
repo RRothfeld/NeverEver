@@ -187,12 +187,9 @@ def play(request):
         gc.total_players += 1
         gc.save()
 
-    categories = session.categories.all()
-    #context_dict['categories'] = categories
 
-    # Testing players
+    categories = session.categories.all()
     players = Player.objects.filter(session=session)
-    #context_dict['Players'] = players
 
     # if we get answers back from the client
     if request.method == 'POST':
@@ -202,7 +199,7 @@ def play(request):
         session.used_statements.add(used_statement)
         
         # get number of players in this game
-        num_players = len(Player.objects.filter(session=session))
+        num_players = len(players)
         forms = []
         # get answer forms for each player
         for i in range(0, num_players):
@@ -236,6 +233,13 @@ def play(request):
             for statement in statement_list:
                 if statement not in session.used_statements.all():
                     rand_statement = statement
+
+                    # increment view counter
+                    views = statement.views+1
+                    statement.views = views
+                    statement.save()
+
+                    # present found statement
                     found = True
                     break
             if not found:
@@ -477,9 +481,13 @@ def add_player(request):
     if session:
         players = Player.objects.filter(session=session)
         session.save()
-        #create more players
+
         # create new player in this session
         Player.objects.create(stamp=(len(players) + 1), session = session)
+        # update global player counter
+        gc = GlobalCounter.objects.all()[0]
+        gc.total_players += 1
+        gc.save()
 
     formlist = get_answer_forms(session)
     # rendering the answer buttons template and context to load within gameplay page
@@ -487,7 +495,7 @@ def add_player(request):
                                     {'formlist': formlist},
                                     context_instance=RequestContext(request)))
 
-    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)}),
+    response = HttpResponse(json.dumps({'rendered': rendered, "nPlayers": len(players)+1}),
                             content_type="application/json")
 
     return response
