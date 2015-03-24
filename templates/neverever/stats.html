@@ -42,7 +42,7 @@
     <div class="container row-spacing">
         <div class="sub-heading">
             <h4><span class="glyphicon glyphicon-tags"></span></h4>
-            <h2>select categories</h2>
+            <h2 id="cat">select a category</h2>
         </div>
         Please select the category you are interested in:
         <div class="dropdown-box text-center">
@@ -54,7 +54,7 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 {% for category in categories.all %}
                     <li role="presentation" class="cat_list_item" data-name="{{category.name}}">
-                        <a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a>
+                        <a role="menuitem" tabindex="-1" href="#cat">{{ category.name }}</a>
                     </li>
                 {% endfor %}
               </ul>
@@ -62,11 +62,29 @@
         </div>
     </div>
 
-        <div id="statements">
-            {% get_statement_titles %}
+    <div class="container row-spacing">
+        <div class="sub-heading">
+            <h4><span class="glyphicon glyphicon-tag"></span></h4>
+            <h2 id="state">select a statement</h2>
         </div>
-        <div id="statement_stats">
+        Please select the statement you are interested in:
+        <div id="statements" class="neverever-box">
+                {% get_statement_titles %}
         </div>
+    </div>
+
+    <div class="container row-spacing">
+        <div class="sub-heading">
+            <h4><span class="glyphicon glyphicon-stats"></span></h4>
+            <h2>statement statistics</h2>
+        </div>
+        We present you the statement's stats.
+        <div id="statement_stats" class="neverever-box">
+            <br>
+            <strong>Please select a statement first via the above menus.</strong>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row row-spacing-bottom">
             <a href="{% url 'index' %}" class="btn btn-default btn-ne-add">Return to Main Page</a>

@@ -1,49 +1,47 @@
-<br />
-    {% if total %}
-        <strong style="font-size:200%">"Never have I ever {{ title }}":</strong>
-            <br/>
-            A total of {{ total }} people have answered this
-            <br/>
-                {{ yes_percentage }}% answered Yes
-            <br/>
-                {{ no_percentage }}% answered No
+<br>
+{% if total %}
+    <h4>Never have I ever <strong>{{ title }}</strong></h4>
         <br/>
-        <br/>List of yes answers per nationality </br>
-        {% if yes %}
-            {% for nat in nat_freqs %}
-                {% if nat.0 != '' %}
-                    {{ nat.0 }} 
-                {% else %}
-                    Unknown Nationality
-                {% endif %}
-                -- {{ nat.1 }} <br/>
-            {% endfor %}
-        {% else %}
-            Actually, nobody has said they've done this yet <br/>
-        {% endif %}
+        A total of {{ total }} people have answered this
         <br/>
-
-        Of the yes answers: <br/>
-        {{ female_percentage }}% were female and {{ male_percentage }}% were male<br/>
-        {% if yes == 0 %}
-            Because nobody has said they've done this yet <br/>
-        {% elif female_percentage|add:male_percentage != 100 %}
-            The rest did not provide their gender <br/>
-        {% endif %}
+            {{ yes_percentage }}% answered Yes
         <br/>
-        {% if avg_yes_age > 0 %}
-            The average age of people who have done this is {{ avg_yes_age }} <br/>
-        {% else %}
-            The average age of people who have done this is unknown<br/>
-        {% endif %}
-        {% if avg_no_age > 0 %}
-            The average age of people who have not done this is {{ avg_no_age }} <br/>
-        {% else %}
-            The average age of people who have not done this is unknown<br/>
-        {% endif %}
-  
+            {{ no_percentage }}% answered No
+    <br/>
+    <br/>List of yes answers per nationality </br>
+    {% if yes %}
+        {% for nat in nat_freqs %}
+            {% if nat.0 != '' %}
+                {{ nat.0 }}
+            {% else %}
+                Unknown Nationality
+            {% endif %}
+            -- {{ nat.1 }} <br/>
+        {% endfor %}
     {% else %}
-        <strong style="font-size:200%">"Never have I ever {{ title }}":</strong> <br/>
-        No results yet for this statement
+        Actually, nobody has said they've done this yet <br/>
     {% endif %}
-<br />
+    <br/>
+
+    Of the yes answers: <br/>
+    {{ female_percentage }}% were female and {{ male_percentage }}% were male<br/>
+    {% if yes == 0 %}
+        Because nobody has said they've done this yet <br/>
+    {% elif female_percentage|add:male_percentage != 100 %}
+        The rest did not provide their gender <br/>
+    {% endif %}
+    <br/>
+    {% if avg_yes_age > 0 %}
+        The average age of people who have done this is {{ avg_yes_age }} <br/>
+    {% else %}
+        The average age of people who have done this is unknown<br/>
+    {% endif %}
+    {% if avg_no_age > 0 %}
+        The average age of people who have not done this is {{ avg_no_age }} <br/>
+    {% else %}
+        The average age of people who have not done this is unknown<br/>
+    {% endif %}
+{% else %}
+    <h4>Never have I ever <strong>{{ title }}</strong></h4><br><br>
+    <p>No results yet for this statement</p>
+{% endif %}
