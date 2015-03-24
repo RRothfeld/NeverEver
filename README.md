@@ -67,6 +67,17 @@ If you wish to add a new statement to the game, simply press *NEW STATEMENT* and
 
 Application Testing
 ----------------
+To simply run the provided test case script, issue the following command:
+
+    python manage.py test neverever 
+
+For a coverage report, however, please run the following commands:
+
+    coverage run --source='.' manage.py test neverever
+    coverage report
+
+Play Testing
+----------------
 To test the application we have gone through a number of scenarios manually and tested the outcome to test whether it 
 is as expected by using the Django admin page. 
 
