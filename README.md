@@ -77,5 +77,4 @@ admin page at this point confirms that the session has been deleted (including t
 updated with info on the answers that have been provided. 
 
 From the homepage when the Add statement button is clicked, users are able to add a statement which is then included in 
-the statements model. If users miss any necessary info, this is highlighted to them accordingly. 
-
+the statements model. If users miss any necessary info, this is highlighted to them accordingly.
