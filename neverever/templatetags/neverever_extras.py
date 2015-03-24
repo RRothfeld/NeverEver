@@ -19,4 +19,4 @@ def get_answer_buttons(session):
 def get_statement_titles():
     statements = Statement.objects.all()
 
-    return {'statements': statements}
+    return {'cat_name': "All", 'statements': statements}

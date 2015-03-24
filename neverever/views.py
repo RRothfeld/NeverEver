@@ -59,7 +59,7 @@ def statement_titles(request):
     category = Category.objects.get(name=cat_name)
     # get list of statements in that category
     statements = Statement.objects.filter(categories=category)
-    return render(request, 'neverever/statementTitles.html', {'statements': statements})
+    return render(request, 'neverever/statementTitles.html', {'cat_name': cat_name, 'statements': statements})
 
 # display statistics on an individual statement on overall stats page
 # (called using AJAX)
