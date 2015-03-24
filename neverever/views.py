@@ -59,7 +59,7 @@ def statement_titles(request):
     category = Category.objects.get(name=cat_name)
     # get list of statements in that category
     statements = Statement.objects.filter(categories=category)
-    return render(request, 'neverever/statementTitles.html', {'statements': statements})
+    return render(request, 'neverever/statementTitles.html', {'cat_name': cat_name, 'statements': statements})
 
 # display statistics on an individual statement on overall stats page
 # (called using AJAX)
@@ -143,6 +143,17 @@ def statement_info(request):
 
 # display the gameplay page
 def play(request):
+
+    num_categories = len(Category.objects.all())
+    if not num_categories:
+        return HttpResponse("""We apologise but no categories have been found. The admins are probably working on fixing this
+        right now!""")
+
+    num_statements = len(Statement.objects.all())
+    if not num_statements:
+        return HttpResponse("""We apologise but no statements have been found. The admins are probably working on fixing this
+        right now!""")
+
     context_dict = {}
     sid = request.session.session_key
     SESSION_NSFW = False
@@ -176,7 +187,7 @@ def play(request):
         gc.total_players += 1
         gc.save()
 
-    # get lists of categories and players in this session to use below
+
     categories = session.categories.all()
     players = Player.objects.filter(session=session)
 
@@ -432,6 +443,12 @@ def play_options(request):
 
 # display page to add new statement
 def new_statement(request):
+
+    num_categories = len(Category.objects.all())
+    if not num_categories:
+        return HttpResponse("""We apologise but no categories have been found. The admins are probably working on fixing this
+        right now!""")
+
     context_dict = {}
 
     if request.method=='POST':
@@ -464,6 +481,7 @@ def add_player(request):
     if session:
         players = Player.objects.filter(session=session)
         session.save()
+
         # create new player in this session
         Player.objects.create(stamp=(len(players) + 1), session = session)
         # update global player counter
